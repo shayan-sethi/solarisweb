@@ -1,32 +1,42 @@
 {% extends "base.html" %}
 
 {% block content %}
-<section class="max-w-5xl mx-auto px-6 py-12 space-y-8">
-    <div class="glass rounded-3xl p-8 shadow-lg space-y-6">
-        <h1 class="text-3xl font-bold text-slate-800">Estimate & recommendations</h1>
-        <p class="text-slate-500">
-            Here’s a snapshot of your system sizing, subsidy support and the programmes best suited to your rooftop journey.
+<section class="max-w-5xl mx-auto px-6 py-12 space-y-10">
+    <div class="glass rounded-[2.5rem] p-8 md:p-10 shadow-xl space-y-6 border border-white/50">
+        <div class="flex flex-col gap-2">
+            <span class="inline-flex items-center gap-2 text-xs uppercase tracking-[0.35em] text-cyan-500 font-semibold">
+                <span class="h-1.5 w-1.5 rounded-full bg-cyan-500 animate-pulse"></span>
+                Your Rooftop Blueprint
+            </span>
+        <h1 class="text-3xl md:text-4xl font-bold text-slate-900">Estimate & recommendations</h1>
+        <p class="text-slate-500 max-w-2xl">
+            Here’s a high-resolution snapshot of your system sizing, subsidy support and the programmes best suited to your rooftop journey.
         </p>
+        </div>
 
         {% include "subsidy/_progress.html" %}
 
         <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-            <div class="bg-white border border-slate-200 rounded-2xl p-6 space-y-2">
+            <div class="bg-white border border-slate-200 rounded-2xl p-6 space-y-3 shadow-sm hover:shadow-lg transition-shadow">
                 <h2 class="text-sm uppercase tracking-wide text-slate-500">Recommended system size</h2>
                 <p class="text-3xl font-semibold text-slate-900">{{ "{:.2f}".format(recommended_kw) }} kW</p>
                 <p class="text-xs text-slate-400">Sized using rooftop area and annual consumption.</p>
             </div>
-            <div class="bg-white border border-slate-200 rounded-2xl p-6 space-y-2">
+            <div class="bg-white border border-slate-200 rounded-2xl p-6 space-y-3 shadow-sm hover:shadow-lg transition-shadow">
                 <h2 class="text-sm uppercase tracking-wide text-slate-500">Initial cost</h2>
                 <p class="text-3xl font-semibold text-slate-900">₹{{ "{:,.0f}".format(result.gross_cost) }}</p>
                 <p class="text-xs text-slate-400">Turnkey cost before subsidies (₹{{ "{:,.0f}".format(result.gross_cost / (recommended_kw or 1)) }}/kW).</p>
             </div>
-            <div class="bg-white border border-slate-200 rounded-2xl p-6 space-y-2">
-                <h2 class="text-sm uppercase tracking-wide text-slate-500">Subsidy support</h2>
-                <p class="text-3xl font-semibold text-emerald-600">₹{{ "{:,.0f}".format(result.central + result.state_subsidy) }}</p>
-                <p class="text-xs text-slate-400">Central ₹{{ "{:,.0f}".format(result.central) }} + State ₹{{ "{:,.0f}".format(result.state_subsidy) }}.</p>
+            <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-emerald-500 via-emerald-500/95 to-emerald-600 text-white p-6 shadow-lg">
+                <div class="absolute -top-8 -right-6 h-24 w-24 rounded-full bg-white/10 blur-2xl"></div>
+                <h2 class="text-sm uppercase tracking-[0.4em] text-white/80">Subsidy support</h2>
+                <p class="mt-4 text-[2.25rem] font-black tracking-tight drop-shadow-sm">₹{{ "{:,.0f}".format(result.central + result.state_subsidy) }}</p>
+                <p class="text-sm text-white/80">
+                    <strong>Central:</strong> ₹{{ "{:,.0f}".format(result.central) }}<br>
+                    <strong>State:</strong> ₹{{ "{:,.0f}".format(result.state_subsidy) }}
+                </p>
             </div>
-            <div class="bg-white border border-slate-200 rounded-2xl p-6 space-y-2">
+            <div class="bg-white border border-slate-200 rounded-2xl p-6 space-y-3 shadow-sm hover:shadow-lg transition-shadow">
                 <h2 class="text-sm uppercase tracking-wide text-slate-500">Net cost after subsidy</h2>
                 <p class="text-3xl font-semibold text-slate-900">₹{{ "{:,.0f}".format(result.net_cost) }}</p>
                 <p class="text-xs text-emerald-600">Estimated annual savings ₹{{ "{:,.0f}".format(estimated_annual_savings) }} ({{ "{:,.0f}".format(recommended_kw * 1100) }} kWh/year).</p>
@@ -44,14 +54,17 @@
         </div>
         {% endif %}
 
-        <div class="bg-white border border-slate-200 rounded-2xl p-6 space-y-4">
-            <h2 class="text-lg font-semibold text-slate-800">Filter subsidy programmes</h2>
+        <div class="bg-white border border-slate-200 rounded-2xl p-6 space-y-4 shadow-sm">
+            <h2 class="text-lg font-semibold text-slate-800 flex items-center gap-2">
+                <span class="h-2 w-2 rounded-full bg-cyan-500"></span>
+                Filter subsidy programmes
+            </h2>
             <div class="grid md:grid-cols-3 gap-4">
                 <div class="space-y-2">
                     <p class="text-sm font-semibold text-slate-600">Coverage</p>
                     <div class="flex flex-wrap gap-2">
                         {% for link in coverage_links %}
-                            <a href="{{ link.url }}" class="px-3 py-1 text-sm rounded-full border {{ 'bg-sky-500 text-white border-sky-500' if link.active else 'border-slate-200 text-slate-600 hover:border-sky-300' }}">
+                            <a href="{{ link.url }}" class="filter-chip {{ 'filter-chip--active' if link.active else '' }}">
                                 {{ link.label }}
                             </a>
                         {% endfor %}
@@ -61,7 +74,7 @@
                     <p class="text-sm font-semibold text-slate-600">Ownership</p>
                     <div class="flex flex-wrap gap-2">
                         {% for link in ownership_links %}
-                            <a href="{{ link.url }}" class="px-3 py-1 text-sm rounded-full border {{ 'bg-sky-500 text-white border-sky-500' if link.active else 'border-slate-200 text-slate-600 hover:border-sky-300' }}">
+                            <a href="{{ link.url }}" class="filter-chip {{ 'filter-chip--active' if link.active else '' }}">
                                 {{ link.label }}
                             </a>
                         {% endfor %}
@@ -71,7 +84,7 @@
                     <p class="text-sm font-semibold text-slate-600">Grid connection</p>
                     <div class="flex flex-wrap gap-2">
                         {% for link in grid_links %}
-                            <a href="{{ link.url }}" class="px-3 py-1 text-sm rounded-full border {{ 'bg-sky-500 text-white border-sky-500' if link.active else 'border-slate-200 text-slate-600 hover:border-sky-300' }}">
+                            <a href="{{ link.url }}" class="filter-chip {{ 'filter-chip--active' if link.active else '' }}">
                                 {{ link.label }}
                             </a>
                         {% endfor %}
@@ -80,9 +93,9 @@
             </div>
         </div>
 
-        <div class="bg-white border border-slate-200 rounded-2xl p-6 space-y-4">
-            <div class="flex items-center justify-between">
-                <h2 class="text-xl font-semibold text-slate-800">Recommended programmes</h2>
+        <div class="bg-white border border-slate-200 rounded-2xl p-6 space-y-6 shadow-lg">
+            <div class="flex flex-wrap items-center justify-between gap-3">
+                <h2 class="text-2xl font-semibold text-slate-900">Recommended programmes</h2>
                 <span class="text-sm text-slate-500">Showing {{ matches|length }} of {{ total_matches }} matches</span>
             </div>
 
@@ -91,39 +104,43 @@
             {% elif matches|length == 0 %}
                 <p class="text-sm text-slate-500">No programmes match the selected filters right now. Try widening your filters to discover more incentives.</p>
             {% else %}
-                <div class="space-y-4">
+                <div class="space-y-5">
                     {% for scheme in matches %}
-                        <article class="border border-slate-200 rounded-2xl p-6 space-y-3">
-                            <div class="flex flex-wrap items-center justify-between gap-3">
-                                <div>
-                                    <h3 class="text-lg font-semibold text-slate-800">{{ scheme.name }}</h3>
+                        <article class="relative overflow-hidden rounded-3xl border border-slate-200 p-6 md:p-7 space-y-4 bg-white shadow-md hover:shadow-xl transition-shadow">
+                            <div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-emerald-500 via-cyan-500 to-sky-500"></div>
+                            <div class="flex flex-wrap items-center justify-between gap-4">
+                                <div class="space-y-1">
+                                    <h3 class="text-xl font-semibold text-slate-900">{{ scheme.name }}</h3>
                                     <p class="text-sm text-slate-500">Administered by {{ scheme.sponsoring_body }}</p>
                                 </div>
-                                <span class="text-xs uppercase tracking-wide px-3 py-1 rounded-full bg-emerald-100 text-emerald-700">Match {{ "{:.1f}".format(scheme.match_score or 0) }}/10</span>
+                                <span class="inline-flex items-center gap-2 text-xs uppercase tracking-wide px-3 py-1 rounded-full bg-emerald-100 text-emerald-700 border border-emerald-300">
+                                    <span class="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                                    Match {{ "{:.1f}".format(scheme.match_score or 0) }}/10
+                                </span>
                             </div>
-                            <p class="text-sm text-slate-600">{{ scheme.description }}</p>
+                            <p class="text-sm text-slate-600 leading-relaxed">{{ scheme.description }}</p>
                             <dl class="grid md:grid-cols-2 gap-2 text-sm text-slate-600">
-                                <div><strong>Subsidy type:</strong> {{ scheme.subsidy_type }}</div>
-                                <div><strong>Benefit:</strong> {{ scheme.benefit }}</div>
-                                <div><strong>Application:</strong> {{ scheme.application_process }}</div>
-                                <div><strong>Timeline:</strong> {{ scheme.timeline }}</div>
-                                <div><strong>Vendors:</strong> {{ scheme.vendor_info }}</div>
-                                <div><strong>Notes:</strong> {{ scheme.notes }}</div>
+                                <div><strong>Subsidy type:</strong> <span class="font-semibold text-slate-800">{{ scheme.subsidy_type }}</span></div>
+                                <div><strong>Benefit:</strong> <span class="font-semibold text-emerald-600">{{ scheme.benefit }}</span></div>
+                                <div><strong>Application:</strong> <span class="font-semibold text-slate-800">{{ scheme.application_process }}</span></div>
+                                <div><strong>Timeline:</strong> <span class="font-semibold text-slate-800">{{ scheme.timeline }}</span></div>
+                                <div><strong>Vendors:</strong> <span class="font-semibold text-slate-800">{{ scheme.vendor_info }}</span></div>
+                                <div><strong>Notes:</strong> <span class="font-semibold text-slate-800">{{ scheme.notes }}</span></div>
                             </dl>
                             {% if scheme.reasons %}
                                 <div class="space-y-1">
                                     <p class="text-sm font-semibold text-slate-700">Why it fits</p>
                                     <ul class="list-disc list-inside text-sm text-slate-600">
                                         {% for reason in scheme.reasons %}
-                                            <li>{{ reason }}</li>
+                                            <li><span class="font-medium text-slate-700">{{ reason }}</span></li>
                                         {% endfor %}
                                     </ul>
                                 </div>
                             {% endif %}
-                            <p class="text-sm text-slate-600"><strong>Documents:</strong> {{ scheme.documents_required or "Refer to programme guidelines" }}</p>
+                            <p class="text-sm text-slate-600"><strong>Documents:</strong> <span class="font-semibold text-slate-800">{{ scheme.documents_required or "Refer to programme guidelines" }}</span></p>
                             <div class="flex flex-wrap gap-2">
                                 {% for tag in scheme.tags or [] %}
-                                    <span class="px-2 py-1 text-xs rounded bg-slate-100 text-slate-500">{{ tag }}</span>
+                                    <span class="px-2 py-1 text-xs rounded-full bg-slate-100 text-slate-600 border border-slate-200">{{ tag }}</span>
                                 {% endfor %}
                             </div>
                             {% if scheme.application_url %}
