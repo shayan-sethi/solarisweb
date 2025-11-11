@@ -1,0 +1,26 @@
+{
+  "name": "solarisweb",
+  "version": "1.0.0",
+  "description": "This project ports the Expo-based Solaris mobile experience into a multi-page Flask web application. The new stack keeps the same core functionality—subsidy estimation, solar project logging, reminders, and solar-health visualisations—while reusing the redesigned landing page UI.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Devonkedev/SolarisWeb.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Devonkedev/SolarisWeb/issues"
+  },
+  "homepage": "https://github.com/Devonkedev/SolarisWeb#readme",
+  "devDependencies": {
+    "autoprefixer": "^10.4.22",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.17"
+  }
+}
