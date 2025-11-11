@@ -48,13 +48,6 @@
             <a href="#home" class="flex items-center space-x-2">
                 <img src="images/logo.jpg" alt="Solaris Logo" class="w-28" />
             </a>
-            <button id="menu-btn" class="md:hidden focus:outline-none">
-                <svg class="w-8 h-8 text-gray-700" fill="none" stroke="currentColor" stroke-width="2"
-                    viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-            </button>
-
             <nav class="hidden md:flex items-center gap-6 text-sm font-semibold text-slate-700">
                 <a href="#features" class="hover:text-cyan-600 transition">Features</a>
                 <a href="#stats" class="hover:text-cyan-600 transition">Stats</a>
@@ -456,7 +449,6 @@
             document.getElementById("labelArea").innerText = t.area;
             document.getElementById("labelNetmeter").innerText = t.netmeter;
             document.getElementById("reportBtn").innerText = t.report;
-            document.getElementById("langBtn").innerText = t.switch;
             document.getElementById("resultTitle").innerText = t.resultTitle;
 
             document.querySelectorAll("nav a")[0].innerText = t.navFeatures;
@@ -493,10 +485,36 @@
 
         applyTranslations(currentLang);
 
-        document.getElementById("langBtn").disabled = true;
-        document.getElementById("langBtn").classList.add("opacity-50", "cursor-not-allowed");
+        document.getElementById("eligibilityForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const form = new FormData(e.target);
+    const area = Number(form.get("area") || 0);
+    const pincode = String(form.get("pincode") || "");
 
-        
+    const packingFactor = 0.7;
+    const kwPerSqm = 0.17;
+    const estKw = Math.max(0, area * packingFactor * kwPerSqm);
+    const annualGen = estKw * 4.5 * 365;
+    const estSavings = Math.round(annualGen * 6);
+
+    const lines = [
+        `Estimated Result:`,
+        `• Installable Capacity: ${estKw.toFixed(2)} kW`,
+        `• Annual Generation: ${Math.round(annualGen)} kWh`,
+        `• Approx. Annual Savings: ₹${estSavings}`
+    ];
+
+    document.getElementById("resultText").innerText = lines.join("\n");
+    document.getElementById("resultCard").classList.remove("hidden");
+});
+        document.getElementById("menu-btn").addEventListener("click", () => {
+            const menu = document.getElementById("mobile-menu");
+            const expanded = menu.classList.contains("hidden") ? "true" : "false";
+            menu.classList.toggle("hidden");
+            document.getElementById("menu-btn").setAttribute("aria-expanded", expanded);
+        });
+
+
     </script>
 
 
