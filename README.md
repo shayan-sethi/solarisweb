@@ -1,7 +1,5 @@
 # Solaris Web Platform
 
-This project ports the Expo-based Solaris mobile experience into a multi-page Flask web application. The new stack keeps the same core functionality—subsidy estimation, solar project logging, reminders, and solar-health visualisations—while reusing the redesigned landing page UI.
-
 ## Getting started
 
 ```bash
