@@ -12,6 +12,12 @@
         </a>
     </div>
 
+    {% if simulated_data %}
+        <div class="bg-sky-50 border border-sky-200 text-sky-700 px-6 py-4 rounded-2xl shadow-inner mb-6">
+            Showing automated sample projects so you can explore the project tracking features before adding your own installations.
+        </div>
+    {% endif %}
+
     {% if projects %}
         <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {% for project in projects %}
@@ -33,7 +39,11 @@
                         {% endif %}
                         <div class="mt-auto flex items-center justify-between text-xs text-slate-400">
                             <span>{{ project.installation_date.strftime('%d %b %Y') if project.installation_date else 'Install date TBD' }}</span>
-                            <a class="text-cyan-600 hover:text-cyan-700 font-semibold" href="{{ url_for('projects.project_detail', project_id=project.id) }}">View</a>
+                            {% if not simulated_data %}
+                                <a class="text-cyan-600 hover:text-cyan-700 font-semibold" href="{{ url_for('projects.project_detail', project_id=project.id) }}">View</a>
+                            {% else %}
+                                <span class="text-slate-400 text-xs">Demo project</span>
+                            {% endif %}
                         </div>
                     </div>
                 </article>

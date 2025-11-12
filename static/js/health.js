@@ -19,6 +19,9 @@ const loaderEl = document.getElementById("healthLoading");
 const searchInputEl = document.getElementById("healthLocationInput");
 const searchBtnEl = document.getElementById("healthSearchBtn");
 const recenterBtnEl = document.getElementById("healthRecenterBtn");
+const solarScoreEl = document.getElementById("healthSolarScore");
+const solarScoreValueEl = document.getElementById("healthSolarScoreValue");
+const solarScoreDescriptionEl = document.getElementById("healthSolarScoreDescription");
 
 let healthMap = null;
 let tileLayerGroup = null;
@@ -84,6 +87,95 @@ const computeSolarPotential = (lat, lon, date, region) => {
     const distanceFactor = clamp(1 - Math.sqrt(latOffset * latOffset + lonOffset * lonOffset) * 0.45, 0.55, 1);
 
     return clamp(altitudeFactor * hazeFactor * reliefFactor * distanceFactor, 0, 1);
+};
+
+const calculateSolarPotentialScore = (lat, lon, locationName = "") => {
+    const locationLower = locationName.toLowerCase();
+    
+    const cityScores = {
+        "jodhpur": 9.5, "bikaner": 9.5, "jaisalmer": 9.8, "barmer": 9.7,
+        "jaipur": 9.0, "udaipur": 8.8, "ajmer": 9.2,
+        "ahmedabad": 9.2, "gandhinagar": 9.3, "surat": 9.1, "vadodara": 9.0, "rajkot": 9.3,
+        "bengaluru": 8.5, "bangalore": 8.5, "mysuru": 8.6, "mysore": 8.6,
+        "chennai": 8.8, "coimbatore": 8.7, "madurai": 8.9, "tiruchirappalli": 8.8,
+        "hyderabad": 8.7, "visakhapatnam": 8.6, "vijayawada": 8.8,
+        "pune": 8.3, "nagpur": 8.5, "aurangabad": 8.4, "nashik": 8.2,
+        "mumbai": 7.8, "thane": 7.8,
+        "delhi": 8.0, "new delhi": 8.0, "noida": 8.1, "gurugram": 8.1, "gurgaon": 8.1,
+        "chandigarh": 7.9, "ludhiana": 8.2, "amritsar": 8.1,
+        "lucknow": 7.8, "kanpur": 7.9, "varanasi": 8.0,
+        "patna": 7.7, "ranchi": 7.5,
+        "kolkata": 7.2, "howrah": 7.2,
+        "guwahati": 6.8, "shillong": 6.2, "imphal": 6.5,
+        "bhopal": 8.1, "indore": 8.3, "gwalior": 8.2,
+    };
+    
+    for (const [city, score] of Object.entries(cityScores)) {
+        if (locationLower.includes(city)) {
+            return { score, source: "city" };
+        }
+    }
+    
+    let baseScore = 7.0;
+    
+    if (lat >= 23 && lat <= 27 && lon >= 69 && lon <= 78) {
+        baseScore = 9.2;
+    } else if (lat >= 22 && lat <= 24 && lon >= 72 && lon <= 74) {
+        baseScore = 9.3;
+    } else if (lat >= 12 && lat <= 14 && lon >= 77 && lon <= 78) {
+        baseScore = 8.5;
+    } else if (lat >= 13 && lat <= 14 && lon >= 80 && lon <= 81) {
+        baseScore = 8.8;
+    } else if (lat >= 17 && lat <= 18 && lon >= 73 && lon <= 79) {
+        baseScore = 8.4;
+    } else if (lat >= 28 && lat <= 29 && lon >= 77 && lon <= 78) {
+        baseScore = 8.0;
+    } else if (lat >= 19 && lat <= 21 && lon >= 72 && lon <= 73) {
+        baseScore = 7.8;
+    } else if (lat >= 26 && lat <= 27 && lon >= 88 && lon <= 93) {
+        baseScore = 6.5;
+    } else if (lat >= 22 && lat <= 23 && lon >= 88 && lon <= 89) {
+        baseScore = 7.2;
+    }
+    
+    const latFactor = lat < 25 ? 1.1 : lat < 30 ? 1.0 : 0.95;
+    const adjustedScore = clamp(baseScore * latFactor, 5.0, 10.0);
+    
+    return { score: Math.round(adjustedScore * 10) / 10, source: "region" };
+};
+
+const getSolarScoreDescription = (score) => {
+    if (score >= 9.0) {
+        return "Exceptional solar potential — ideal for rooftop installations";
+    } else if (score >= 8.0) {
+        return "Excellent solar potential — highly recommended for solar";
+    } else if (score >= 7.0) {
+        return "Good solar potential — suitable for solar installations";
+    } else if (score >= 6.0) {
+        return "Moderate solar potential — consider hybrid solutions";
+    } else {
+        return "Limited solar potential — evaluate carefully";
+    }
+};
+
+const updateSolarScore = (lat, lon, locationName = "") => {
+    if (!solarScoreEl || !solarScoreValueEl || !solarScoreDescriptionEl) return;
+    
+    const result = calculateSolarPotentialScore(lat, lon, locationName);
+    const score = result.score;
+    const description = getSolarScoreDescription(score);
+    
+    solarScoreValueEl.textContent = score.toFixed(1);
+    solarScoreDescriptionEl.textContent = description;
+    
+    const scoreColor = score >= 9.0 ? "emerald" : score >= 8.0 ? "cyan" : score >= 7.0 ? "sky" : score >= 6.0 ? "amber" : "rose";
+    const scoreBgColor = score >= 9.0 ? "bg-emerald-50 border-emerald-200" : score >= 8.0 ? "bg-cyan-50 border-cyan-200" : score >= 7.0 ? "bg-sky-50 border-sky-200" : score >= 6.0 ? "bg-amber-50 border-amber-200" : "bg-rose-50 border-rose-200";
+    const scoreTextColor = score >= 9.0 ? "text-emerald-700" : score >= 8.0 ? "text-cyan-700" : score >= 7.0 ? "text-sky-700" : score >= 6.0 ? "text-amber-700" : "text-rose-700";
+    const scoreValueColor = score >= 9.0 ? "text-emerald-600" : score >= 8.0 ? "text-cyan-600" : score >= 7.0 ? "text-sky-600" : score >= 6.0 ? "text-amber-600" : "text-rose-600";
+    
+    solarScoreEl.className = `rounded-2xl border-2 p-6 shadow-sm ${scoreBgColor}`;
+    solarScoreValueEl.className = `text-4xl font-bold ${scoreValueColor}`;
+    solarScoreDescriptionEl.className = `text-sm mt-2 ${scoreTextColor}`;
 };
 
 const generateSolarHeatTiles = (region, date, gridSize = GRID_SIZE) => {
@@ -174,6 +266,8 @@ const renderLegend = () => {
     }
 };
 
+let currentLocationName = "";
+
 const updateSolarSummary = () => {
     if (!healthMap || !snapshotEl || !timelineEl) return;
 
@@ -200,6 +294,8 @@ const updateSolarSummary = () => {
         <span class="text-slate-400 px-1">/</span>
         <span class="font-semibold text-rose-500">Sunset ${formatTime(times.sunset)}</span>
     `;
+    
+    updateSolarScore(center.lat, center.lng, currentLocationName);
 };
 
 const drawHeatTiles = () => {
@@ -307,9 +403,11 @@ const geocodeQuery = async (query) => {
     if (!results.length) {
         throw new Error("Location not found");
     }
+    const locationName = results[0].display_name || query;
     return {
         latitude: parseFloat(results[0].lat),
         longitude: parseFloat(results[0].lon),
+        locationName: locationName,
     };
 };
 
@@ -324,10 +422,12 @@ const handleSearch = async () => {
     toggleLoader(true);
     try {
         const result = await geocodeQuery(query);
+        currentLocationName = result.locationName || query;
         if (healthMap) {
             healthMap.setView([result.latitude, result.longitude], healthMap.getZoom());
         }
-        setStatus("Pinned location successfully.", "success");
+        updateSolarScore(result.latitude, result.longitude, currentLocationName);
+        setStatus("Pinned location successfully. Solar potential calculated.", "success");
     } catch (error) {
         console.error(error);
         setStatus("Could not locate that search. Try another address.", "error");
@@ -345,6 +445,7 @@ const initialize = async () => {
 
     const initialRegion = await fetchApproximateLocation();
     bootMap(initialRegion);
+    updateSolarScore(initialRegion.latitude, initialRegion.longitude, "");
 
     toggleLoader(false);
     setStatus("Drag to explore. Re-centre anytime with the controls.", "success");
@@ -368,9 +469,11 @@ if (recenterBtnEl) {
         toggleLoader(true);
         setStatus("Re-centering to your approximate location…", "info");
         const region = await fetchApproximateLocation();
+        currentLocationName = "";
         if (healthMap) {
             healthMap.setView([region.latitude, region.longitude], healthMap.getZoom());
         }
+        updateSolarScore(region.latitude, region.longitude, "");
         toggleLoader(false);
         setStatus("View updated. Drag to fine-tune the map.", "success");
     });

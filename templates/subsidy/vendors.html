@@ -31,38 +31,107 @@
         {% endif %}
     </div>
 
-    <div class="grid gap-6">
-        {% for vendor in vendors %}
-            <article class="bg-white border border-slate-200 rounded-2xl p-6 space-y-4">
-                <div class="flex items-center justify-between">
-                    <h2 class="text-lg font-semibold text-slate-800">{{ vendor.name }}</h2>
-                    <span class="inline-flex items-center gap-1 px-3 py-1 text-xs font-semibold rounded-full bg-amber-100 text-amber-700">
-                        ★ {{ "{:.1f}".format(vendor.rating) }} service
+    <div class="space-y-6">
+        {% if recommended_vendors %}
+            <div class="space-y-4">
+                <div class="flex items-center gap-3">
+                    <h2 class="text-xl font-semibold text-slate-800">Recommended vendors</h2>
+                    <span class="px-3 py-1 text-xs font-semibold rounded-full bg-emerald-100 text-emerald-700">
+                        Best match
                     </span>
                 </div>
-                <p class="text-base font-semibold text-slate-900">{{ vendor.price_range_inr }}</p>
-                <p class="text-sm text-slate-500">Typical turnkey price: ₹{{ "{:,.0f}".format(vendor.base_price_per_kw_inr) }}/kW</p>
-                <p class="text-sm text-slate-500">Serving: {{ vendor.locations | join(", ") }}</p>
-                <p class="text-sm text-slate-500">{{ vendor.years_experience }}+ years in solar</p>
-                <div class="flex flex-wrap gap-2">
-                    {% for highlight in vendor.highlights %}
-                        <span class="px-2 py-1 text-xs rounded-full bg-sky-100 text-sky-700">{{ highlight }}</span>
+                <div class="grid gap-6">
+                    {% for vendor in recommended_vendors %}
+                        <article class="bg-white border-2 border-emerald-200 rounded-2xl p-6 space-y-4 shadow-sm">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <h2 class="text-lg font-semibold text-slate-800">{{ vendor.name }}</h2>
+                                    <span class="px-2 py-1 text-xs font-semibold rounded-full bg-emerald-500 text-white">
+                                        Recommended
+                                    </span>
+                                </div>
+                                <span class="inline-flex items-center gap-1 px-3 py-1 text-xs font-semibold rounded-full bg-amber-100 text-amber-700">
+                                    ★ {{ "{:.1f}".format(vendor.rating) }} service
+                                </span>
+                            </div>
+                            {% if vendor.recommendation_reasons %}
+                                <div class="flex flex-wrap gap-2">
+                                    {% for reason in vendor.recommendation_reasons %}
+                                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
+                                            ✓ {{ reason }}
+                                        </span>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                            <p class="text-base font-semibold text-slate-900">{{ vendor.price_range_inr }}</p>
+                            <p class="text-sm text-slate-500">Typical turnkey price: ₹{{ "{:,.0f}".format(vendor.base_price_per_kw_inr) }}/kW</p>
+                            <div class="grid md:grid-cols-2 gap-3 text-sm text-slate-500">
+                                <p>Serving: {{ vendor.locations | join(", ") }}</p>
+                                <p>{{ vendor.years_experience }}+ years in solar</p>
+                            </div>
+                            <div class="flex flex-wrap gap-2">
+                                {% for highlight in vendor.highlights %}
+                                    <span class="px-2 py-1 text-xs rounded-full bg-sky-100 text-sky-700">{{ highlight }}</span>
+                                {% endfor %}
+                            </div>
+                            {% if vendor.contact %}
+                                <p class="text-sm text-slate-500">Contact: {{ vendor.contact }}</p>
+                            {% endif %}
+                            <div>
+                                {% if vendor.website %}
+                                    <a href="{{ vendor.website }}" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold bg-emerald-500 text-white rounded-lg hover:bg-emerald-600 transition">
+                                        Visit website ↗
+                                    </a>
+                                {% else %}
+                                    <span class="text-sm text-slate-400">Website link unavailable</span>
+                                {% endif %}
+                            </div>
+                        </article>
                     {% endfor %}
                 </div>
-                {% if vendor.contact %}
-                    <p class="text-sm text-slate-500">Contact: {{ vendor.contact }}</p>
-                {% endif %}
-                <div>
-                    {% if vendor.website %}
-                        <a href="{{ vendor.website }}" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold border border-sky-500 text-sky-600 rounded-lg hover:bg-sky-50">
-                            Visit website ↗
-                        </a>
-                    {% else %}
-                        <span class="text-sm text-slate-400">Website link unavailable</span>
-                    {% endif %}
+            </div>
+        {% endif %}
+        
+        {% if other_vendors %}
+            <div class="space-y-4">
+                <h2 class="text-xl font-semibold text-slate-800">All vendors</h2>
+                <div class="grid gap-6">
+                    {% for vendor in other_vendors %}
+                        <article class="bg-white border border-slate-200 rounded-2xl p-6 space-y-4">
+                            <div class="flex items-center justify-between">
+                                <h2 class="text-lg font-semibold text-slate-800">{{ vendor.name }}</h2>
+                                <span class="inline-flex items-center gap-1 px-3 py-1 text-xs font-semibold rounded-full bg-amber-100 text-amber-700">
+                                    ★ {{ "{:.1f}".format(vendor.rating) }} service
+                                </span>
+                            </div>
+                            <p class="text-base font-semibold text-slate-900">{{ vendor.price_range_inr }}</p>
+                            <p class="text-sm text-slate-500">Typical turnkey price: ₹{{ "{:,.0f}".format(vendor.base_price_per_kw_inr) }}/kW</p>
+                            <div class="grid md:grid-cols-2 gap-3 text-sm text-slate-500">
+                                <p>Serving: {{ vendor.locations | join(", ") }}</p>
+                                <p>{{ vendor.years_experience }}+ years in solar</p>
+                            </div>
+                            <div class="flex flex-wrap gap-2">
+                                {% for highlight in vendor.highlights %}
+                                    <span class="px-2 py-1 text-xs rounded-full bg-sky-100 text-sky-700">{{ highlight }}</span>
+                                {% endfor %}
+                            </div>
+                            {% if vendor.contact %}
+                                <p class="text-sm text-slate-500">Contact: {{ vendor.contact }}</p>
+                            {% endif %}
+                            <div>
+                                {% if vendor.website %}
+                                    <a href="{{ vendor.website }}" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold border border-sky-500 text-sky-600 rounded-lg hover:bg-sky-50">
+                                        Visit website ↗
+                                    </a>
+                                {% else %}
+                                    <span class="text-sm text-slate-400">Website link unavailable</span>
+                                {% endif %}
+                            </div>
+                        </article>
+                    {% endfor %}
                 </div>
-            </article>
-        {% endfor %}
+            </div>
+        {% endif %}
     </div>
 
     <div class="flex flex-wrap gap-3">
@@ -72,7 +141,7 @@
         <a href="{{ url_for('tracker.index') }}" class="bg-indigo-500 hover:bg-indigo-600 text-white font-semibold px-5 py-3 rounded-lg shadow transition">
             Open energy tracker
         </a>
-        <a href="{{ url_for('main.health') }}" class="bg-emerald-500 hover:bg-emerald-600 text-white font-semibold px-5 py-3 rounded-lg shadow transition">
+        <a href="{{ url_for('main.map') }}" class="bg-emerald-500 hover:bg-emerald-600 text-white font-semibold px-5 py-3 rounded-lg shadow transition">
             Open solar tracker
         </a>
         <form method="post" action="{{ url_for('subsidy.restart') }}">

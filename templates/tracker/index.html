@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 
+{% block extra_head %}
+    {{ super() }}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+{% endblock %}
+
 {% block content %}
 <section class="max-w-6xl mx-auto px-6 py-12 space-y-8">
     <div class="glass p-8 rounded-3xl shadow space-y-4">
@@ -24,8 +29,64 @@
         </a>
     </div>
 
+    {% if simulated_data %}
+        <div class="bg-sky-50 border border-sky-200 text-sky-700 px-6 py-4 rounded-2xl shadow-inner">
+            Showing automated sample data so you can explore the tracker features before logging your own readings.
+        </div>
+    {% endif %}
+
+    <div class="glass p-8 rounded-3xl shadow space-y-6">
+        <div class="flex flex-col gap-2">
+            <h2 class="text-2xl font-semibold text-slate-800">Automated analytics</h2>
+            <p class="text-sm text-slate-500">
+                Visualise generation, export and revenue trends powered by automated calculations.
+            </p>
+        </div>
+        <div class="grid gap-6 lg:grid-cols-3">
+            <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm lg:col-span-2">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-semibold text-slate-800">Generation vs Export</h3>
+                    <span class="text-xs uppercase tracking-wide text-slate-400">14-day trend</span>
+                </div>
+                <canvas id="energyTrendChart" height="200"></canvas>
+            </div>
+            <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-semibold text-slate-800">Revenue momentum</h3>
+                    <span class="text-xs uppercase tracking-wide text-slate-400">Daily</span>
+                </div>
+                <canvas id="revenueChart" height="200"></canvas>
+            </div>
+        </div>
+        <div class="grid gap-6 md:grid-cols-2">
+            <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-semibold text-slate-800">Energy mix</h3>
+                    <span class="text-xs uppercase tracking-wide text-slate-400">Share</span>
+                </div>
+                <canvas id="mixChart" height="200"></canvas>
+            </div>
+            {% if automation_insights %}
+                <div class="bg-white border border-emerald-100 rounded-2xl p-6 shadow-sm space-y-4">
+                    <h3 class="text-lg font-semibold text-emerald-700">Automated insights</h3>
+                    <ul class="space-y-3 text-sm text-slate-600">
+                        {% for insight in automation_insights %}
+                            <li class="flex items-start gap-3">
+                                <span class="mt-1 h-2.5 w-2.5 rounded-full bg-emerald-400"></span>
+                                <span>{{ insight }}</span>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
     <div class="space-y-4">
         <h2 class="text-xl font-semibold text-slate-800">Recent entries</h2>
+        {% if simulated_data %}
+            <p class="text-xs font-semibold uppercase tracking-wide text-slate-400">Automated sample records (not yet saved)</p>
+        {% endif %}
         {% if logs %}
             <div class="grid gap-4">
                 {% for log in logs %}
@@ -52,4 +113,162 @@
         {% endif %}
     </div>
 </section>
+{% endblock %}
+
+{% block extra_scripts %}
+    {{ super() }}
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const dailySeries = {{ chart_daily_series|tojson }};
+            if (!Array.isArray(dailySeries) || !dailySeries.length || typeof Chart === 'undefined') {
+                return;
+            }
+
+            const context = (id) => {
+                const canvas = document.getElementById(id);
+                return canvas ? canvas.getContext('2d') : null;
+            };
+
+            const dates = dailySeries.map((item) => item.date);
+            const generationData = dailySeries.map((item) => item.generation);
+            const exportData = dailySeries.map((item) => item.export);
+            const revenueData = dailySeries.map((item) => item.revenue);
+            const consumptionData = dailySeries.map((item) => item.consumption);
+
+            const totals = {
+                generation: generationData.reduce((acc, value) => acc + value, 0),
+                export: exportData.reduce((acc, value) => acc + value, 0),
+                consumption: consumptionData.reduce((acc, value) => acc + value, 0),
+            };
+
+            const lineCtx = context('energyTrendChart');
+            if (lineCtx) {
+                new Chart(lineCtx, {
+                    type: 'line',
+                    data: {
+                        labels: dates,
+                        datasets: [
+                            {
+                                label: 'Generation (kWh)',
+                                data: generationData,
+                                borderColor: '#0ea5e9',
+                                backgroundColor: 'rgba(14, 165, 233, 0.15)',
+                                borderWidth: 2,
+                                tension: 0.35,
+                                fill: true,
+                            },
+                            {
+                                label: 'Export (kWh)',
+                                data: exportData,
+                                borderColor: '#22c55e',
+                                backgroundColor: 'rgba(34, 197, 94, 0.1)',
+                                borderWidth: 2,
+                                tension: 0.35,
+                                fill: true,
+                            },
+                        ],
+                    },
+                    options: {
+                        plugins: {
+                            legend: {
+                                align: 'end',
+                                labels: { boxWidth: 12, color: '#0f172a' },
+                            },
+                            tooltip: {
+                                backgroundColor: '#0f172a',
+                                callbacks: {
+                                    label: (context) => `${context.dataset.label}: ${context.parsed.y.toFixed(2)} kWh`,
+                                },
+                            },
+                        },
+                        scales: {
+                            x: {
+                                ticks: { color: '#475569' },
+                                grid: { color: 'rgba(148, 163, 184, 0.15)' },
+                            },
+                            y: {
+                                ticks: { color: '#475569' },
+                                grid: { color: 'rgba(148, 163, 184, 0.1)' },
+                                beginAtZero: true,
+                            },
+                        },
+                    },
+                });
+            }
+
+            const revenueCtx = context('revenueChart');
+            if (revenueCtx) {
+                new Chart(revenueCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: dates,
+                        datasets: [
+                            {
+                                label: 'Revenue (₹)',
+                                data: revenueData,
+                                backgroundColor: 'rgba(59, 130, 246, 0.75)',
+                                borderRadius: 6,
+                            },
+                        ],
+                    },
+                    options: {
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: {
+                                backgroundColor: '#0f172a',
+                                callbacks: {
+                                    label: (context) => `Revenue: ₹${context.parsed.y.toFixed(2)}`,
+                                },
+                            },
+                        },
+                        scales: {
+                            x: {
+                                ticks: { color: '#475569', maxRotation: 45, minRotation: 45 },
+                                grid: { display: false },
+                            },
+                            y: {
+                                ticks: { color: '#475569' },
+                                grid: { color: 'rgba(148, 163, 184, 0.1)' },
+                                beginAtZero: true,
+                            },
+                        },
+                    },
+                });
+            }
+
+            const mixCtx = context('mixChart');
+            if (mixCtx) {
+                new Chart(mixCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Generation used onsite', 'Exported to grid'],
+                        datasets: [
+                            {
+                                data: [
+                                    Math.max(totals.generation - totals.export, 0),
+                                    totals.export,
+                                ],
+                                backgroundColor: ['rgba(14, 165, 233, 0.85)', 'rgba(34, 197, 94, 0.85)'],
+                                hoverOffset: 6,
+                            },
+                        ],
+                    },
+                    options: {
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                                labels: { color: '#0f172a' },
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: (context) => `${context.label}: ${context.parsed.toFixed(2)} kWh`,
+                                },
+                            },
+                        },
+                        cutout: '65%',
+                    },
+                });
+            }
+        });
+    </script>
 {% endblock %}

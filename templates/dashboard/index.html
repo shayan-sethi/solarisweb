@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 
+{% block extra_head %}
+    {{ super() }}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+{% endblock %}
+
 {% block content %}
 <section class="max-w-6xl mx-auto px-6 py-12 space-y-10">
     <div class="grid md:grid-cols-3 gap-6">
@@ -7,6 +12,12 @@
             <h2 class="text-lg font-semibold text-slate-700">Energy tracker</h2>
             <p class="text-4xl font-bold text-slate-900">{{ "{:,.1f}".format(total_generation or 0) }}</p>
             <p class="text-sm text-slate-500">kWh logged as generation</p>
+            {% if energy_simulated %}
+                <p class="mt-2 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-sky-600">
+                    <span class="h-2 w-2 rounded-full bg-sky-500"></span>
+                    Demo data
+                </p>
+            {% endif %}
             <a href="{{ url_for('tracker.index') }}" class="inline-flex items-center justify-center w-full mt-4 text-sm font-semibold text-cyan-600 hover:text-cyan-700">
                 View tracker →
             </a>
@@ -41,13 +52,71 @@
         </div>
     </div>
 
+    {% if energy_chart_series %}
+        <div class="glass p-6 rounded-2xl shadow space-y-6">
+            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
+                <div>
+                    <h2 class="text-2xl font-semibold text-slate-800">Energy analytics snapshot</h2>
+                    <p class="text-sm text-slate-500">Track generation, export and earnings from one glance.</p>
+                </div>
+                <div class="flex items-center gap-2 text-xs text-slate-400 uppercase tracking-wide">
+                    <span class="h-2 w-2 rounded-full bg-cyan-500"></span>
+                    Updated {{ energy_chart_series|length }} day trend
+                </div>
+            </div>
+            {% if energy_simulated %}
+                <div class="bg-sky-50 border border-sky-200 text-sky-700 px-4 py-3 rounded-xl">
+                    Preview mode: sample readings power these charts until you log real tracker entries.
+                </div>
+            {% endif %}
+            <div class="grid gap-6 xl:grid-cols-3">
+                <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm xl:col-span-2">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-semibold text-slate-800">Generation vs Export</h3>
+                        <span class="text-xs uppercase tracking-wide text-slate-400">Line trend</span>
+                    </div>
+                    <canvas id="dashboardEnergyTrendChart" height="220"></canvas>
+                </div>
+                <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-semibold text-slate-800">Revenue momentum</h3>
+                        <span class="text-xs uppercase tracking-wide text-slate-400">Daily</span>
+                    </div>
+                    <canvas id="dashboardRevenueChart" height="220"></canvas>
+                </div>
+            </div>
+            <div class="grid gap-6 md:grid-cols-2">
+                <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-semibold text-slate-800">Energy mix</h3>
+                        <span class="text-xs uppercase tracking-wide text-slate-400">Generation share</span>
+                    </div>
+                    <canvas id="dashboardEnergyMixChart" height="220"></canvas>
+                </div>
+                {% if energy_insights %}
+                    <div class="bg-white border border-emerald-100 rounded-2xl p-6 shadow-sm space-y-4">
+                        <h3 class="text-lg font-semibold text-emerald-700">Automated insights</h3>
+                        <ul class="space-y-3 text-sm text-slate-600">
+                            {% for insight in energy_insights %}
+                                <li class="flex items-start gap-3">
+                                    <span class="mt-1 h-2.5 w-2.5 rounded-full bg-emerald-400"></span>
+                                    <span>{{ insight }}</span>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    {% endif %}
+
     {% if show_tracker_cta %}
     <div class="glass p-6 rounded-2xl shadow flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
             <h2 class="text-xl font-semibold text-slate-800">Solar tracker & shadow map</h2>
             <p class="text-sm text-slate-500 mt-2">Monitor real-time sun paths, shadow lengths and solar window for your rooftop.</p>
         </div>
-        <a href="{{ url_for('main.health') }}" class="inline-flex items-center justify-center bg-emerald-500 hover:bg-emerald-600 text-white font-semibold px-5 py-3 rounded-lg shadow">
+        <a href="{{ url_for('main.map') }}" class="inline-flex items-center justify-center bg-emerald-500 hover:bg-emerald-600 text-white font-semibold px-5 py-3 rounded-lg shadow">
             Open solar tracker
         </a>
     </div>
@@ -59,6 +128,9 @@
                 <h3 class="text-xl font-semibold text-slate-800">Recent tracker entries</h3>
                 <a href="{{ url_for('tracker.add_entry') }}" class="text-sm text-cyan-600 hover:text-cyan-700">Add entry</a>
             </div>
+            {% if energy_simulated %}
+                <p class="text-xs font-semibold uppercase tracking-wide text-slate-400">Demo sample entries shown below</p>
+            {% endif %}
             {% if recent_energy %}
                 <ul class="space-y-3">
                     {% for log in recent_energy %}
@@ -97,7 +169,9 @@
                             {% if project.detail %}
                                 <p class="text-sm text-slate-500 mt-1">{{ project.detail }}</p>
                             {% endif %}
-                            <a href="{{ url_for('projects.project_detail', project_id=project.id) }}" class="text-sm text-cyan-600 hover:text-cyan-700 mt-2 inline-block">View details →</a>
+                            {% if not projects_simulated %}
+                                <a href="{{ url_for('projects.project_detail', project_id=project.id) }}" class="text-sm text-cyan-600 hover:text-cyan-700 mt-2 inline-block">View details →</a>
+                            {% endif %}
                         </li>
                     {% endfor %}
                 </ul>
@@ -109,3 +183,165 @@
 </section>
 {% endblock %}
 
+{% block extra_scripts %}
+    {{ super() }}
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof Chart === 'undefined') {
+                return;
+            }
+
+            const energySeries = {{ energy_chart_series|tojson }};
+            if (!Array.isArray(energySeries) || !energySeries.length) {
+                return;
+            }
+
+            const totals = {{ energy_totals|tojson }};
+
+            const dates = energySeries.map((entry) => entry.date);
+            const generationData = energySeries.map((entry) => entry.generation);
+            const exportData = energySeries.map((entry) => entry.export);
+            const revenueData = energySeries.map((entry) => entry.revenue);
+            const consumptionData = energySeries.map((entry) => entry.consumption);
+
+            const ctx = (id) => {
+                const canvas = document.getElementById(id);
+                return canvas ? canvas.getContext('2d') : null;
+            };
+
+            const trendCtx = ctx('dashboardEnergyTrendChart');
+            if (trendCtx) {
+                new Chart(trendCtx, {
+                    type: 'line',
+                    data: {
+                        labels: dates,
+                        datasets: [
+                            {
+                                label: 'Generation (kWh)',
+                                data: generationData,
+                                borderColor: '#0ea5e9',
+                                backgroundColor: 'rgba(14, 165, 233, 0.2)',
+                                tension: 0.35,
+                                borderWidth: 2,
+                                fill: true,
+                            },
+                            {
+                                label: 'Export (kWh)',
+                                data: exportData,
+                                borderColor: '#22c55e',
+                                backgroundColor: 'rgba(34, 197, 94, 0.15)',
+                                tension: 0.35,
+                                borderWidth: 2,
+                                fill: true,
+                            },
+                        ],
+                    },
+                    options: {
+                        plugins: {
+                            legend: {
+                                align: 'end',
+                                labels: { boxWidth: 12, color: '#0f172a' },
+                            },
+                            tooltip: {
+                                backgroundColor: '#0f172a',
+                                callbacks: {
+                                    label: (context) => `${context.dataset.label}: ${context.parsed.y.toFixed(2)} kWh`,
+                                },
+                            },
+                        },
+                        scales: {
+                            x: {
+                                ticks: { color: '#475569' },
+                                grid: { color: 'rgba(148, 163, 184, 0.15)' },
+                            },
+                            y: {
+                                ticks: { color: '#475569' },
+                                grid: { color: 'rgba(148, 163, 184, 0.1)' },
+                                beginAtZero: true,
+                            },
+                        },
+                    },
+                });
+            }
+
+            const revenueCtx = ctx('dashboardRevenueChart');
+            if (revenueCtx) {
+                new Chart(revenueCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: dates,
+                        datasets: [
+                            {
+                                label: 'Revenue (₹)',
+                                data: revenueData,
+                                backgroundColor: 'rgba(59, 130, 246, 0.75)',
+                                borderRadius: 6,
+                            },
+                        ],
+                    },
+                    options: {
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: {
+                                backgroundColor: '#0f172a',
+                                callbacks: {
+                                    label: (context) => `Revenue: ₹${context.parsed.y.toFixed(2)}`,
+                                },
+                            },
+                        },
+                        scales: {
+                            x: {
+                                ticks: { color: '#475569', maxRotation: 45, minRotation: 45 },
+                                grid: { display: false },
+                            },
+                            y: {
+                                ticks: { color: '#475569' },
+                                grid: { color: 'rgba(148, 163, 184, 0.1)' },
+                                beginAtZero: true,
+                            },
+                        },
+                    },
+                });
+            }
+
+            const mixCtx = ctx('dashboardEnergyMixChart');
+            if (mixCtx) {
+                new Chart(mixCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Generation used onsite', 'Exported to grid', 'Consumption logged separately'],
+                        datasets: [
+                            {
+                                data: [
+                                    Math.max((totals.generation || 0) - (totals.export || 0), 0),
+                                    totals.export || 0,
+                                    Math.max(totals.consumption || 0, 0),
+                                ],
+                                backgroundColor: [
+                                    'rgba(14, 165, 233, 0.85)',
+                                    'rgba(34, 197, 94, 0.85)',
+                                    'rgba(99, 102, 241, 0.75)',
+                                ],
+                                hoverOffset: 6,
+                            },
+                        ],
+                    },
+                    options: {
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                                labels: { color: '#0f172a' },
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: (context) => `${context.label}: ${context.parsed.toFixed(2)} kWh`,
+                                },
+                            },
+                        },
+                        cutout: '65%',
+                    },
+                });
+            }
+        });
+    </script>
+{% endblock %}

@@ -5,6 +5,7 @@ from uuid import uuid4
 
 from flask import (
     Blueprint,
+    abort,
     current_app,
     flash,
     redirect,
@@ -18,6 +19,7 @@ from werkzeug.utils import secure_filename
 from ..extensions import db
 from ..forms import ProjectForm
 from ..models import Project
+from ..utils.projects import build_projects_context
 
 projects_bp = Blueprint("projects", __name__, url_prefix="/projects")
 
@@ -50,15 +52,15 @@ def _save_image(file_storage) -> str | None:
 @projects_bp.route("/", methods=["GET"])
 @login_required
 def list_projects():
-    projects = (
-        Project.query.filter_by(user_id=current_user.id)
-        .order_by(Project.created_at.desc())
-        .all()
-    )
+    projects_context = build_projects_context(current_user.id)
+    projects = projects_context["projects"]
+    simulated_data = not projects_context["has_real_projects"]
+    
     return render_template(
         "projects/index.html",
         title="Solar Projects",
         projects=projects,
+        simulated_data=simulated_data,
     )
 
 
@@ -96,7 +98,13 @@ def add_project():
 @projects_bp.route("/<int:project_id>", methods=["GET"])
 @login_required
 def project_detail(project_id: int):
-    project = Project.query.filter_by(id=project_id, user_id=current_user.id).first_or_404()
+    projects_context = build_projects_context(current_user.id)
+    
+    if projects_context["has_real_projects"]:
+        project = Project.query.filter_by(id=project_id, user_id=current_user.id).first_or_404()
+    else:
+        abort(404, description="Project not found. Demo projects cannot be viewed in detail.")
+    
     return render_template(
         "projects/detail.html",
         title=project.name,

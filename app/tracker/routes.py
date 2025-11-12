@@ -1,12 +1,14 @@
 from __future__ import annotations
 
+from datetime import date
+
 from flask import Blueprint, render_template, redirect, url_for, flash
 from flask_login import current_user, login_required
-from datetime import date
 
 from ..extensions import db
 from ..forms import TrackerEntryForm
 from ..models import EnergyLog
+from ..utils.energy import build_energy_context
 
 tracker_bp = Blueprint("tracker", __name__, url_prefix="/tracker")
 
@@ -22,21 +24,18 @@ def require_journey():
 @tracker_bp.route("/", methods=["GET"])
 @login_required
 def index():
-    logs = (
-        EnergyLog.query.filter_by(user_id=current_user.id)
-        .order_by(EnergyLog.date.desc(), EnergyLog.created_at.desc())
-        .all()
-    )
-    total_generation = sum(log.kwh for log in logs if log.entry_type == "generation")
-    total_export = sum(log.kwh for log in logs if log.entry_type == "export")
-    total_revenue = sum((log.revenue or 0) for log in logs)
+    energy_context = build_energy_context(current_user.id)
+
     return render_template(
         "tracker/index.html",
         title="Energy Tracker",
-        logs=logs,
-        total_generation=total_generation,
-        total_export=total_export,
-        total_revenue=total_revenue,
+        logs=energy_context["logs"],
+        total_generation=energy_context["totals"]["generation"],
+        total_export=energy_context["totals"]["export"],
+        total_revenue=energy_context["totals"]["revenue"],
+        chart_daily_series=energy_context["daily_series"],
+        simulated_data=not energy_context["has_real_logs"],
+        automation_insights=energy_context["insights"],
     )
 
 

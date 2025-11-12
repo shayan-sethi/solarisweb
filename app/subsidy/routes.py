@@ -23,8 +23,8 @@ from ..utils import (
     get_provider_label,
     get_provider_tariff,
     get_scheme_filter_options,
-    solar_vendors,
 )
+from ..utils.vendors import get_recommended_vendors
 
 subsidy_bp = Blueprint("subsidy", __name__, url_prefix="/subsidy")
 
@@ -303,10 +303,16 @@ def vendors():
         else:
             estimated_annual_savings = estimated_annual_output * 6
 
+    recommended_vendors = get_recommended_vendors(recommended_kw)
+    
+    top_recommended = [v for v in recommended_vendors if v.get("is_recommended", False)]
+    other_vendors = [v for v in recommended_vendors if not v.get("is_recommended", False)]
+    
     return render_template(
         "subsidy/vendors.html",
         title="Installer Marketplace",
-        vendors=solar_vendors,
+        recommended_vendors=top_recommended,
+        other_vendors=other_vendors,
         recommended_kw=recommended_kw,
         estimated_annual_savings=estimated_annual_savings,
         estimated_monthly_units=estimated_monthly_units,

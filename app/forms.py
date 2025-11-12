@@ -181,7 +181,20 @@ class SubsidySiteForm(FlaskForm):
         choices=[("grid", "Grid-connected"), ("off-grid", "Off-grid / unreliable")],
         validators=[DataRequired()],
     )
-    roof_type = StringField("Roof type (concrete / tin / tiles)", validators=[Optional(), Length(max=120)])
+    roof_type = SelectField(
+        "Roof type",
+        choices=[
+            ("", "Select roof type"),
+            ("concrete-rcc", "Concrete (RCC)"),
+            ("tin-metal", "Tin / Metal"),
+            ("tiles", "Tiles"),
+            ("asbestos", "Asbestos"),
+            ("flat-roof", "Flat roof"),
+            ("sloped-roof", "Sloped roof"),
+            ("other", "Other"),
+        ],
+        validators=[Optional()],
+    )
     submit = SubmitField("Check eligibility & estimate")
 
 

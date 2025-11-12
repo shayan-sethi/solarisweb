@@ -3,8 +3,8 @@ from __future__ import annotations
 from flask import Blueprint, render_template, redirect, url_for
 from flask_login import current_user, login_required
 
-from ..extensions import db
-from ..models import Project, EnergyLog
+from ..utils.energy import build_energy_context
+from ..utils.projects import build_projects_context
 
 dashboard_bp = Blueprint("dashboard", __name__, url_prefix="/dashboard")
 
@@ -20,23 +20,13 @@ def require_journey():
 @dashboard_bp.route("/", methods=["GET"])
 @login_required
 def index():
-    recent_projects = (
-        Project.query.filter_by(user_id=current_user.id)
-        .order_by(Project.created_at.desc())
-        .limit(3)
-        .all()
-    )
-    total_generation = (
-        EnergyLog.query.filter_by(user_id=current_user.id, entry_type="generation")
-        .with_entities(db.func.coalesce(db.func.sum(EnergyLog.kwh), 0))
-        .scalar()
-    )
-    recent_energy = (
-        EnergyLog.query.filter_by(user_id=current_user.id)
-        .order_by(EnergyLog.date.desc(), EnergyLog.created_at.desc())
-        .limit(3)
-        .all()
-    )
+    projects_context = build_projects_context(current_user.id)
+    recent_projects = projects_context["projects"][:3]
+    projects_simulated = not projects_context["has_real_projects"]
+
+    energy_context = build_energy_context(current_user.id)
+    total_generation = energy_context["totals"]["generation"]
+    recent_energy = energy_context["logs"][:3]
 
     estimate_summary = {
         "system_kw": current_user.last_system_kw,
@@ -56,10 +46,15 @@ def index():
         "dashboard/index.html",
         title="Dashboard",
         recent_projects=recent_projects,
+        projects_simulated=projects_simulated,
         total_generation=total_generation,
         recent_energy=recent_energy,
         estimate_summary=estimate_summary,
         estimate_stats=estimate_stats,
         show_tracker_cta=True,
+        energy_chart_series=energy_context["daily_series"],
+        energy_insights=energy_context["insights"],
+        energy_simulated=not energy_context["has_real_logs"],
+        energy_totals=energy_context["totals"],
     )
 
