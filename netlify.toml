@@ -1,6 +1,6 @@
 [build]
 command = "pip install -r requirements.txt"
-publish = "templates"
+publish = "."
 
 [build.environment]
 PYTHON_VERSION = "3.11"
@@ -11,13 +11,33 @@ targetPort = 8888
 port = 3000
 framework = "#custom"
 
+# Serve static files directly (highest priority - before any redirects)
 [[redirects]]
-from = "/"
-to = "/home.html"
+from = "/static/*"
+to = "/static/:splat"
 status = 200
+force = true
 
-[[redirects]]
-from = "/*"
-to = "/home.html"
-status = 200
+# Serve CSS files with correct headers
+[[headers]]
+for = "/static/css/*"
+[headers.values]
+Content-Type = "text/css; charset=utf-8"
+Cache-Control = "public, max-age=31536000"
+
+# Serve JS files with correct headers
+[[headers]]
+for = "/static/js/*"
+[headers.values]
+Content-Type = "application/javascript; charset=utf-8"
+Cache-Control = "public, max-age=31536000"
+
+# Serve images with correct headers
+[[headers]]
+for = "/static/images/*"
+[headers.values]
+Cache-Control = "public, max-age=31536000"
+
+# All other routes go through Flask (if using serverless functions)
+# For now, this ensures static files are served correctly
 
