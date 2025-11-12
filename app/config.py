@@ -18,5 +18,19 @@ class Config:
     )
     MAX_CONTENT_LENGTH = 10 * 1024 * 1024  # 10 MB
     ENABLE_HTMX = False
+    BABEL_DEFAULT_LOCALE = "en"
+    BABEL_DEFAULT_TIMEZONE = "UTC"
+    BABEL_TRANSLATION_DIRECTORIES = str(BASE_DIR / "translations")
+    SESSION_PERMANENT = True
+    PERMANENT_SESSION_LIFETIME = 86400  # 24 hours
+    LANGUAGES = {
+        "en": "English",
+        "hi": "हिंदी",
+        "mr": "मराठी",
+        "ta": "தமிழ்",
+        "te": "తెలుగు",
+        "bn": "বাংলা",
+        "gu": "ગુજરાતી",
+    }
 
 

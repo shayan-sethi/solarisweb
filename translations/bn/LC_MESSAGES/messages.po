@@ -1,0 +1,256 @@
+# Bangla translations for PROJECT.
+# Copyright (C) 2025 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2025-11-12 11:15+0530\n"
+"PO-Revision-Date: 2025-11-12 10:20+0530\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: bn\n"
+"Language-Team: bn <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: app/main/routes.py:28
+msgid "Language changed successfully."
+msgstr ""
+
+#: app/main/routes.py:30
+msgid "Invalid language selected."
+msgstr ""
+
+#: templates/base.html:58 templates/home.html:73
+msgid "Features"
+msgstr ""
+
+#: templates/base.html:59
+msgid "Stats"
+msgstr ""
+
+#: templates/base.html:60
+msgid "Map"
+msgstr ""
+
+#: templates/base.html:61
+msgid "Download"
+msgstr ""
+
+#: templates/base.html:99
+msgid "Journey complete"
+msgstr ""
+
+#: templates/base.html:101
+msgid "Journey in progress"
+msgstr ""
+
+#: templates/base.html:112
+msgid "Logout"
+msgstr ""
+
+#: templates/base.html:117
+msgid "Login"
+msgstr ""
+
+#: templates/base.html:119
+msgid "Create Account"
+msgstr ""
+
+#: templates/base.html:199
+msgid "All rights reserved."
+msgstr ""
+
+#: templates/base.html:200
+msgid "Built with love for clean energy adoption."
+msgstr ""
+
+#: templates/home.html:7
+msgid "Bring solar energy home."
+msgstr ""
+
+#: templates/home.html:7
+msgid "Save money. Empower sustainability."
+msgstr ""
+
+#: templates/home.html:10
+msgid ""
+"Solaris helps you understand your rooftop's solar potential, manage "
+"installations, schedule smart reminders, and keep your household prepared"
+" — now on the web."
+msgstr ""
+
+#: templates/home.html:15
+msgid "Go to dashboard"
+msgstr ""
+
+#: templates/home.html:16
+msgid "Check subsidy"
+msgstr ""
+
+#: templates/home.html:18
+msgid "Create account"
+msgstr ""
+
+#: templates/home.html:19
+msgid "Sign in"
+msgstr ""
+
+#: templates/home.html:29
+msgid "Our Mission"
+msgstr ""
+
+#: templates/home.html:32
+msgid ""
+"Empowering every Indian household to harness solar energy with confidence"
+" and clarity."
+msgstr ""
+
+#: templates/home.html:35
+msgid ""
+"We're building the platform that makes rooftop solar accessible, "
+"transparent, and rewarding for millions of homes across India."
+msgstr ""
+
+#: templates/home.html:40
+msgid "Our Goal"
+msgstr ""
+
+#: templates/home.html:42
+msgid "users by 2026"
+msgstr ""
+
+#: templates/home.html:45
+msgid "Solar Installations"
+msgstr ""
+
+#: templates/home.html:47
+msgid "panels by FY4"
+msgstr ""
+
+#: templates/home.html:50
+msgid "What We're Building"
+msgstr ""
+
+#: templates/home.html:54
+msgid "AI-powered rooftop assessments for instant solar potential"
+msgstr ""
+
+#: templates/home.html:58
+msgid "Automated subsidy matching across all government schemes"
+msgstr ""
+
+#: templates/home.html:62
+msgid "Smart monitoring and maintenance alerts for optimal performance"
+msgstr ""
+
+#: templates/home.html:76
+msgid "Govt. Scheme Aggregator"
+msgstr ""
+
+#: templates/home.html:77
+msgid ""
+"Central & state schemes automatically filtered by eligibility and local "
+"DISCOM policies."
+msgstr ""
+
+#: templates/home.html:80
+msgid "Rooftop Solar Estimator"
+msgstr ""
+
+#: templates/home.html:81
+msgid ""
+"Uses irradiance, orientation & roof area to estimate capacity, generation"
+" & savings."
+msgstr ""
+
+#: templates/home.html:84
+msgid "Smart Reminders & Logs"
+msgstr ""
+
+#: templates/home.html:85
+msgid ""
+"Stay on top of inspections, net-metering, maintenance, health logs and "
+"subsidy deadlines."
+msgstr ""
+
+#: templates/home.html:93
+msgid "India's Solar Potential at a Glance"
+msgstr ""
+
+#: templates/home.html:97
+msgid "Trillion kWh/year potential energy"
+msgstr ""
+
+#: templates/home.html:101
+msgid "Rooftop solar currently utilized"
+msgstr ""
+
+#: templates/home.html:105
+msgid "Subsidy available for 3 kW system"
+msgstr ""
+
+#: templates/home.html:117
+msgid "Solar tracking"
+msgstr ""
+
+#: templates/home.html:119
+msgid "Solar tracking & shadow map"
+msgstr ""
+
+#: templates/home.html:121
+msgid ""
+"Drop a pin on your rooftop and watch irradiance tiles pulse where "
+"production peaks. The browser map now mirrors the Solaris mobile heat map"
+" for a seamless experience."
+msgstr ""
+
+#: templates/home.html:125
+msgid "Open full explorer"
+msgstr ""
+
+#: templates/home.html:132
+msgid "Pin a rooftop or neighbourhood"
+msgstr ""
+
+#: templates/home.html:134
+msgid "Search address, city or coordinates…"
+msgstr ""
+
+#: templates/home.html:136
+msgid "Pin location"
+msgstr ""
+
+#: templates/home.html:143
+msgid "Use my current location"
+msgstr ""
+
+#: templates/home.html:151
+msgid "Calibrating sunlight data…"
+msgstr ""
+
+#: templates/home.html:155
+msgid "Solar potential"
+msgstr ""
+
+#: templates/home.html:158
+msgid "Low"
+msgstr ""
+
+#: templates/home.html:160
+msgid "High"
+msgstr ""
+
+#: templates/home.html:168
+msgid "Sunlight snapshot"
+msgstr ""
+
+#: templates/home.html:172
+msgid "Day timeline"
+msgstr ""
+

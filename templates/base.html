@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="{{ session.get('language', 'en') }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -55,15 +55,36 @@
                     </nav>
                 {% else %}
                     <nav class="hidden md:flex items-center gap-6 text-sm font-semibold text-slate-700">
-                        <a href="{{ url_for('main.home') }}#features" class="hover:text-cyan-600 transition">Features</a>
-                        <a href="{{ url_for('main.home') }}#stats" class="hover:text-cyan-600 transition">Stats</a>
-                        <a href="{{ url_for('main.map') }}" class="hover:text-cyan-600 transition">Map</a>
-                        <a href="{{ url_for('main.home') }}#download" class="hover:text-cyan-600 transition">Download</a>
+                        <a href="{{ url_for('main.home') }}#features" class="hover:text-cyan-600 transition">{{ _('Features') }}</a>
+                        <a href="{{ url_for('main.home') }}#stats" class="hover:text-cyan-600 transition">{{ _('Stats') }}</a>
+                        <a href="{{ url_for('main.map') }}" class="hover:text-cyan-600 transition">{{ _('Map') }}</a>
+                        <a href="{{ url_for('main.home') }}#download" class="hover:text-cyan-600 transition">{{ _('Download') }}</a>
                     </nav>
                 {% endif %}
             </div>
 
             <div class="flex items-center gap-4">
+                <!-- Language Toggle -->
+                <div class="relative group hidden md:block">
+                    <button id="lang-toggle" class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:text-cyan-700 hover:bg-cyan-50 transition">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/>
+                        </svg>
+                        <span>{{ config.LANGUAGES.get(session.get('language', 'en'), 'English') }}</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div id="lang-dropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-slate-200 py-2 z-50">
+                        {% for lang_code, lang_name in config.LANGUAGES.items() %}
+                            <a href="{{ url_for('main.set_language', lang_code=lang_code) }}" 
+                               class="block px-4 py-2 text-sm text-slate-700 hover:bg-cyan-50 hover:text-cyan-700 transition {{ 'bg-cyan-50 text-cyan-700 font-semibold' if session.get('language', 'en') == lang_code }}">
+                                {{ lang_name }}
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+
                 {% if current_user.is_authenticated %}
                     {% set display_name = current_user.name or current_user.email %}
                     {% set initials = display_name[:1]|upper %}
@@ -75,9 +96,9 @@
                             <p class="text-sm font-semibold text-slate-800">{{ display_name }}</p>
                             <p class="text-xs text-slate-500">
                                 {% if current_user.journey_completed %}
-                                    Journey complete
+                                    {{ _('Journey complete') }}
                                 {% else %}
-                                    Journey in progress
+                                    {{ _('Journey in progress') }}
                                 {% endif %}
                             </p>
                         </div>
@@ -88,14 +109,14 @@
                     <form method="post" action="{{ url_for('auth.logout') }}" class="hidden md:block">
                         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                         <button type="submit" class="px-4 py-2 rounded-xl bg-slate-800 text-white text-sm font-semibold shadow hover:bg-slate-900 transition">
-                            Logout
+                            {{ _('Logout') }}
                         </button>
                     </form>
                 {% else %}
                     <div class="hidden md:flex items-center gap-3">
-                        <a href="{{ url_for('auth.login') }}" class="text-sm font-semibold text-slate-700 hover:text-cyan-600 transition">Login</a>
+                        <a href="{{ url_for('auth.login') }}" class="text-sm font-semibold text-slate-700 hover:text-cyan-600 transition">{{ _('Login') }}</a>
                         <a href="{{ url_for('auth.register') }}" class="bg-cyan-500 hover:bg-cyan-600 text-white px-4 py-2 rounded-md shadow transition">
-                            Create Account
+                            {{ _('Create Account') }}
                         </a>
                     </div>
                 {% endif %}
@@ -112,6 +133,19 @@
         </div>
 
         <div id="mobile-menu" class="md:hidden hidden flex-col bg-white/95 text-slate-800 shadow px-6 py-4 space-y-3 border-t border-slate-200">
+            <!-- Mobile Language Toggle -->
+            <div class="pb-3 border-b border-slate-200">
+                <p class="text-xs uppercase tracking-wide text-slate-500 mb-2">Language</p>
+                <div class="flex flex-wrap gap-2">
+                    {% for lang_code, lang_name in config.LANGUAGES.items() %}
+                        <a href="{{ url_for('main.set_language', lang_code=lang_code) }}" 
+                           class="px-3 py-1.5 text-xs rounded-lg border transition {{ 'bg-cyan-500 text-white border-cyan-500' if session.get('language', 'en') == lang_code else 'border-slate-200 text-slate-600 hover:border-cyan-300' }}">
+                            {{ lang_name }}
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+
             {% if current_user.is_authenticated %}
                 {% for link in nav_links %}
                     <a href="{{ url_for(link.endpoint) }}" class="py-2 text-sm font-semibold text-slate-600 hover:text-cyan-700">
@@ -162,8 +196,8 @@
 
     <footer class="bg-slate-900 text-slate-300 py-8 mt-16">
         <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-3">
-            <p>© {{ current_year }} Solaris — All rights reserved.</p>
-            <p class="text-slate-400 text-sm">Built with love for clean energy adoption.</p>
+            <p>© {{ current_year }} Solaris — {{ _('All rights reserved.') }}</p>
+            <p class="text-slate-400 text-sm">{{ _('Built with love for clean energy adoption.') }}</p>
         </div>
     </footer>
 
@@ -175,6 +209,19 @@
                 const expanded = mobileMenu.classList.contains('hidden') ? 'true' : 'false';
                 mobileMenu.classList.toggle('hidden');
                 menuBtn.setAttribute('aria-expanded', expanded);
+            });
+        }
+
+        // Language dropdown toggle
+        const langToggle = document.getElementById('lang-toggle');
+        const langDropdown = document.getElementById('lang-dropdown');
+        if (langToggle && langDropdown) {
+            langToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                langDropdown.classList.toggle('hidden');
+            });
+            document.addEventListener('click', () => {
+                langDropdown.classList.add('hidden');
             });
         }
     </script>

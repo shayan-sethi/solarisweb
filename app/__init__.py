@@ -1,7 +1,7 @@
-from flask import Flask
+from flask import Flask, request, session
 from datetime import datetime
 from typing import Optional, Type, Union
-from .extensions import db, login_manager, migrate, csrf
+from .extensions import db, login_manager, migrate, csrf, babel
 from .config import Config
 
 
@@ -28,7 +28,7 @@ def register_extensions(app: Flask) -> None:
     db.init_app(app)
     migrate.init_app(app, db)
     csrf.init_app(app)
-
+    
     from .models import User
 
     @login_manager.user_loader
@@ -40,6 +40,26 @@ def register_extensions(app: Flask) -> None:
     login_manager.init_app(app)
     login_manager.login_view = "auth.login"
     login_manager.login_message_category = "error"
+
+    # Flask-Babel 4.0 locale selector
+    def get_locale():
+        try:
+            # Check if language is set in session
+            if 'language' in session:
+                lang = session['language']
+                if lang in app.config['LANGUAGES']:
+                    return lang
+            # Try to get from Accept-Language header
+            if hasattr(request, 'accept_languages'):
+                match = request.accept_languages.best_match(app.config['LANGUAGES'].keys())
+                if match:
+                    return match
+        except RuntimeError:
+            # Outside request context, return default
+            pass
+        return app.config['BABEL_DEFAULT_LOCALE']
+    
+    babel.init_app(app, locale_selector=get_locale)
 
 
 def register_blueprints(app: Flask) -> None:
@@ -68,5 +88,11 @@ def register_context_processors(app: Flask) -> None:
         return {
             "current_year": datetime.utcnow().year,
             "config": app.config,
+            "session": session,
         }
+    
+    @app.context_processor
+    def inject_gettext():
+        from flask_babel import gettext as _
+        return dict(_=_)
 

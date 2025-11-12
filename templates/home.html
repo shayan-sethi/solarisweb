@@ -4,19 +4,19 @@
 <section id="home" class="max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-12 items-center">
     <div class="fade-in space-y-6">
         <h1 class="text-4xl md:text-5xl font-extrabold text-slate-800 leading-tight">
-            Bring solar energy home.<br><span class="text-cyan-500">Save money. Empower sustainability.</span>
+            {{ _('Bring solar energy home.') }}<br><span class="text-cyan-500">{{ _('Save money. Empower sustainability.') }}</span>
         </h1>
         <p class="mt-5 text-slate-600 text-lg leading-relaxed">
-            Solaris helps you understand your rooftop’s solar potential, manage installations, schedule smart reminders, and keep your household prepared — now on the web.
+            {{ _('Solaris helps you understand your rooftop\'s solar potential, manage installations, schedule smart reminders, and keep your household prepared — now on the web.') }}
         </p>
 
         <div class="mt-8 flex flex-wrap gap-4">
             {% if current_user.is_authenticated %}
-            <a href="{{ url_for('dashboard.index') }}" class="bg-sky-600 hover:bg-sky-700 text-white font-medium px-5 py-3 rounded-lg shadow-md transition">Go to dashboard</a>
-            <a href="{{ url_for('subsidy.eligibility') }}" class="border border-slate-300 hover:border-cyan-400 hover:text-cyan-600 px-5 py-3 rounded-lg transition">Check subsidy</a>
+            <a href="{{ url_for('dashboard.index') }}" class="bg-sky-600 hover:bg-sky-700 text-white font-medium px-5 py-3 rounded-lg shadow-md transition">{{ _('Go to dashboard') }}</a>
+            <a href="{{ url_for('subsidy.eligibility') }}" class="border border-slate-300 hover:border-cyan-400 hover:text-cyan-600 px-5 py-3 rounded-lg transition">{{ _('Check subsidy') }}</a>
             {% else %}
-            <a href="{{ url_for('auth.register') }}" class="bg-sky-600 hover:bg-sky-700 text-white font-medium px-5 py-3 rounded-lg shadow-md transition">Create account</a>
-            <a href="{{ url_for('auth.login') }}" class="border border-slate-300 hover:border-cyan-400 hover:text-cyan-600 px-5 py-3 rounded-lg transition">Sign in</a>
+            <a href="{{ url_for('auth.register') }}" class="bg-sky-600 hover:bg-sky-700 text-white font-medium px-5 py-3 rounded-lg shadow-md transition">{{ _('Create account') }}</a>
+            <a href="{{ url_for('auth.login') }}" class="border border-slate-300 hover:border-cyan-400 hover:text-cyan-600 px-5 py-3 rounded-lg transition">{{ _('Sign in') }}</a>
             {% endif %}
         </div>
     </div>
@@ -26,40 +26,40 @@
         <div class="relative glass rounded-[2.5rem] p-6 md:p-8 shadow-xl border border-white/50">
             <div class="flex items-center gap-3 text-cyan-600 font-semibold uppercase tracking-[0.3em] text-xs">
                 <span class="h-1.5 w-1.5 rounded-full bg-cyan-500 animate-ping"></span>
-                Solar Journey Snapshot
+                {{ _('Our Mission') }}
             </div>
             <h3 class="mt-5 text-2xl font-semibold text-slate-800 leading-snug">
-                Satellite-backed assessments, personalised subsidy matches, and smart upkeep reminders.
+                {{ _('Empowering every Indian household to harness solar energy with confidence and clarity.') }}
             </h3>
             <p class="mt-4 text-slate-500 text-sm">
-                Secure dashboards bring together everything required to stay subsidy-ready, monitor generation, and keep your home resilient.
+                {{ _('We\'re building the platform that makes rooftop solar accessible, transparent, and rewarding for millions of homes across India.') }}
             </p>
 
             <div class="mt-8 grid grid-cols-2 gap-4 text-sm">
                 <div class="rounded-2xl bg-white/70 border border-white/60 px-4 py-5 shadow-sm">
-                    <p class="text-xs uppercase tracking-wider text-slate-400">Households guided</p>
-                    <p class="mt-2 text-2xl font-bold text-slate-800">12,400+</p>
-                    <p class="mt-1 text-slate-500 text-xs">and growing every month</p>
+                    <p class="text-xs uppercase tracking-wider text-slate-400">{{ _('Our Goal') }}</p>
+                    <p class="mt-2 text-2xl font-bold text-slate-800">13.5k+</p>
+                    <p class="mt-1 text-slate-500 text-xs">{{ _('users by 2026') }}</p>
                 </div>
                 <div class="rounded-2xl bg-white/70 border border-white/60 px-4 py-5 shadow-sm">
-                    <p class="text-xs uppercase tracking-wider text-slate-400">Avg subsidy unlocked</p>
-                    <p class="mt-2 text-2xl font-bold text-slate-800">₹68,500</p>
-                    <p class="mt-1 text-slate-500 text-xs">per eligible installation</p>
+                    <p class="text-xs uppercase tracking-wider text-slate-400">{{ _('Solar Installations') }}</p>
+                    <p class="mt-2 text-2xl font-bold text-slate-800">1.5k+</p>
+                    <p class="mt-1 text-slate-500 text-xs">{{ _('panels by FY4') }}</p>
                 </div>
                 <div class="col-span-2 rounded-2xl bg-gradient-to-r from-cyan-500/90 to-sky-500/90 text-white px-5 py-5 flex flex-col gap-2 shadow-lg">
-                    <p class="text-xs uppercase tracking-[0.25em] text-white/70">What’s inside</p>
+                    <p class="text-xs uppercase tracking-[0.25em] text-white/70">{{ _('What We\'re Building') }}</p>
                     <ul class="space-y-2 text-sm text-white/90">
                         <li class="flex gap-2 items-start">
                             <span class="mt-1 h-1.5 w-1.5 flex-none rounded-full bg-white/80"></span>
-                            Personalised AI powered roof scans
+                            {{ _('AI-powered rooftop assessments for instant solar potential') }}
                         </li>
                         <li class="flex gap-2 items-start">
                             <span class="mt-1 h-1.5 w-1.5 flex-none rounded-full bg-white/80"></span>
-                            MIS reports for DISCOM submissions
+                            {{ _('Automated subsidy matching across all government schemes') }}
                         </li>
                         <li class="flex gap-2 items-start">
                             <span class="mt-1 h-1.5 w-1.5 flex-none rounded-full bg-white/80"></span>
-                            Proactive maintenance and alert system
+                            {{ _('Smart monitoring and maintenance alerts for optimal performance') }}
                         </li>
                     </ul>
                 </div>
@@ -70,19 +70,19 @@
 
 <section id="features" class="py-20 bg-gradient-to-b from-white to-sky-50">
     <div class="max-w-6xl mx-auto px-6 text-center">
-        <h2 class="text-3xl font-bold mb-10">Features</h2>
+        <h2 class="text-3xl font-bold mb-10">{{ _('Features') }}</h2>
         <div class="grid md:grid-cols-3 gap-8 text-left">
             <div class="bg-white rounded-2xl shadow-md hover:shadow-xl p-6 transition transform hover:-translate-y-1">
-                <h3 class="text-xl font-semibold text-blue-600 mb-2">Govt. Scheme Aggregator</h3>
-                <p>Central & state schemes automatically filtered by eligibility and local DISCOM policies.</p>
+                <h3 class="text-xl font-semibold text-blue-600 mb-2">{{ _('Govt. Scheme Aggregator') }}</h3>
+                <p>{{ _('Central & state schemes automatically filtered by eligibility and local DISCOM policies.') }}</p>
             </div>
             <div class="bg-white rounded-2xl shadow-md hover:shadow-xl p-6 transition transform hover:-translate-y-1">
-                <h3 class="text-xl font-semibold text-green-600 mb-2">Rooftop Solar Estimator</h3>
-                <p>Uses irradiance, orientation & roof area to estimate capacity, generation & savings.</p>
+                <h3 class="text-xl font-semibold text-green-600 mb-2">{{ _('Rooftop Solar Estimator') }}</h3>
+                <p>{{ _('Uses irradiance, orientation & roof area to estimate capacity, generation & savings.') }}</p>
             </div>
             <div class="bg-white rounded-2xl shadow-md hover:shadow-xl p-6 transition transform hover:-translate-y-1">
-                <h3 class="text-xl font-semibold text-amber-600 mb-2">Smart Reminders & Logs</h3>
-                <p>Stay on top of inspections, net-metering, maintenance, health logs and subsidy deadlines.</p>
+                <h3 class="text-xl font-semibold text-amber-600 mb-2">{{ _('Smart Reminders & Logs') }}</h3>
+                <p>{{ _('Stay on top of inspections, net-metering, maintenance, health logs and subsidy deadlines.') }}</p>
             </div>
         </div>
     </div>
@@ -90,19 +90,19 @@
 
 <section id="stats" class="py-20 bg-white text-center">
     <div class="max-w-6xl mx-auto px-6">
-        <h2 class="text-3xl font-bold mb-8">India’s Solar Potential at a Glance</h2>
+        <h2 class="text-3xl font-bold mb-8">{{ _('India\'s Solar Potential at a Glance') }}</h2>
         <div class="grid md:grid-cols-3 gap-8">
             <div class="bg-amber-50 p-6 rounded-2xl shadow">
                 <strong class="text-3xl text-amber-600">5000+</strong>
-                <p class="mt-2 text-slate-600">Trillion kWh/year potential energy</p>
+                <p class="mt-2 text-slate-600">{{ _('Trillion kWh/year potential energy') }}</p>
             </div>
             <div class="bg-emerald-50 p-6 rounded-2xl shadow">
                 <strong class="text-3xl text-green-600">&lt;5%</strong>
-                <p class="mt-2 text-slate-600">Rooftop solar currently utilized</p>
+                <p class="mt-2 text-slate-600">{{ _('Rooftop solar currently utilized') }}</p>
             </div>
             <div class="bg-cyan-50 p-6 rounded-2xl shadow">
                 <strong class="text-3xl text-cyan-600">₹78k+</strong>
-                <p class="mt-2 text-slate-600">Subsidy available for 3 kW system</p>
+                <p class="mt-2 text-slate-600">{{ _('Subsidy available for 3 kW system') }}</p>
             </div>
         </div>
     </div>
@@ -114,33 +114,33 @@
             <div class="space-y-3 max-w-2xl">
                 <span class="inline-flex items-center gap-2 text-xs uppercase tracking-[0.35em] text-cyan-500 font-semibold">
                     <span class="h-1.5 w-1.5 rounded-full bg-cyan-500 animate-pulse"></span>
-                    Solar tracking
+                    {{ _('Solar tracking') }}
                 </span>
-                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 leading-tight">Solar tracking & shadow map</h2>
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 leading-tight">{{ _('Solar tracking & shadow map') }}</h2>
                 <p class="text-slate-600">
-                    Drop a pin on your rooftop and watch irradiance tiles pulse where production peaks. The browser map now mirrors the Solaris mobile heat map for a seamless experience.
+                    {{ _('Drop a pin on your rooftop and watch irradiance tiles pulse where production peaks. The browser map now mirrors the Solaris mobile heat map for a seamless experience.') }}
                 </p>
             </div>
             <a href="{{ url_for('main.map') }}" class="header-cta header-cta--outline">
-                Open full explorer
+                {{ _('Open full explorer') }}
             </a>
         </div>
 
         <div class="glass p-6 md:p-8 rounded-[2.5rem] shadow-xl border border-white/50 space-y-6">
             <div class="flex flex-col gap-3 md:grid md:grid-cols-[1fr_auto] md:gap-6">
                 <div class="space-y-2">
-                    <label for="healthLocationInput" class="text-xs uppercase tracking-[0.35em] text-slate-400 font-semibold">Pin a rooftop or neighbourhood</label>
+                    <label for="healthLocationInput" class="text-xs uppercase tracking-[0.35em] text-slate-400 font-semibold">{{ _('Pin a rooftop or neighbourhood') }}</label>
                     <div class="relative flex items-center">
-                        <input id="healthLocationInput" type="text" placeholder="Search address, city or coordinates…" class="w-full rounded-full border border-slate-200 bg-white/80 px-5 py-3 text-sm shadow-inner focus:border-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-100">
+                        <input id="healthLocationInput" type="text" placeholder="{{ _('Search address, city or coordinates…') }}" class="w-full rounded-full border border-slate-200 bg-white/80 px-5 py-3 text-sm shadow-inner focus:border-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-100">
                         <button id="healthSearchBtn" class="ml-3 inline-flex items-center gap-2 rounded-full bg-sky-500 px-5 py-3 text-sm font-semibold text-white shadow-lg transition hover:bg-sky-600">
-                            <span>Pin location</span>
+                            <span>{{ _('Pin location') }}</span>
                         </button>
                     </div>
                     <p id="healthStatus" class="text-xs text-slate-500"></p>
                 </div>
                 <button id="healthRecenterBtn" class="inline-flex items-center justify-center gap-2 rounded-full border border-slate-200 px-5 py-3 text-sm font-semibold text-slate-600 transition hover:border-cyan-300 hover:text-cyan-700">
                     <span class="inline-block h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                    Use my current location
+                    {{ _('Use my current location') }}
                 </button>
             </div>
 
@@ -148,16 +148,16 @@
                 <div id="healthMap" class="h-[520px] w-full"></div>
                 <div id="healthLoading" class="pointer-events-none absolute inset-0 flex flex-col items-center justify-center gap-3 bg-slate-950/55 text-white backdrop-blur-sm hidden">
                     <div class="h-9 w-9 rounded-full border-2 border-white/30 border-t-transparent animate-spin"></div>
-                    <p class="text-sm font-semibold tracking-wide uppercase">Calibrating sunlight data…</p>
+                    <p class="text-sm font-semibold tracking-wide uppercase">{{ _('Calibrating sunlight data…') }}</p>
                 </div>
                 <div class="pointer-events-none absolute bottom-6 left-6 flex flex-col gap-3 rounded-2xl bg-slate-900/80 px-5 py-4 text-white shadow-lg backdrop-blur">
                     <div>
-                        <p class="text-xs uppercase tracking-[0.3em] text-white/60 font-medium">Solar potential</p>
+                        <p class="text-xs uppercase tracking-[0.3em] text-white/60 font-medium">{{ _('Solar potential') }}</p>
                     </div>
                     <div class="flex items-center gap-3">
-                        <span class="text-[11px] font-semibold tracking-wide uppercase text-white/70">Low</span>
+                        <span class="text-[11px] font-semibold tracking-wide uppercase text-white/70">{{ _('Low') }}</span>
                         <div id="healthLegendGradient" class="flex h-2.5 w-36 overflow-hidden rounded-full ring-1 ring-white/30"></div>
-                        <span class="text-[11px] font-semibold tracking-wide uppercase text-white/70">High</span>
+                        <span class="text-[11px] font-semibold tracking-wide uppercase text-white/70">{{ _('High') }}</span>
                     </div>
                     <p id="healthLegendDate" class="text-xs text-white/70"></p>
                 </div>
@@ -165,11 +165,11 @@
 
             <div id="healthSolarData" class="grid gap-3 rounded-[1.75rem] border border-slate-200 bg-white/70 p-6 text-sm text-slate-600 shadow-sm md:grid-cols-2">
                 <div>
-                    <p class="text-xs uppercase tracking-[0.35em] text-slate-400 font-semibold">Sunlight snapshot</p>
+                    <p class="text-xs uppercase tracking-[0.35em] text-slate-400 font-semibold">{{ _('Sunlight snapshot') }}</p>
                     <p id="healthSolarSnapshot" class="mt-2 text-base font-semibold text-slate-800">—</p>
                 </div>
                 <div>
-                    <p class="text-xs uppercase tracking-[0.35em] text-slate-400 font-semibold">Day timeline</p>
+                    <p class="text-xs uppercase tracking-[0.35em] text-slate-400 font-semibold">{{ _('Day timeline') }}</p>
                     <p id="healthSolarTimeline" class="mt-2 text-base font-semibold text-slate-800">—</p>
                 </div>
             </div>
