@@ -2,7 +2,7 @@
 
 {% block content %}
 <section id="home" class="max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-12 items-center">
-    <div class="fade-in">
+    <div class="fade-in space-y-6">
         <h1 class="text-4xl md:text-5xl font-extrabold text-slate-800 leading-tight">
             Bring solar energy home.<br><span class="text-cyan-500">Save money. Empower sustainability.</span>
         </h1>
@@ -21,48 +21,49 @@
         </div>
     </div>
 
-    <div class="glass rounded-3xl p-6 md:p-8 shadow-lg fade-in">
-        <h3 class="text-lg font-semibold text-slate-800">Quick Rooftop Check</h3>
-        <p class="text-sm text-slate-500 mt-1">Estimate installable capacity and savings in seconds.</p>
-
-        <form id="eligibilityForm" class="mt-5 space-y-4">
-            <div>
-                <label for="name" class="text-xs uppercase tracking-wide">Full Name</label>
-                <input id="name" name="name" required class="w-full mt-1 px-3 py-2 rounded-lg border border-slate-200 focus:ring-2 focus:ring-cyan-300 focus:outline-none" placeholder="John Doe">
+    <div class="relative fade-in">
+        <div class="absolute inset-0 bg-gradient-to-br from-cyan-200/30 via-sky-100/20 to-transparent rounded-[2.5rem] blur-3xl"></div>
+        <div class="relative glass rounded-[2.5rem] p-6 md:p-8 shadow-xl border border-white/50">
+            <div class="flex items-center gap-3 text-cyan-600 font-semibold uppercase tracking-[0.3em] text-xs">
+                <span class="h-1.5 w-1.5 rounded-full bg-cyan-500 animate-ping"></span>
+                Solar Journey Snapshot
             </div>
+            <h3 class="mt-5 text-2xl font-semibold text-slate-800 leading-snug">
+                Satellite-backed assessments, personalised subsidy matches, and smart upkeep reminders.
+            </h3>
+            <p class="mt-4 text-slate-500 text-sm">
+                Secure dashboards bring together everything required to stay subsidy-ready, monitor generation, and keep your home resilient.
+            </p>
 
-            <div class="grid grid-cols-2 gap-4">
-                <div>
-                    <label for="pincode" class="text-xs uppercase tracking-wide">PIN Code</label>
-                    <input id="pincode" name="pincode" required inputmode="numeric" pattern="\d{6}" class="w-full mt-1 px-3 py-2 rounded-lg border border-slate-200 focus:ring-2 focus:ring-cyan-300 focus:outline-none" placeholder="110001">
+            <div class="mt-8 grid grid-cols-2 gap-4 text-sm">
+                <div class="rounded-2xl bg-white/70 border border-white/60 px-4 py-5 shadow-sm">
+                    <p class="text-xs uppercase tracking-wider text-slate-400">Households guided</p>
+                    <p class="mt-2 text-2xl font-bold text-slate-800">12,400+</p>
+                    <p class="mt-1 text-slate-500 text-xs">and growing every month</p>
                 </div>
-                <div>
-                    <label for="discom" class="text-xs uppercase tracking-wide">DISCOM</label>
-                    <input id="discom" name="discom" class="w-full mt-1 px-3 py-2 rounded-lg border border-slate-200 focus:ring-2 focus:ring-cyan-300 focus:outline-none" placeholder="BSES Rajdhani">
+                <div class="rounded-2xl bg-white/70 border border-white/60 px-4 py-5 shadow-sm">
+                    <p class="text-xs uppercase tracking-wider text-slate-400">Avg subsidy unlocked</p>
+                    <p class="mt-2 text-2xl font-bold text-slate-800">₹68,500</p>
+                    <p class="mt-1 text-slate-500 text-xs">per eligible installation</p>
+                </div>
+                <div class="col-span-2 rounded-2xl bg-gradient-to-r from-cyan-500/90 to-sky-500/90 text-white px-5 py-5 flex flex-col gap-2 shadow-lg">
+                    <p class="text-xs uppercase tracking-[0.25em] text-white/70">What’s inside</p>
+                    <ul class="space-y-2 text-sm text-white/90">
+                        <li class="flex gap-2 items-start">
+                            <span class="mt-1 h-1.5 w-1.5 flex-none rounded-full bg-white/80"></span>
+                            Personalised AI powered roof scans
+                        </li>
+                        <li class="flex gap-2 items-start">
+                            <span class="mt-1 h-1.5 w-1.5 flex-none rounded-full bg-white/80"></span>
+                            MIS reports for DISCOM submissions
+                        </li>
+                        <li class="flex gap-2 items-start">
+                            <span class="mt-1 h-1.5 w-1.5 flex-none rounded-full bg-white/80"></span>
+                            Proactive maintenance and alert system
+                        </li>
+                    </ul>
                 </div>
             </div>
-
-            <div>
-                <label for="area" class="text-xs uppercase tracking-wide">Roof Area (m²)</label>
-                <input id="area" name="area" type="number" min="0" step="0.1" class="w-full mt-1 px-3 py-2 rounded-lg border border-slate-200 focus:ring-2 focus:ring-cyan-300 focus:outline-none" placeholder="40">
-            </div>
-
-            <div class="flex items-center gap-2">
-                <input type="checkbox" id="netmeter" name="netmeter">
-                <label for="netmeter" class="text-sm text-slate-600">I have / can get net-metering</label>
-            </div>
-
-            <div class="flex gap-2 mt-3">
-                <button id="reportBtn" type="submit" class="flex-1 bg-cyan-500 hover:bg-cyan-600 text-white px-4 py-2 rounded-lg shadow-sm transition">
-                    Get Report
-                </button>
-            </div>
-        </form>
-
-        <div id="resultCard" class="mt-5 hidden bg-sky-50 border border-sky-100 p-4 rounded-lg">
-            <h4 class="font-semibold text-sky-800">Estimated Result</h4>
-            <p id="resultText" class="text-sm text-slate-700 mt-2 whitespace-pre-line">—</p>
-            <p class="text-xs text-slate-500 mt-2">Sign in for detailed subsidy matching and reminders.</p>
         </div>
     </div>
 </section>
@@ -127,7 +128,5 @@
 </section>
 {% endblock %}
 
-{% block extra_scripts %}
-<script src="{{ url_for('static', filename='js/home.js') }}"></script>
-{% endblock %}
+{% block extra_scripts %}{% endblock %}
 
