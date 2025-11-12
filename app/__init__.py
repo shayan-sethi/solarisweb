@@ -8,7 +8,19 @@ from .config import Config
 def create_app(
     config_object: Union[Type[Config], str, None] = None
 ) -> Flask:
-    app = Flask(__name__, template_folder="../templates", static_folder="../static")
+    import os
+    from pathlib import Path
+    
+    # Ensure static folder path is correct
+    base_dir = Path(__file__).resolve().parent.parent
+    static_dir = base_dir / "static"
+    
+    app = Flask(
+        __name__,
+        template_folder=str(base_dir / "templates"),
+        static_folder=str(static_dir),
+        static_url_path="/static"
+    )
 
     if config_object is None:
         app.config.from_object(Config)

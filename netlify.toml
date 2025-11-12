@@ -1,9 +1,10 @@
 [build]
 command = "pip install -r requirements.txt"
-publish = "templates"
+publish = "."
 
 [build.environment]
 PYTHON_VERSION = "3.11"
+FLASK_APP = "app.py"
 
 [dev]
 command = "FLASK_APP=app.py flask run --host=0.0.0.0 --port=8888"
@@ -11,13 +12,21 @@ targetPort = 8888
 port = 3000
 framework = "#custom"
 
-[[redirects]]
-from = "/"
-to = "/home.html"
-status = 200
+# Serve static files directly with correct MIME types
+[[headers]]
+for = "/static/css/*.css"
+[headers.values]
+Content-Type = "text/css; charset=utf-8"
+X-Content-Type-Options = "nosniff"
 
-[[redirects]]
-from = "/*"
-to = "/home.html"
-status = 200
+[[headers]]
+for = "/static/js/*.js"
+[headers.values]
+Content-Type = "application/javascript; charset=utf-8"
+X-Content-Type-Options = "nosniff"
+
+[[headers]]
+for = "/static/images/*"
+[headers.values]
+X-Content-Type-Options = "nosniff"
 
