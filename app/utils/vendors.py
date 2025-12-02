@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from typing import Any, Dict, List
+from app.utils.ml_scoring import calculate_vendor_score as ml_calculate_vendor_score, analyze_sentiment_simple
 
 
 solar_vendors = [
@@ -69,30 +70,50 @@ solar_vendors = [
 
 def calculate_vendor_score(vendor: Dict[str, Any]) -> float:
     """
-    Calculate a recommendation score for a vendor based on multiple factors.
-    Higher score = better recommendation.
+    Calculate a recommendation score for a vendor using ML-based scoring.
+    Uses sentiment analysis and weighted formula.
     """
-    score = 0.0
-    
+    # Extract vendor data
     rating = vendor.get("rating", 0.0)
-    base_price = vendor.get("base_price_per_kw_inr", 80000)
-    years_exp = vendor.get("years_experience", 0)
-    num_locations = len(vendor.get("locations", []))
-    num_highlights = len(vendor.get("highlights", []))
+    highlights = vendor.get("highlights", [])
+    mnre_verified = any("MNRE" in h.upper() or "empanelled" in h.lower() for h in highlights)
     
+    # Simulate review text for sentiment analysis (in real app, use actual reviews)
+    review_text = " ".join(highlights)
+    sentiment_score = analyze_sentiment_simple(review_text)
+    
+    # Calculate price fairness (0-1 scale)
     max_price = max(v.get("base_price_per_kw_inr", 80000) for v in solar_vendors)
     min_price = min(v.get("base_price_per_kw_inr", 50000) for v in solar_vendors)
+    base_price = vendor.get("base_price_per_kw_inr", 70000)
     price_range = max_price - min_price if max_price > min_price else 1
+    price_fairness = 1.0 - ((base_price - min_price) / price_range) if price_range > 0 else 0.5
     
-    rating_score = rating * 20
-    price_score = ((max_price - base_price) / price_range) * 25 if price_range > 0 else 0
-    experience_score = min(years_exp * 1.5, 20)
-    locations_score = min(num_locations * 2, 15)
-    highlights_score = min(num_highlights * 2, 20)
+    # Estimate completion rate (0-1 scale) - higher rating = higher completion
+    completion_rate = min(1.0, rating / 5.0)
     
-    score = rating_score + price_score + experience_score + locations_score + highlights_score
+    # Warranty years (extract from highlights or default)
+    warranty_years = 5.0  # Default
+    for h in highlights:
+        if "year" in h.lower() and any(c.isdigit() for c in h):
+            try:
+                warranty_years = float([c for c in h.split() if c.isdigit()][0])
+                break
+            except:
+                pass
     
-    return round(score, 2)
+    # Use ML scoring model
+    ml_score = ml_calculate_vendor_score(
+        rating=rating,
+        mnre_verified=mnre_verified,
+        sentiment_score=sentiment_score,
+        price_fairness=price_fairness,
+        completion_rate=completion_rate,
+        warranty_years=warranty_years,
+        years_experience=vendor.get("years_experience", 0),
+    )
+    
+    return ml_score
 
 
 def get_vendor_recommendation_reasons(vendor: Dict[str, Any], all_vendors: List[Dict[str, Any]]) -> List[str]:

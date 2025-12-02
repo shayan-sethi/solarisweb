@@ -56,6 +56,36 @@
             </div>
         </div>
 
+        {% if financial_predictions %}
+        <div class="bg-gradient-to-br from-emerald-50 to-cyan-50 border border-emerald-200 rounded-2xl p-6 space-y-4 shadow-sm">
+            <h2 class="text-lg font-semibold text-slate-900 flex items-center gap-2">
+                <span class="h-2 w-2 rounded-full bg-emerald-500"></span>
+                AI-Powered Financial & Environmental Predictions
+            </h2>
+            <div class="grid md:grid-cols-2 gap-4">
+                <div class="bg-white rounded-xl p-4 border border-emerald-100">
+                    <p class="text-xs uppercase tracking-wide text-slate-500 mb-1">Monthly Savings</p>
+                    <p class="text-2xl font-bold text-emerald-600">₹{{ "{:,.0f}".format(financial_predictions.monthly_savings_inr) }}</p>
+                </div>
+                <div class="bg-white rounded-xl p-4 border border-emerald-100">
+                    <p class="text-xs uppercase tracking-wide text-slate-500 mb-1">Annual Savings</p>
+                    <p class="text-2xl font-bold text-emerald-600">₹{{ "{:,.0f}".format(financial_predictions.annual_savings_inr) }}</p>
+                </div>
+                {% if financial_predictions.payback_period_years %}
+                <div class="bg-white rounded-xl p-4 border border-emerald-100">
+                    <p class="text-xs uppercase tracking-wide text-slate-500 mb-1">Payback Period</p>
+                    <p class="text-2xl font-bold text-slate-900">{{ "{:.1f}".format(financial_predictions.payback_period_years) }} years</p>
+                </div>
+                {% endif %}
+                <div class="bg-white rounded-xl p-4 border border-emerald-100">
+                    <p class="text-xs uppercase tracking-wide text-slate-500 mb-1">CO₂ Avoided</p>
+                    <p class="text-2xl font-bold text-emerald-700">{{ "{:,.0f}".format(financial_predictions.co2_avoided_kg_per_year) }} kg/year</p>
+                    <p class="text-xs text-slate-500 mt-1">Equivalent to planting {{ "{:.0f}".format(financial_predictions.co2_avoided_kg_per_year / 21.77) }} trees</p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
         {% if profile_tags %}
         <div class="bg-white border border-slate-200 rounded-2xl p-5">
             <h2 class="text-sm uppercase tracking-wide text-slate-500 mb-3">Your profile snapshot</h2>

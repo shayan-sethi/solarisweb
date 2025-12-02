@@ -141,6 +141,30 @@ def results():
         roof_area=roof_area or None,
         annual_consumption=annual_consumption or None,
     )
+    
+    # Apply ML-based scoring to matches
+    from app.utils.ml_scoring import calculate_subsidy_match_score
+    
+    for match in matches:
+        # Calculate ML match score
+        ml_score = calculate_subsidy_match_score(
+            scheme={
+                'match_score': match.match_score,
+                'benefit': match.benefit,
+                'states': match.states,
+                'coverage': match.coverage,
+                'consumer_segments': match.consumer_segments,
+            },
+            user_system_size_kw=recommended_kw,
+            user_annual_consumption_kwh=annual_consumption,
+            user_state=journey.get("state") or "",
+            user_consumer_segment=journey.get("consumer_segment") or "residential",
+            gross_cost_inr=result.gross_cost,
+            subsidy_amount_inr=result.central + result.state_subsidy,
+            ease_of_claim=0.7 if match.application_url else 0.5,  # Higher if online portal available
+        )
+        # Update match score with ML score
+        match.match_score = ml_score / 10.0  # Convert back to 0-10 scale for compatibility
 
     coverage_filter = request.args.get("coverage", "all")
     ownership_filter = request.args.get("ownership", "all")
@@ -216,16 +240,32 @@ def results():
         return True
 
     filtered_matches = [scheme for scheme in matches if passes_filters(scheme)]
+    
+    # Sort matches by ML score (highest first)
+    filtered_matches.sort(key=lambda x: x.match_score, reverse=True)
 
+    # Calculate financial and CO₂ predictions using ML model
+    from app.utils.ml_scoring import calculate_financial_predictions
+    
     estimated_annual_output = recommended_kw * 1100
+    tariff = get_provider_tariff(provider_key)
+    
+    financial_predictions = calculate_financial_predictions(
+        system_size_kw=recommended_kw,
+        annual_generation_kwh=estimated_annual_output,
+        tariff_rate_inr_per_kwh=tariff,
+        gross_cost_inr=result.gross_cost,
+        subsidy_amount_inr=result.central + result.state_subsidy,
+        self_consumption_ratio=0.8,
+    )
+    
     if annual_consumption:
-        tariff = get_provider_tariff(provider_key)
         offset_kwh = min(annual_consumption, estimated_annual_output)
         estimated_annual_savings = offset_kwh * tariff
     elif monthly_bill:
         estimated_annual_savings = monthly_bill * 12 * 0.6
     else:
-        estimated_annual_savings = estimated_annual_output * 6
+        estimated_annual_savings = financial_predictions['annual_savings_inr']
 
     current_user.last_system_kw = recommended_kw
     current_user.last_net_cost_inr = result.net_cost
