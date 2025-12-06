@@ -83,6 +83,7 @@ def register_blueprints(app: Flask) -> None:
     from .profile.routes import profile_bp
     from .dashboard.routes import dashboard_bp
     from .tracker.routes import tracker_bp
+    from .finance.routes import finance_bp
 
     app.register_blueprint(main_bp)
     app.register_blueprint(auth_bp)
@@ -92,6 +93,7 @@ def register_blueprints(app: Flask) -> None:
     app.register_blueprint(profile_bp)
     app.register_blueprint(dashboard_bp)
     app.register_blueprint(tracker_bp)
+    app.register_blueprint(finance_bp)
 
 
 def register_context_processors(app: Flask) -> None:

@@ -8,8 +8,8 @@
                     </svg>
                 </div>
                 <div>
-                    <h3 class="font-bold text-lg">{{ _('AI Assistant') }}</h3>
-                    <p class="text-xs text-white/80">{{ _('Your subsidy guide') }}</p>
+                    <h3 class="font-bold text-lg whitespace-nowrap">{{ _('SunnivaAI') }}</h3>
+                    <p class="text-xs text-white/80 whitespace-nowrap">{{ _('Your solar energy guide') }}</p>
                 </div>
             </div>
             <button id="ai-chat-close" class="text-white/90 hover:text-white hover:bg-white/20 rounded-lg p-1.5 transition">
@@ -28,23 +28,39 @@
                 </div>
                 <div class="flex-1 bg-white rounded-2xl rounded-tl-sm p-4 shadow-md border border-slate-100">
                     {% if step == 3 %}
-                    <p class="text-sm text-slate-700 leading-relaxed">{{ _('Hello! I\'m here to help you apply for the recommended subsidy schemes. Ask me about application processes, required documents, timelines, or next steps.') }}</p>
+                    <p class="text-sm text-slate-700 leading-relaxed">{{ _('Hello! I\'m SunnivaAI, your solar energy assistant. I can help you with your subsidy application, summarize legal PDFs, or answer anything about solar energy, panels, or installation.') }}</p>
                     {% else %}
-                    <p class="text-sm text-slate-700 leading-relaxed">{{ _('Hello! I\'m here to help guide you through the subsidy form. Ask me anything about the requirements or how to fill out the form.') }}</p>
+                    <p class="text-sm text-slate-700 leading-relaxed">{{ _('Hello! I\'m SunnivaAI, here to help. I can guide you through this form, summarize legal PDFs, or answer any general questions you have about going solar.') }}</p>
                     {% endif %}
                 </div>
             </div>
         </div>
         
         <div class="p-4 border-t border-slate-200 bg-white rounded-b-3xl">
-            <form id="ai-chat-form" class="flex gap-2">
-                <input 
-                    type="text" 
-                    id="ai-chat-input" 
-                    placeholder="{{ _('Ask a question...') }}"
-                    class="flex-1 px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 focus:outline-none text-sm bg-slate-50 focus:bg-white transition"
-                    autocomplete="off"
-                />
+            <form id="ai-chat-form" class="flex gap-2 items-end">
+                <input type="file" id="ai-chat-file" accept=".pdf" class="hidden" />
+                <button type="button" id="ai-chat-upload-btn" class="p-3 text-slate-400 hover:text-cyan-600 hover:bg-cyan-50 rounded-xl border border-slate-200 transition-colors" title="{{ _('Upload PDF') }}">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
+                    </svg>
+                </button>
+                <div class="flex-1 flex flex-col gap-2">
+                    <div id="file-preview" class="hidden px-3 py-2 bg-cyan-50 border border-cyan-100 rounded-lg text-xs text-cyan-700 flex items-center justify-between">
+                        <span class="truncate max-w-[200px] font-medium"></span>
+                        <button type="button" id="remove-file" class="text-cyan-500 hover:text-cyan-700">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <input 
+                        type="text" 
+                        id="ai-chat-input" 
+                        placeholder="{{ _('Ask a question...') }}"
+                        class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 focus:outline-none text-sm bg-slate-50 focus:bg-white transition"
+                        autocomplete="off"
+                    />
+                </div>
                 <button 
                     type="submit" 
                     id="ai-chat-send"
@@ -86,8 +102,34 @@
     const chatInput = document.getElementById('ai-chat-input');
     const chatMessages = document.getElementById('ai-chat-messages');
     const chatLoading = document.getElementById('ai-chat-loading');
+    const fileInput = document.getElementById('ai-chat-file');
+    const uploadBtn = document.getElementById('ai-chat-upload-btn');
+    const filePreview = document.getElementById('file-preview');
+    const removeFileBtn = document.getElementById('remove-file');
     
     if (!chatContainer) return;
+
+    // File upload handling
+    uploadBtn?.addEventListener('click', () => fileInput?.click());
+
+    fileInput?.addEventListener('change', () => {
+        if (fileInput.files && fileInput.files[0]) {
+            const file = fileInput.files[0];
+            if (file.type === 'application/pdf') {
+                filePreview.querySelector('span').textContent = file.name;
+                filePreview.classList.remove('hidden');
+                chatInput.focus();
+            } else {
+                alert('Please upload PDF files only.');
+                fileInput.value = '';
+            }
+        }
+    });
+
+    removeFileBtn?.addEventListener('click', () => {
+        fileInput.value = '';
+        filePreview.classList.add('hidden');
+    });
     
     // Get current step from page
     const currentStep = {{ step|default(1)|int }};
@@ -209,32 +251,53 @@
         e.preventDefault();
         
         const message = chatInput?.value.trim();
-        if (!message) return;
+        const hasFile = fileInput?.files && fileInput.files.length > 0;
+        
+        if (!message && !hasFile) return;
         
         // Add user message
-        addMessage(message, true);
+        let displayMessage = message;
+        const fileToSend = hasFile ? fileInput.files[0] : null;
+
+        if (hasFile && fileToSend) {
+            displayMessage = message ? `${message}\n\n*[Attached: ${fileToSend.name}]*` : `*[Attached: ${fileToSend.name}]*`;
+        }
+        
+        addMessage(displayMessage, true);
         chatInput.value = '';
+        
+        // Reset file input and preview
+        if (hasFile) {
+            fileInput.value = '';
+            filePreview.classList.add('hidden');
+        }
+        
         chatLoading?.classList.remove('hidden');
         
         try {
-            const formData = getFormData();
+            const formDataObj = getFormData();
             
             // Get CSRF token from meta tag or form
             const csrfToken = document.querySelector('meta[name="csrf-token"]')?.content || 
                              document.querySelector('input[name="csrf_token"]')?.value || '';
             
+            // Create FormData for file upload support
+            const formData = new FormData();
+            formData.append('message', message);
+            formData.append('step', currentStep);
+            formData.append('form_data', JSON.stringify(formDataObj));
+            
+            if (fileToSend) {
+                formData.append('file', fileToSend);
+            }
+
             const response = await fetch('{{ url_for("subsidy.ai_chat") }}', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
                     'X-CSRFToken': csrfToken
                 },
                 credentials: 'same-origin',
-                body: JSON.stringify({
-                    message: message,
-                    step: currentStep,
-                    form_data: formData
-                })
+                body: formData
             });
             
             if (!response.ok) {

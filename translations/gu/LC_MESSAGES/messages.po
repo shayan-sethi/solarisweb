@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-12 11:15+0530\n"
+"POT-Creation-Date: 2025-12-07 00:13+0530\n"
 "PO-Revision-Date: 2025-11-12 10:20+0530\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: gu\n"
@@ -20,237 +20,525 @@ msgstr ""
 
 #: app/main/routes.py:28
 msgid "Language changed successfully."
-msgstr ""
+msgstr "ભાષા સફળતાપૂર્વક બદલાઈ ગઈ."
 
 #: app/main/routes.py:30
 msgid "Invalid language selected."
-msgstr ""
+msgstr "અમાન્ય ભાષા પસંદ કરી."
 
-#: templates/base.html:58 templates/home.html:73
+#: templates/base.html:36
+msgid "Dashboard"
+msgstr "ડેશબોર્ડ"
+
+#: templates/base.html:37
+msgid "Projects"
+msgstr "પ્રોજેક્ટ્સ"
+
+#: templates/base.html:38
+msgid "Solar Map"
+msgstr "સોલર મેપ"
+
+#: templates/base.html:39
+msgid "Vendors"
+msgstr "વિક્રેતાઓ"
+
+#: templates/base.html:40
+msgid "Energy Tracker"
+msgstr "એનર્જી ટ્રેકર"
+
+#: templates/base.html:41 templates/profile/view.html:8
+msgid "Profile"
+msgstr "પ્રોફાઇલ"
+
+#: templates/base.html:61 templates/base.html:170 templates/home.html:73
 msgid "Features"
-msgstr ""
+msgstr "વિશેષતાઓ"
 
-#: templates/base.html:59
+#: templates/base.html:62 templates/base.html:171
 msgid "Stats"
-msgstr ""
+msgstr "આંકડા"
 
-#: templates/base.html:60
+#: templates/base.html:63 templates/base.html:172
 msgid "Map"
-msgstr ""
+msgstr "નકશો"
 
-#: templates/base.html:61
+#: templates/base.html:64 templates/base.html:173
 msgid "Download"
-msgstr ""
+msgstr "ડાઉનલોડ"
 
-#: templates/base.html:99
+#: templates/base.html:95 templates/base.html:159
+msgid "Log energy"
+msgstr "ઉર્જા લોગ કરો"
+
+#: templates/base.html:102
 msgid "Journey complete"
-msgstr ""
+msgstr "યાત્રા પૂર્ણ"
 
-#: templates/base.html:101
+#: templates/base.html:104
 msgid "Journey in progress"
-msgstr ""
+msgstr "યાત્રા પ્રગતિમાં છે"
 
-#: templates/base.html:112
+#: templates/base.html:115 templates/base.html:165
 msgid "Logout"
-msgstr ""
+msgstr "લોગઆઉટ"
 
-#: templates/base.html:117
+#: templates/base.html:120 templates/base.html:175
 msgid "Login"
-msgstr ""
+msgstr "લોગિન"
 
-#: templates/base.html:119
+#: templates/base.html:122 templates/base.html:177
 msgid "Create Account"
-msgstr ""
+msgstr "ખાતું બનાવો"
 
-#: templates/base.html:199
+#: templates/base.html:141
+msgid "Language"
+msgstr "ભાષા"
+
+#: templates/base.html:202
 msgid "All rights reserved."
-msgstr ""
+msgstr "બધા હકો અમારી પાસે રાખેલા છે."
 
-#: templates/base.html:200
+#: templates/base.html:203
 msgid "Built with love for clean energy adoption."
-msgstr ""
+msgstr "સ્વચ્છ ઊર્જા અપનાવવા માટે પ્રેમથી બનાવેલ."
 
 #: templates/home.html:7
 msgid "Bring solar energy home."
-msgstr ""
+msgstr "સૌર ઊર્જા ઘરે લાવો."
 
 #: templates/home.html:7
 msgid "Save money. Empower sustainability."
-msgstr ""
+msgstr "પૈસા બચાવો. સ્થિરતાને સશક્ત બનાવો."
 
 #: templates/home.html:10
 msgid ""
 "Solaris helps you understand your rooftop's solar potential, manage "
-"installations, schedule smart reminders, and keep your household prepared"
-" — now on the web."
-msgstr ""
+"installations, schedule smart reminders, and keep your household "
+"prepared."
+msgstr "સોલારિસ તમને તમારા રૂફટોપની સૌર ક્ષમતાને સમજવામાં, ઇન્સ્ટોલેશનનું સંચાલન કરવામાં, સ્માર્ટ રિમાઇન્ડર્સ શેડ્યૂલ કરવામાં અને તમારા ઘરને તૈયાર રાખવામાં મદદ કરે છે."
 
-#: templates/home.html:15
+#: templates/home.html:15 templates/subsidy/step4_results.html:204
 msgid "Go to dashboard"
-msgstr ""
+msgstr "ડેશબોર્ડ પર જાઓ"
 
 #: templates/home.html:16
 msgid "Check subsidy"
-msgstr ""
+msgstr "સબસિડી તપાસો"
 
 #: templates/home.html:18
 msgid "Create account"
-msgstr ""
+msgstr "ખાતું બનાવો"
 
 #: templates/home.html:19
 msgid "Sign in"
-msgstr ""
+msgstr "સાઇન ઇન કરો"
 
 #: templates/home.html:29
 msgid "Our Mission"
-msgstr ""
+msgstr "અમારું મિશન"
 
 #: templates/home.html:32
 msgid ""
 "Empowering every Indian household to harness solar energy with confidence"
 " and clarity."
-msgstr ""
+msgstr "દરેક ભારતીય ઘરને આત્મવિશ્વાસ અને સ્પષ્ટતા સાથે સૌર ઊર્જાનો ઉપયોગ કરવા માટે સશક્ત બનાવવું."
 
 #: templates/home.html:35
 msgid ""
 "We're building the platform that makes rooftop solar accessible, "
 "transparent, and rewarding for millions of homes across India."
-msgstr ""
+msgstr "અમે એવું પ્લેટફોર્મ બનાવી રહ્યા છીએ જે સમગ્ર ભારતમાં લાખો ઘરો માટે રૂફટોપ સોલરને સુલભ, પારદર્શક અને લાભદાયી બનાવે છે."
 
 #: templates/home.html:40
 msgid "Our Goal"
-msgstr ""
+msgstr "અમારો ધ્યેય"
 
 #: templates/home.html:42
 msgid "users by 2026"
-msgstr ""
+msgstr "2026 સુધીમાં વપરાશકર્તાઓ"
 
 #: templates/home.html:45
 msgid "Solar Installations"
-msgstr ""
+msgstr "સૌર સ્થાપનો"
 
 #: templates/home.html:47
 msgid "panels by FY4"
-msgstr ""
+msgstr "FY4 સુધીમાં પેનલ્સ"
 
 #: templates/home.html:50
 msgid "What We're Building"
-msgstr ""
+msgstr "અમે શું બનાવી રહ્યા છીએ"
 
 #: templates/home.html:54
 msgid "AI-powered rooftop assessments for instant solar potential"
-msgstr ""
+msgstr "ત્વરિત સૌર ક્ષમતા માટે AI-સંચાલિત રૂફટોપ મૂલ્યાંકન"
 
 #: templates/home.html:58
 msgid "Automated subsidy matching across all government schemes"
-msgstr ""
+msgstr "તમામ સરકારી યોજનાઓમાં સ્વચાલિત સબસિડી મેચિંગ"
 
 #: templates/home.html:62
 msgid "Smart monitoring and maintenance alerts for optimal performance"
-msgstr ""
+msgstr "શ્રેષ્ઠ કામગીરી માટે સ્માર્ટ મોનિટરિંગ અને જાળવણી ચેતવણીઓ"
 
 #: templates/home.html:76
 msgid "Govt. Scheme Aggregator"
-msgstr ""
+msgstr "સરકારી યોજના એગ્રીગેટર"
 
 #: templates/home.html:77
 msgid ""
 "Central & state schemes automatically filtered by eligibility and local "
 "DISCOM policies."
-msgstr ""
+msgstr "પાત્રતા અને સ્થાનિક ડિસ્કોમ નીતિઓ દ્વારા કેન્દ્ર અને રાજ્ય યોજનાઓ આપમેળે ફિલ્ટર થાય છે."
 
 #: templates/home.html:80
 msgid "Rooftop Solar Estimator"
-msgstr ""
+msgstr "રૂફટોપ સોલર એસ્ટિમેટર"
 
 #: templates/home.html:81
 msgid ""
 "Uses irradiance, orientation & roof area to estimate capacity, generation"
 " & savings."
-msgstr ""
+msgstr "ક્ષમતા, ઉત્પાદન અને બચતનો અંદાજ કાઢવા માટે ઇરેડિયન્સ, ઓરિએન્ટેશન અને છત વિસ્તારનો ઉપયોગ કરે છે."
 
 #: templates/home.html:84
 msgid "Smart Reminders & Logs"
-msgstr ""
+msgstr "સ્માર્ટ રિમાઇન્ડર્સ અને લોગ્સ"
 
 #: templates/home.html:85
 msgid ""
 "Stay on top of inspections, net-metering, maintenance, health logs and "
 "subsidy deadlines."
-msgstr ""
+msgstr "નિરીક્ષણો, નેટ-મીટરિંગ, જાળવણી, આરોગ્ય લોગ અને સબસિડીની સમયમર્યાદામાં ટોચ પર રહો."
 
 #: templates/home.html:93
 msgid "India's Solar Potential at a Glance"
-msgstr ""
+msgstr "એક નજરમાં ભારતની સૌર ક્ષમતા"
 
 #: templates/home.html:97
 msgid "Trillion kWh/year potential energy"
-msgstr ""
+msgstr "ટ્રિલિયન kWh/વર્ષ સંભવિત ઊર્જા"
 
 #: templates/home.html:101
 msgid "Rooftop solar currently utilized"
-msgstr ""
+msgstr "હાલમાં ઉપયોગમાં લેવાતું રૂફટોપ સોલર"
 
 #: templates/home.html:105
 msgid "Subsidy available for 3 kW system"
-msgstr ""
+msgstr "3 kW સિસ્ટમ માટે સબસિડી ઉપલબ્ધ છે"
 
 #: templates/home.html:117
 msgid "Solar tracking"
-msgstr ""
+msgstr "સોલર ટ્રેકિંગ"
 
 #: templates/home.html:119
 msgid "Solar tracking & shadow map"
-msgstr ""
+msgstr "સોલર ટ્રેકિંગ અને શેડો મેપ"
 
 #: templates/home.html:121
 msgid ""
 "Drop a pin on your rooftop and watch irradiance tiles pulse where "
 "production peaks. The browser map now mirrors the Solaris mobile heat map"
 " for a seamless experience."
-msgstr ""
+msgstr "તમારા રૂફટોપ પર પિન છોડો અને જ્યાં ઉત્પાદન ટોચ પર હોય ત્યાં ઇરેડિયન્સ ટાઇલ્સ પલ્સ જુઓ. બ્રાઉઝર મેપ હવે સીમલેસ અનુભવ માટે સોલારિસ મોબાઇલ હીટ મેપને મિરર કરે છે."
 
 #: templates/home.html:125
 msgid "Open full explorer"
-msgstr ""
+msgstr "પૂર્ણ એક્સપ્લોરર ખોલો"
 
 #: templates/home.html:132
 msgid "Pin a rooftop or neighbourhood"
-msgstr ""
+msgstr "રૂફટોપ અથવા પાડોશને પિન કરો"
 
 #: templates/home.html:134
 msgid "Search address, city or coordinates…"
-msgstr ""
+msgstr "સરનામું, શહેર અથવા કોઓર્ડિનેટ્સ શોધો..."
 
 #: templates/home.html:136
 msgid "Pin location"
-msgstr ""
+msgstr "સ્થાન પિન કરો"
 
 #: templates/home.html:143
 msgid "Use my current location"
-msgstr ""
+msgstr "મારા વર્તમાન સ્થાનનો ઉપયોગ કરો"
 
 #: templates/home.html:151
 msgid "Calibrating sunlight data…"
-msgstr ""
+msgstr "સૂર્યપ્રકાશ ડેટાને કેલિબ્રેટ કરી રહ્યું છે..."
 
 #: templates/home.html:155
 msgid "Solar potential"
-msgstr ""
+msgstr "સૌર ક્ષમતા"
 
 #: templates/home.html:158
 msgid "Low"
-msgstr ""
+msgstr "ઓછું"
 
 #: templates/home.html:160
 msgid "High"
-msgstr ""
+msgstr "ઉચ્ચ"
 
 #: templates/home.html:168
 msgid "Sunlight snapshot"
-msgstr ""
+msgstr "સૂર્યપ્રકાશ સ્નેપશોટ"
 
 #: templates/home.html:172
 msgid "Day timeline"
+msgstr "દિવસની સમયરેખા"
+
+#: templates/dashboard/index.html:16
+msgid "View tracker"
+msgstr "ટ્રેકર જુઓ"
+
+#: templates/dashboard/index.html:33
+msgid "Need an updated subsidy projection?"
+msgstr "શું અપડેટ કરેલ સબસિડી પ્રોજેક્શનની જરૂર છે?"
+
+#: templates/dashboard/index.html:35
+msgid "Run subsidy estimator"
+msgstr "સબસિડી એસ્ટિમેટર ચલાવો"
+
+#: templates/dashboard/index.html:40
+msgid "View subsidy form data"
+msgstr "સબસિડી ફોર્મ ડેટા જુઓ"
+
+#: templates/dashboard/index.html:49
+msgid "View projects"
+msgstr "પ્રોજેક્ટ્સ જુઓ"
+
+#: templates/dashboard/index.html:114 templates/subsidy/step4_results.html:210
+msgid "Open solar tracker"
+msgstr "સોલર ટ્રેકર ખોલો"
+
+#: templates/dashboard/index.html:123
+msgid "Add entry"
+msgstr "એન્ટ્રી ઉમેરો"
+
+#: templates/dashboard/index.html:150
+msgid "Add project"
+msgstr "પ્રોજેક્ટ ઉમેરો"
+
+#: templates/profile/view.html:7
+msgid "Member since"
+msgstr "ત્યારથી સભ્ય"
+
+#: templates/profile/view.html:9
+msgid "Review personal details and subsidy contacts."
+msgstr "વ્યક્તિગત વિગતો અને સબસિડી સંપર્કોની સમીક્ષા કરો."
+
+#: templates/profile/view.html:12
+msgid "Edit profile"
+msgstr "પ્રોફાઇલ સંપાદિત કરો"
+
+#: templates/profile/view.html:18
+msgid "Name"
+msgstr "નામ"
+
+#: templates/profile/view.html:22
+msgid "Email"
+msgstr "ઇમેઇલ"
+
+#: templates/profile/view.html:26
+msgid "Phone"
+msgstr "ફોન"
+
+#: templates/profile/view.html:30
+msgid "Date of birth"
+msgstr "જન્મ તારીખ"
+
+#: templates/profile/view.html:37
+msgid "Subsidy Form Submissions"
+msgstr "સબસિડી ફોર્મ સબમિશન્સ"
+
+#: templates/profile/view.html:44
+msgid "Submitted"
+msgstr "સબમિટ કર્યું"
+
+#: templates/profile/view.html:49 templates/subsidy/view_data.html:24
+msgid "Rooftop Area"
+msgstr "રૂફટોપ વિસ્તાર"
+
+#: templates/profile/view.html:55
+msgid "Monthly Bill"
+msgstr "માસિક બિલ"
+
+#: templates/profile/view.html:61
+msgid "Electricity Provider"
+msgstr "વીજળી પ્રદાતા"
+
+#: templates/profile/view.html:67 templates/subsidy/view_data.html:60
+msgid "State"
+msgstr "રાજ્ય"
+
+#: templates/profile/view.html:73 templates/subsidy/view_data.html:64
+msgid "Consumer Segment"
+msgstr "ગ્રાહક વિભાગ"
+
+#: templates/profile/view.html:76 templates/subsidy/view_data.html:67
+msgid "Residential"
+msgstr "રહેણાંક"
+
+#: templates/profile/view.html:78 templates/subsidy/view_data.html:69
+msgid "Agricultural"
+msgstr "કૃષિ"
+
+#: templates/profile/view.html:80 templates/subsidy/view_data.html:71
+msgid "Community / Cooperative"
+msgstr "સમુદાય / સહકારી"
+
+#: templates/profile/view.html:89 templates/subsidy/view_data.html:78
+msgid "Grid Connection"
+msgstr "ગ્રીડ કનેક્શન"
+
+#: templates/profile/view.html:92 templates/subsidy/view_data.html:81
+msgid "Grid-connected"
+msgstr "ગ્રીડ-કનેક્ટેડ"
+
+#: templates/profile/view.html:94 templates/subsidy/view_data.html:83
+msgid "Off-grid / Hybrid"
+msgstr "ઓફ-ગ્રીડ / હાઇબ્રિડ"
+
+#: templates/profile/view.html:103 templates/subsidy/view_data.html:90
+msgid "Roof Type"
+msgstr "છતનો પ્રકાર"
+
+#: templates/profile/view.html:106 templates/subsidy/view_data.html:94
+msgid "Concrete (RCC)"
+msgstr "કોંક્રિટ (RCC)"
+
+#: templates/profile/view.html:108 templates/subsidy/view_data.html:96
+msgid "Tin / Metal"
+msgstr "ટીન / મેટલ"
+
+#: templates/profile/view.html:110 templates/subsidy/view_data.html:98
+msgid "Tiles"
+msgstr "ટાઇલ્સ"
+
+#: templates/profile/view.html:112 templates/subsidy/view_data.html:100
+msgid "Asbestos"
+msgstr "એસ્બેસ્ટોસ"
+
+#: templates/profile/view.html:114 templates/subsidy/view_data.html:102
+msgid "Flat roof"
+msgstr "સપાટ છત"
+
+#: templates/profile/view.html:116 templates/subsidy/view_data.html:104
+msgid "Sloped roof"
+msgstr "ઢોળાવવાળી છત"
+
+#: templates/profile/view.html:128
+msgid ""
+"No subsidy submissions yet. Complete the subsidy form to see your data "
+"here."
 msgstr ""
+
+#: templates/subsidy/_ai_chat.html:11
+msgid "SunnivaAI"
+msgstr "સુન્નીવા AI"
+
+#: templates/subsidy/_ai_chat.html:12
+msgid "Your solar energy guide"
+msgstr "તમારી સૌર ઊર્જા માર્ગદર્શિકા"
+
+#: templates/subsidy/_ai_chat.html:31
+msgid ""
+"Hello! I'm SunnivaAI, your solar energy assistant. I can help you with "
+"your subsidy application, but feel free to ask me anything about solar "
+"energy, panels, or installation."
+msgstr "નમસ્તે! હું સુન્નીવા AI છું, તમારી સૌર ઊર્જા સહાયક. હું તમારી સબસિડી અરજીમાં તમને મદદ કરી શકું છું, પરંતુ સૌર ઊર્જા, પેનલ્સ અથવા ઇન્સ્ટોલેશન વિશે મને કંઈપણ પૂછવા માટે નિઃસંકોચ."
+
+#: templates/subsidy/_ai_chat.html:33
+msgid ""
+"Hello! I'm SunnivaAI, here to help. I can guide you through this form or "
+"answer any general questions you have about going solar."
+msgstr "નમસ્તે! હું સુન્નીવા AI, મદદ કરવા માટે અહીં છું. હું તમને આ ફોર્મ દ્વારા માર્ગદર્શન આપી શકું છું અથવા સૌર ઊર્જા વિશેના તમારા કોઈપણ સામાન્ય પ્રશ્નોના જવાબ આપી શકું છું."
+
+#: templates/subsidy/_ai_chat.html:44
+msgid "Ask a question..."
+msgstr "પ્રશ્ન પૂછો..."
+
+#: templates/subsidy/_ai_chat.html:63
+msgid "AI is thinking..."
+msgstr "AI વિચારી રહ્યું છે..."
+
+#: templates/subsidy/_ai_chat.html:71
+msgid "Open AI Assistant"
+msgstr ""
+
+#: templates/subsidy/step4_results.html:207
+msgid "Open energy tracker"
+msgstr "એનર્જી ટ્રેકર ખોલો"
+
+#: templates/subsidy/step4_results.html:213
+msgid "View form data"
+msgstr "ફોર્મ ડેટા જુઓ"
+
+#: templates/subsidy/step4_results.html:218
+msgid "Start a new journey"
+msgstr "એક નવી યાત્રા શરૂ કરો"
+
+#: templates/subsidy/step4_results.html:222
+msgid "Browse vendors page"
+msgstr "વિક્રેતાઓ પૃષ્ઠ બ્રાઉઝ કરો"
+
+#: templates/subsidy/step4_results.html:225
+#: templates/subsidy/view_data.html:138
+msgid "Back to dashboard"
+msgstr "ડેશબોર્ડ પર પાછા"
+
+#: templates/subsidy/view_data.html:7
+msgid "Subsidy Form Data"
+msgstr "સબસિડી ફોર્મ ડેટા"
+
+#: templates/subsidy/view_data.html:8
+msgid "View the information you entered for your subsidy application."
+msgstr "તમારી સબસિડી અરજી માટે તમે દાખલ કરેલી માહિતી જુઓ."
+
+#: templates/subsidy/view_data.html:12
+msgid "View Results"
+msgstr "પરિણામો જુઓ"
+
+#: templates/subsidy/view_data.html:15
+msgid "Edit Form"
+msgstr "ફોર્મ સંપાદિત કરો"
+
+#: templates/subsidy/view_data.html:21
+msgid "Basic Information"
+msgstr "મૂળભૂત માહિતી"
+
+#: templates/subsidy/view_data.html:34
+msgid "Monthly Electricity Bill"
+msgstr "માસિક વીજળી બિલ"
+
+#: templates/subsidy/view_data.html:44
+msgid "Electricity Provider / DISCOM"
+msgstr "વીજળી પ્રદાતા / DISCOM"
+
+#: templates/subsidy/view_data.html:49
+msgid "Estimated Monthly Units"
+msgstr "અંદાજિત માસિક એકમો"
+
+#: templates/subsidy/view_data.html:57
+msgid "Site Information"
+msgstr "સાઇટ માહિતી"
+
+#: templates/subsidy/view_data.html:118
+msgid "Calculated Estimates"
+msgstr "ગણતરી કરેલ અંદાજ"
+
+#: templates/subsidy/view_data.html:122
+msgid "Recommended System Size"
+msgstr "ભલામણ કરેલ સિસ્ટમ કદ"
+
+#: templates/subsidy/view_data.html:128
+msgid "Estimated Annual Consumption"
+msgstr "અંદાજિત વાર્ષિક વપરાશ"
+
+#~ msgid ""
+#~ "Solaris helps you understand your "
+#~ "rooftop's solar potential, manage "
+#~ "installations, schedule smart reminders, and"
+#~ " keep your household prepared — now"
+#~ " on the web."
+#~ msgstr ""
 

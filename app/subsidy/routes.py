@@ -2,6 +2,8 @@ from __future__ import annotations
 
 from datetime import datetime
 import json
+import io
+from pypdf import PdfReader
 
 from flask import (
     Blueprint,
@@ -402,66 +404,108 @@ def ai_chat():
         
         current_app.logger.info(f"Using Gemini API key (length: {len(api_key)})")
         
-        data = request.get_json()
-        user_message = data.get("message", "")
-        step = data.get("step", 1)
-        form_data = data.get("form_data", {})
+        # Handle both JSON and FormData requests
+        if request.is_json:
+            data = request.get_json()
+        else:
+            data = request.form
         
-        if not user_message:
+        user_message = data.get("message", "")
+        
+        # Handle step conversion safely
+        try:
+            step = int(data.get("step", 1))
+        except (ValueError, TypeError):
+            step = 1
+
+        # Handle form_data parsing
+        form_data_raw = data.get("form_data", "{}")
+        if isinstance(form_data_raw, str):
+            try:
+                form_data = json.loads(form_data_raw)
+            except json.JSONDecodeError:
+                form_data = {}
+        else:
+            form_data = form_data_raw if form_data_raw else {}
+
+        # Handle PDF file upload if present
+        pdf_context = ""
+        if 'file' in request.files:
+            file = request.files['file']
+            if file and file.filename and file.filename.lower().endswith('.pdf'):
+                try:
+                    # Read PDF from memory
+                    pdf_reader = PdfReader(file)
+                    text_content = []
+                    for page in pdf_reader.pages:
+                        text_content.append(page.extract_text() or "")
+                    
+                    extracted_text = "\n".join(text_content)
+                    # Limit text length to avoid token limits (Gemini Flash has 1M context, but let's be reasonable)
+                    if len(extracted_text) > 200000:
+                        extracted_text = extracted_text[:200000] + "\n...[Truncated due to length]"
+                    
+                    pdf_context = f"\n\n[USER UPLOADED PDF CONTENT START]\n{extracted_text}\n[USER UPLOADED PDF CONTENT END]\n"
+                    
+                    if not user_message:
+                        user_message = "Please analyze this document."
+                except Exception as e:
+                    current_app.logger.error(f"PDF extraction error: {e}")
+                    return jsonify({"error": "Failed to process PDF. Please ensure it is a valid PDF file."}), 400
+        
+        if not user_message and not pdf_context:
             return jsonify({"error": "Message is required"}), 400
         
         # Build context-aware system prompt based on the step
         system_prompts = {
-            1: """You are a helpful AI assistant guiding users through the Indian solar subsidy application form (Step 1: Basic Numbers).
+            1: """You are SunnivaAI, a helpful and knowledgeable solar energy assistant. While you are currently guiding users through the Indian solar subsidy application form (Step 1: Basic Numbers), you should also answer general questions about solar energy, technology, and benefits. You can also summarize legal PDFs if the user provides their content.
 
 You help users understand:
-- Rooftop area: How to measure usable roof space, excluding tanks, shading, setbacks
-- Monthly electricity bill: Average of recent bills, used to estimate consumption
-- Electricity provider/DISCOM: Their local distribution company
+- Rooftop area: How to measure usable roof space
+- Monthly electricity bill: How it relates to solar system sizing
+- Electricity provider/DISCOM: Their role in net metering
+- Legal documents: Summarize key points from solar regulations or policy documents if provided
 
-Be friendly, clear, and provide practical advice. Answer questions about requirements, calculations, and what information they need to provide.
+Be friendly, clear, and concise.
 
 You can use markdown formatting to make your responses clearer:
 - Use **bold** for emphasis
 - Use headings (## Heading) to organize information
 - Use bullet points (- item) for lists
 - Use `code` for technical terms or values""",
-            2: """You are a helpful AI assistant guiding users through the Indian solar subsidy application form (Step 2: Site Information).
+            2: """You are SunnivaAI, a helpful and knowledgeable solar energy assistant. While you are currently guiding users through the Indian solar subsidy application form (Step 2: Site Information), you are happy to answer general solar questions and summarize legal documents too.
 
 You help users understand:
-- State: Their location for state-specific subsidies
-- Consumer segment: Residential, Agricultural, or Community/Cooperative
-- Grid connection: Whether they're connected to the grid or off-grid
-- Roof type: Concrete (RCC), Tin/Metal, Tiles, Asbestos, Flat roof, Sloped roof, or Other
+- State-specific solar policies
+- Consumer segments (Residential, etc.)
+- Grid connection types (On-grid vs Off-grid)
+- Suitability of different roof types for solar panels
 
-Be friendly, clear, and provide practical advice about regional requirements and eligibility.
+Be friendly, clear, and practical.
 
 You can use markdown formatting to make your responses clearer:
 - Use **bold** for emphasis
 - Use headings (## Heading) to organize information
 - Use bullet points (- item) for lists
 - Use `code` for technical terms or values""",
-            3: """You are a helpful AI assistant guiding users through applying for Indian solar subsidies after they've completed the eligibility form.
+            3: """You are SunnivaAI, a comprehensive solar energy assistant. The user has just viewed their solar subsidy recommendations, but your role is broader than just subsidies.
 
-You help users with:
-- How to apply for the recommended subsidy schemes
-- Required documents for subsidy applications
-- Step-by-step application process for different schemes
-- Timeline expectations for subsidy approval
-- How to contact DISCOM or relevant authorities
-- Understanding subsidy benefits and net costs
-- Next steps after receiving subsidy approval
-- Vendor selection and installation process
-- Net metering application process
+You can help users with:
+- Understanding their solar potential and savings
+- Explaining solar technologies (panels, inverters, batteries)
+- The subsidy application process and documents (if asked)
+- Summarizing legal PDFs or policy documents related to solar energy
+- Vendor selection and installation steps
+- General benefits of going solar (environmental, financial)
+- Maintenance and warranty questions
 
-Be friendly, clear, and provide actionable, step-by-step guidance. Help them understand the application process, required documents, timelines, and what to expect at each stage. Reference specific schemes when relevant and provide practical next steps.
+Be friendly, clear, and encouraging. Provide actionable advice. If the user asks about the specific subsidy results shown on screen, refer to the provided context.
 
 You can use markdown formatting to make your responses clearer and more organized:
 - Use **bold** for important terms or emphasis
 - Use headings (## Heading, ### Subheading) to structure your response
-- Use bullet points (- item) for lists of documents, steps, or requirements
-- Use `code` for technical terms, amounts, or specific values
-- Organize longer responses with clear sections using headings"""
+- Use bullet points (- item) for lists
+- Use `code` for technical terms, amounts, or specific values"""
         }
         
         system_prompt = system_prompts.get(step, system_prompts[1])
@@ -488,6 +532,11 @@ User's subsidy eligibility results:
 The user has completed the eligibility form and is now viewing their recommended subsidy schemes. Help them understand how to apply for these schemes, what documents they need, application timelines, and next steps."""
                 context += results_context
         
+        # Add PDF context if available
+        if pdf_context:
+            context += pdf_context
+            system_prompt += "\n\nThe user has uploaded a PDF document. Use the content labeled [USER UPLOADED PDF CONTENT] to answer their questions."
+
         # Configure Gemini
         genai.configure(api_key=api_key)
         
@@ -502,7 +551,7 @@ The user has completed the eligibility form and is now viewing their recommended
             full_prompt,
             generation_config=genai.types.GenerationConfig(
                 temperature=0.7,
-                max_output_tokens=500,
+                max_output_tokens=2000,  # Increased for summaries
             )
         )
         

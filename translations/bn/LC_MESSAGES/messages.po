@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-12 11:15+0530\n"
+"POT-Creation-Date: 2025-12-07 00:13+0530\n"
 "PO-Revision-Date: 2025-11-12 10:20+0530\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: bn\n"
@@ -20,237 +20,525 @@ msgstr ""
 
 #: app/main/routes.py:28
 msgid "Language changed successfully."
-msgstr ""
+msgstr "ভাষা সফলভাবে পরিবর্তন করা হয়েছে।"
 
 #: app/main/routes.py:30
 msgid "Invalid language selected."
-msgstr ""
+msgstr "অবৈধ ভাষা নির্বাচন করা হয়েছে।"
 
-#: templates/base.html:58 templates/home.html:73
+#: templates/base.html:36
+msgid "Dashboard"
+msgstr "ড্যাশবোর্ড"
+
+#: templates/base.html:37
+msgid "Projects"
+msgstr "প্রকল্প"
+
+#: templates/base.html:38
+msgid "Solar Map"
+msgstr "সৌর মানচিত্র"
+
+#: templates/base.html:39
+msgid "Vendors"
+msgstr "বিক্রেতারা"
+
+#: templates/base.html:40
+msgid "Energy Tracker"
+msgstr "এনার্জি ট্র্যাকার"
+
+#: templates/base.html:41 templates/profile/view.html:8
+msgid "Profile"
+msgstr "প্রোফাইল"
+
+#: templates/base.html:61 templates/base.html:170 templates/home.html:73
 msgid "Features"
-msgstr ""
+msgstr "বৈশিষ্ট্য"
 
-#: templates/base.html:59
+#: templates/base.html:62 templates/base.html:171
 msgid "Stats"
-msgstr ""
+msgstr "পরিসংখ্যান"
 
-#: templates/base.html:60
+#: templates/base.html:63 templates/base.html:172
 msgid "Map"
-msgstr ""
+msgstr "মানচিত্র"
 
-#: templates/base.html:61
+#: templates/base.html:64 templates/base.html:173
 msgid "Download"
-msgstr ""
+msgstr "ডাউনলোড"
 
-#: templates/base.html:99
+#: templates/base.html:95 templates/base.html:159
+msgid "Log energy"
+msgstr "শক্তি লগ করুন"
+
+#: templates/base.html:102
 msgid "Journey complete"
-msgstr ""
+msgstr "যাত্রা সম্পূর্ণ"
 
-#: templates/base.html:101
+#: templates/base.html:104
 msgid "Journey in progress"
-msgstr ""
+msgstr "যাত্রা চলছে"
 
-#: templates/base.html:112
+#: templates/base.html:115 templates/base.html:165
 msgid "Logout"
-msgstr ""
+msgstr "লগআউট"
 
-#: templates/base.html:117
+#: templates/base.html:120 templates/base.html:175
 msgid "Login"
-msgstr ""
+msgstr "লগইন"
 
-#: templates/base.html:119
+#: templates/base.html:122 templates/base.html:177
 msgid "Create Account"
-msgstr ""
+msgstr "অ্যাকাউন্ট তৈরি করুন"
 
-#: templates/base.html:199
+#: templates/base.html:141
+msgid "Language"
+msgstr "ভাষা"
+
+#: templates/base.html:202
 msgid "All rights reserved."
-msgstr ""
+msgstr "সর্বস্বত্ব সংরক্ষিত।"
 
-#: templates/base.html:200
+#: templates/base.html:203
 msgid "Built with love for clean energy adoption."
-msgstr ""
+msgstr "পরিচ্ছন্ন শক্তি গ্রহণের জন্য ভালবাসার সাথে তৈরি।"
 
 #: templates/home.html:7
 msgid "Bring solar energy home."
-msgstr ""
+msgstr "সৌর শক্তি ঘরে আনুন।"
 
 #: templates/home.html:7
 msgid "Save money. Empower sustainability."
-msgstr ""
+msgstr "টাকা বাঁচান। স্থায়িত্বকে শক্তিশালী করুন।"
 
 #: templates/home.html:10
 msgid ""
 "Solaris helps you understand your rooftop's solar potential, manage "
-"installations, schedule smart reminders, and keep your household prepared"
-" — now on the web."
-msgstr ""
+"installations, schedule smart reminders, and keep your household "
+"prepared."
+msgstr "সোলারিস আপনাকে আপনার ছাদের সৌর সম্ভাবনা বুঝতে, ইনস্টলেশন পরিচালনা করতে, স্মার্ট রিমাইন্ডার শিডিউল করতে এবং আপনার পরিবারকে প্রস্তুত রাখতে সাহায্য করে।"
 
-#: templates/home.html:15
+#: templates/home.html:15 templates/subsidy/step4_results.html:204
 msgid "Go to dashboard"
-msgstr ""
+msgstr "ড্যাশবোর্ডে যান"
 
 #: templates/home.html:16
 msgid "Check subsidy"
-msgstr ""
+msgstr "ভর্তুকি চেক করুন"
 
 #: templates/home.html:18
 msgid "Create account"
-msgstr ""
+msgstr "অ্যাকাউন্ট তৈরি করুন"
 
 #: templates/home.html:19
 msgid "Sign in"
-msgstr ""
+msgstr "সাইন ইন করুন"
 
 #: templates/home.html:29
 msgid "Our Mission"
-msgstr ""
+msgstr "আমাদের লক্ষ্য"
 
 #: templates/home.html:32
 msgid ""
 "Empowering every Indian household to harness solar energy with confidence"
 " and clarity."
-msgstr ""
+msgstr "প্রতিটি ভারতীয় পরিবারকে আত্মবিশ্বাস এবং স্পষ্টতার সাথে সৌর শক্তি ব্যবহার করতে সক্ষম করা।"
 
 #: templates/home.html:35
 msgid ""
 "We're building the platform that makes rooftop solar accessible, "
 "transparent, and rewarding for millions of homes across India."
-msgstr ""
+msgstr "আমরা এমন একটি প্ল্যাটফর্ম তৈরি করছি যা সারা ভারত জুড়ে লক্ষ লক্ষ বাড়ির জন্য রুফটপ সোলারকে অ্যাক্সেসযোগ্য, স্বচ্ছ এবং ফলপ্রসূ করে তোলে।"
 
 #: templates/home.html:40
 msgid "Our Goal"
-msgstr ""
+msgstr "আমাদের লক্ষ্য"
 
 #: templates/home.html:42
 msgid "users by 2026"
-msgstr ""
+msgstr "2026 সালের মধ্যে ব্যবহারকারী"
 
 #: templates/home.html:45
 msgid "Solar Installations"
-msgstr ""
+msgstr "সৌর ইনস্টলেশন"
 
 #: templates/home.html:47
 msgid "panels by FY4"
-msgstr ""
+msgstr "FY4 এর মধ্যে প্যানেল"
 
 #: templates/home.html:50
 msgid "What We're Building"
-msgstr ""
+msgstr "আমরা যা তৈরি করছি"
 
 #: templates/home.html:54
 msgid "AI-powered rooftop assessments for instant solar potential"
-msgstr ""
+msgstr "তাত্ক্ষণিক সৌর সম্ভাবনার জন্য এআই-চালিত ছাদ মূল্যায়ন"
 
 #: templates/home.html:58
 msgid "Automated subsidy matching across all government schemes"
-msgstr ""
+msgstr "সমস্ত সরকারি স্কিম জুড়ে স্বয়ংক্রিয় ভর্তুকি ম্যাচিং"
 
 #: templates/home.html:62
 msgid "Smart monitoring and maintenance alerts for optimal performance"
-msgstr ""
+msgstr "সর্বোত্তম কর্মক্ষমতার জন্য স্মার্ট মনিটরিং এবং রক্ষণাবেক্ষণ সতর্কতা"
 
 #: templates/home.html:76
 msgid "Govt. Scheme Aggregator"
-msgstr ""
+msgstr "সরকারি স্কিম এগ্রিগেটর"
 
 #: templates/home.html:77
 msgid ""
 "Central & state schemes automatically filtered by eligibility and local "
 "DISCOM policies."
-msgstr ""
+msgstr "যোগ্যতা এবং স্থানীয় DISCOM নীতি দ্বারা কেন্দ্রীয় এবং রাজ্য স্কিমগুলি স্বয়ংক্রিয়ভাবে ফিল্টার করা হয়।"
 
 #: templates/home.html:80
 msgid "Rooftop Solar Estimator"
-msgstr ""
+msgstr "রুফটপ সোলার এস্টিমেটর"
 
 #: templates/home.html:81
 msgid ""
 "Uses irradiance, orientation & roof area to estimate capacity, generation"
 " & savings."
-msgstr ""
+msgstr "ক্ষমতা, উৎপাদন এবং সঞ্চয় অনুমান করতে ইরেডিয়েন্স, ওরিয়েন্টেশন এবং ছাদের এলাকা ব্যবহার করে।"
 
 #: templates/home.html:84
 msgid "Smart Reminders & Logs"
-msgstr ""
+msgstr "স্মার্ট রিমাইন্ডার এবং লগ"
 
 #: templates/home.html:85
 msgid ""
 "Stay on top of inspections, net-metering, maintenance, health logs and "
 "subsidy deadlines."
-msgstr ""
+msgstr "পরিদর্শন, নেট-মিটারিং, রক্ষণাবেক্ষণ, স্বাস্থ্য লগ এবং ভর্তুকি সময়সীমার উপরে থাকুন।"
 
 #: templates/home.html:93
 msgid "India's Solar Potential at a Glance"
-msgstr ""
+msgstr "এক নজরে ভারতের সৌর সম্ভাবনা"
 
 #: templates/home.html:97
 msgid "Trillion kWh/year potential energy"
-msgstr ""
+msgstr "ট্রিলিয়ন kWh/বছর সম্ভাব্য শক্তি"
 
 #: templates/home.html:101
 msgid "Rooftop solar currently utilized"
-msgstr ""
+msgstr "বর্তমানে ব্যবহৃত রুফটপ সোলার"
 
 #: templates/home.html:105
 msgid "Subsidy available for 3 kW system"
-msgstr ""
+msgstr "3 কিলোওয়াট সিস্টেমের জন্য ভর্তুকি উপলব্ধ"
 
 #: templates/home.html:117
 msgid "Solar tracking"
-msgstr ""
+msgstr "সৌর ট্র্যাকিং"
 
 #: templates/home.html:119
 msgid "Solar tracking & shadow map"
-msgstr ""
+msgstr "সৌর ট্র্যাকিং এবং ছায়া মানচিত্র"
 
 #: templates/home.html:121
 msgid ""
 "Drop a pin on your rooftop and watch irradiance tiles pulse where "
 "production peaks. The browser map now mirrors the Solaris mobile heat map"
 " for a seamless experience."
-msgstr ""
+msgstr "আপনার ছাদে একটি পিন ফেলুন এবং যেখানে উৎপাদন সর্বোচ্চ সেখানে ইরেডিয়েন্স টাইলস পালস দেখুন। ব্রাউজার মানচিত্রটি এখন একটি নিরবচ্ছিন্ন অভিজ্ঞতার জন্য সোলারিস মোবাইল হিট ম্যাপকে প্রতিফলিত করে।"
 
 #: templates/home.html:125
 msgid "Open full explorer"
-msgstr ""
+msgstr "সম্পূর্ণ এক্সপ্লোরার খুলুন"
 
 #: templates/home.html:132
 msgid "Pin a rooftop or neighbourhood"
-msgstr ""
+msgstr "একটি ছাদ বা প্রতিবেশী পিন করুন"
 
 #: templates/home.html:134
 msgid "Search address, city or coordinates…"
-msgstr ""
+msgstr "ঠিকানা, শহর বা স্থানাঙ্ক অনুসন্ধান করুন..."
 
 #: templates/home.html:136
 msgid "Pin location"
-msgstr ""
+msgstr "অবস্থান পিন করুন"
 
 #: templates/home.html:143
 msgid "Use my current location"
-msgstr ""
+msgstr "আমার বর্তমান অবস্থান ব্যবহার করুন"
 
 #: templates/home.html:151
 msgid "Calibrating sunlight data…"
-msgstr ""
+msgstr "সূর্যালোক ডেটা ক্যালিব্রেট করা হচ্ছে..."
 
 #: templates/home.html:155
 msgid "Solar potential"
-msgstr ""
+msgstr "সৌর সম্ভাবনা"
 
 #: templates/home.html:158
 msgid "Low"
-msgstr ""
+msgstr "কম"
 
 #: templates/home.html:160
 msgid "High"
-msgstr ""
+msgstr "উচ্চ"
 
 #: templates/home.html:168
 msgid "Sunlight snapshot"
-msgstr ""
+msgstr "সূর্যালোক স্ন্যাপশট"
 
 #: templates/home.html:172
 msgid "Day timeline"
+msgstr "দিনের টাইমলাইন"
+
+#: templates/dashboard/index.html:16
+msgid "View tracker"
+msgstr "ট্র্যাকার দেখুন"
+
+#: templates/dashboard/index.html:33
+msgid "Need an updated subsidy projection?"
+msgstr "একটি আপডেট ভর্তুকি অভিক্ষেপ প্রয়োজন?"
+
+#: templates/dashboard/index.html:35
+msgid "Run subsidy estimator"
+msgstr "ভর্তুকি এস্টিমেটর চালান"
+
+#: templates/dashboard/index.html:40
+msgid "View subsidy form data"
+msgstr "ভর্তুকি ফর্ম ডেটা দেখুন"
+
+#: templates/dashboard/index.html:49
+msgid "View projects"
+msgstr "প্রকল্প দেখুন"
+
+#: templates/dashboard/index.html:114 templates/subsidy/step4_results.html:210
+msgid "Open solar tracker"
+msgstr "সৌর ট্র্যাকার খুলুন"
+
+#: templates/dashboard/index.html:123
+msgid "Add entry"
+msgstr "এন্ট্রি যোগ করুন"
+
+#: templates/dashboard/index.html:150
+msgid "Add project"
+msgstr "প্রকল্প যোগ করুন"
+
+#: templates/profile/view.html:7
+msgid "Member since"
+msgstr "সদস্য যেহেতু"
+
+#: templates/profile/view.html:9
+msgid "Review personal details and subsidy contacts."
+msgstr "ব্যক্তিগত বিবরণ এবং ভর্তুকি পরিচিতি পর্যালোচনা করুন।"
+
+#: templates/profile/view.html:12
+msgid "Edit profile"
+msgstr "প্রোফাইল সম্পাদনা করুন"
+
+#: templates/profile/view.html:18
+msgid "Name"
+msgstr "নাম"
+
+#: templates/profile/view.html:22
+msgid "Email"
+msgstr "ইমেল"
+
+#: templates/profile/view.html:26
+msgid "Phone"
+msgstr "ফোন"
+
+#: templates/profile/view.html:30
+msgid "Date of birth"
+msgstr "জন্ম তারিখ"
+
+#: templates/profile/view.html:37
+msgid "Subsidy Form Submissions"
+msgstr "ভর্তুকি ফর্ম জমা"
+
+#: templates/profile/view.html:44
+msgid "Submitted"
+msgstr "জমা দেওয়া হয়েছে"
+
+#: templates/profile/view.html:49 templates/subsidy/view_data.html:24
+msgid "Rooftop Area"
+msgstr "ছাদের এলাকা"
+
+#: templates/profile/view.html:55
+msgid "Monthly Bill"
+msgstr "মাসিক বিল"
+
+#: templates/profile/view.html:61
+msgid "Electricity Provider"
+msgstr "বিদ্যুৎ প্রদানকারী"
+
+#: templates/profile/view.html:67 templates/subsidy/view_data.html:60
+msgid "State"
+msgstr "রাজ্য"
+
+#: templates/profile/view.html:73 templates/subsidy/view_data.html:64
+msgid "Consumer Segment"
+msgstr "ভোক্তা বিভাগ"
+
+#: templates/profile/view.html:76 templates/subsidy/view_data.html:67
+msgid "Residential"
+msgstr "আবাসিক"
+
+#: templates/profile/view.html:78 templates/subsidy/view_data.html:69
+msgid "Agricultural"
+msgstr "কৃষি"
+
+#: templates/profile/view.html:80 templates/subsidy/view_data.html:71
+msgid "Community / Cooperative"
+msgstr "সম্প্রদায় / সমবায়"
+
+#: templates/profile/view.html:89 templates/subsidy/view_data.html:78
+msgid "Grid Connection"
+msgstr "গ্রিড সংযোগ"
+
+#: templates/profile/view.html:92 templates/subsidy/view_data.html:81
+msgid "Grid-connected"
+msgstr "গ্রিড-সংযুক্ত"
+
+#: templates/profile/view.html:94 templates/subsidy/view_data.html:83
+msgid "Off-grid / Hybrid"
+msgstr "অফ-গ্রিড / হাইব্রিড"
+
+#: templates/profile/view.html:103 templates/subsidy/view_data.html:90
+msgid "Roof Type"
+msgstr "ছাদের ধরন"
+
+#: templates/profile/view.html:106 templates/subsidy/view_data.html:94
+msgid "Concrete (RCC)"
+msgstr "কংক্রিট (RCC)"
+
+#: templates/profile/view.html:108 templates/subsidy/view_data.html:96
+msgid "Tin / Metal"
+msgstr "টিন / ধাতু"
+
+#: templates/profile/view.html:110 templates/subsidy/view_data.html:98
+msgid "Tiles"
+msgstr "টাইলস"
+
+#: templates/profile/view.html:112 templates/subsidy/view_data.html:100
+msgid "Asbestos"
+msgstr "অ্যাসবেস্টস"
+
+#: templates/profile/view.html:114 templates/subsidy/view_data.html:102
+msgid "Flat roof"
+msgstr "সমতল ছাদ"
+
+#: templates/profile/view.html:116 templates/subsidy/view_data.html:104
+msgid "Sloped roof"
+msgstr "ঢালু ছাদ"
+
+#: templates/profile/view.html:128
+msgid ""
+"No subsidy submissions yet. Complete the subsidy form to see your data "
+"here."
 msgstr ""
+
+#: templates/subsidy/_ai_chat.html:11
+msgid "SunnivaAI"
+msgstr "সুন্নিভা এআই"
+
+#: templates/subsidy/_ai_chat.html:12
+msgid "Your solar energy guide"
+msgstr "আপনার সৌর শক্তি নির্দেশিকা"
+
+#: templates/subsidy/_ai_chat.html:31
+msgid ""
+"Hello! I'm SunnivaAI, your solar energy assistant. I can help you with "
+"your subsidy application, but feel free to ask me anything about solar "
+"energy, panels, or installation."
+msgstr "হ্যালো! আমি সুন্নিভা এআই, আপনার সৌর শক্তি সহকারী। আমি আপনার ভর্তুকি আবেদনে আপনাকে সাহায্য করতে পারি, কিন্তু সৌর শক্তি, প্যানেল বা ইনস্টলেশন সম্পর্কে আমাকে নির্দ্বিধায় জিজ্ঞাসা করুন।"
+
+#: templates/subsidy/_ai_chat.html:33
+msgid ""
+"Hello! I'm SunnivaAI, here to help. I can guide you through this form or "
+"answer any general questions you have about going solar."
+msgstr "হ্যালো! আমি সুন্নিভা এআই, সাহায্য করার জন্য এখানে। আমি আপনাকে এই ফর্মের মাধ্যমে গাইড করতে পারি বা সৌর শক্তিতে যাওয়ার বিষয়ে আপনার যে কোনও সাধারণ প্রশ্নের উত্তর দিতে পারি।"
+
+#: templates/subsidy/_ai_chat.html:44
+msgid "Ask a question..."
+msgstr "প্রশ্ন জিজ্ঞাসা করুন..."
+
+#: templates/subsidy/_ai_chat.html:63
+msgid "AI is thinking..."
+msgstr "AI চিন্তা করছে..."
+
+#: templates/subsidy/_ai_chat.html:71
+msgid "Open AI Assistant"
+msgstr ""
+
+#: templates/subsidy/step4_results.html:207
+msgid "Open energy tracker"
+msgstr "এনার্জি ট্র্যাকার খুলুন"
+
+#: templates/subsidy/step4_results.html:213
+msgid "View form data"
+msgstr "ফর্ম ডেটা দেখুন"
+
+#: templates/subsidy/step4_results.html:218
+msgid "Start a new journey"
+msgstr "একটি নতুন যাত্রা শুরু করুন"
+
+#: templates/subsidy/step4_results.html:222
+msgid "Browse vendors page"
+msgstr "বিক্রেতা পৃষ্ঠা ব্রাউজ করুন"
+
+#: templates/subsidy/step4_results.html:225
+#: templates/subsidy/view_data.html:138
+msgid "Back to dashboard"
+msgstr "ড্যাশবোর্ডে ফিরে যান"
+
+#: templates/subsidy/view_data.html:7
+msgid "Subsidy Form Data"
+msgstr "ভর্তুকি ফর্ম ডেটা"
+
+#: templates/subsidy/view_data.html:8
+msgid "View the information you entered for your subsidy application."
+msgstr "আপনার ভর্তুকি আবেদনের জন্য আপনি যে তথ্যটি প্রবেশ করেছেন তা দেখুন।"
+
+#: templates/subsidy/view_data.html:12
+msgid "View Results"
+msgstr "ফলাফল দেখুন"
+
+#: templates/subsidy/view_data.html:15
+msgid "Edit Form"
+msgstr "ফর্ম সম্পাদনা করুন"
+
+#: templates/subsidy/view_data.html:21
+msgid "Basic Information"
+msgstr "মৌলিক তথ্য"
+
+#: templates/subsidy/view_data.html:34
+msgid "Monthly Electricity Bill"
+msgstr "মাসিক বিদ্যুৎ বিল"
+
+#: templates/subsidy/view_data.html:44
+msgid "Electricity Provider / DISCOM"
+msgstr "বিদ্যুৎ প্রদানকারী / DISCOM"
+
+#: templates/subsidy/view_data.html:49
+msgid "Estimated Monthly Units"
+msgstr "আনুমানিক মাসিক ইউনিট"
+
+#: templates/subsidy/view_data.html:57
+msgid "Site Information"
+msgstr "সাইটের তথ্য"
+
+#: templates/subsidy/view_data.html:118
+msgid "Calculated Estimates"
+msgstr "গণনা করা অনুমান"
+
+#: templates/subsidy/view_data.html:122
+msgid "Recommended System Size"
+msgstr "প্রস্তাবিত সিস্টেম আকার"
+
+#: templates/subsidy/view_data.html:128
+msgid "Estimated Annual Consumption"
+msgstr "আনুমানিক বার্ষিক ব্যবহার"
+
+#~ msgid ""
+#~ "Solaris helps you understand your "
+#~ "rooftop's solar potential, manage "
+#~ "installations, schedule smart reminders, and"
+#~ " keep your household prepared — now"
+#~ " on the web."
+#~ msgstr ""
 
