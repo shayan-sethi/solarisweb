@@ -101,7 +101,8 @@ def register_context_processors(app: Flask) -> None:
     def inject_globals():
         return {
             "current_year": datetime.utcnow().year,
-            "config": app.config,
+            "languages": app.config["LANGUAGES"],
+            "enable_htmx": app.config.get("ENABLE_HTMX", False),
             "session": session,
         }
     

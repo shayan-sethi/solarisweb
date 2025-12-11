@@ -11,7 +11,7 @@
     <script defer src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script defer src="https://unpkg.com/suncalc"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-    {% if config.get('ENABLE_HTMX', False) %}
+    {% if enable_htmx %}
     <script defer src="https://unpkg.com/htmx.org@1.9.12"></script>
     {% endif %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
@@ -74,13 +74,13 @@
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/>
                         </svg>
-                        <span>{{ config.LANGUAGES.get(session.get('language', 'en'), 'English') }}</span>
+                        <span>{{ languages.get(session.get('language', 'en'), 'English') }}</span>
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
                         </svg>
                     </button>
                     <div id="lang-dropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-slate-200 py-2 z-50">
-                        {% for lang_code, lang_name in config.LANGUAGES.items() %}
+                        {% for lang_code, lang_name in languages.items() %}
                             <a href="{{ url_for('main.set_language', lang_code=lang_code) }}" 
                                class="block px-4 py-2 text-sm text-slate-700 hover:bg-cyan-50 hover:text-cyan-700 transition {{ 'bg-cyan-50 text-cyan-700 font-semibold' if session.get('language', 'en') == lang_code }}">
                                 {{ lang_name }}
@@ -141,7 +141,7 @@
             <div class="pb-3 border-b border-slate-200">
                 <p class="text-xs uppercase tracking-wide text-slate-500 mb-2">{{ _('Language') }}</p>
                 <div class="flex flex-wrap gap-2">
-                    {% for lang_code, lang_name in config.LANGUAGES.items() %}
+                    {% for lang_code, lang_name in languages.items() %}
                         <a href="{{ url_for('main.set_language', lang_code=lang_code) }}" 
                            class="px-3 py-1.5 text-xs rounded-lg border transition {{ 'bg-cyan-500 text-white border-cyan-500' if session.get('language', 'en') == lang_code else 'border-slate-200 text-slate-600 hover:border-cyan-300' }}">
                             {{ lang_name }}
