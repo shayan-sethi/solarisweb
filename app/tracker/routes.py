@@ -39,7 +39,7 @@ def index():
     )
 
 
-@tracker_bp.route("/add", methods=["GET", "POST"])
+@tracker_bp.route("/add/", methods=["GET", "POST"])
 @login_required
 def add_entry():
     form = TrackerEntryForm()

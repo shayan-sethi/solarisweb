@@ -56,7 +56,7 @@ def get_banks_data():
         }
     ]
 
-@finance_bp.route("/banks", methods=["GET"])
+@finance_bp.route("/banks/", methods=["GET"])
 @login_required
 def banks():
     banks_data = get_banks_data()

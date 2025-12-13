@@ -64,7 +64,7 @@ def list_projects():
     )
 
 
-@projects_bp.route("/new", methods=["GET", "POST"])
+@projects_bp.route("/new/", methods=["GET", "POST"])
 @login_required
 def add_project():
     form = ProjectForm()
@@ -95,7 +95,7 @@ def add_project():
     )
 
 
-@projects_bp.route("/<int:project_id>", methods=["GET"])
+@projects_bp.route("/<int:project_id>/", methods=["GET"])
 @login_required
 def project_detail(project_id: int):
     projects_context = build_projects_context(current_user.id)

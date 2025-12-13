@@ -77,7 +77,7 @@ def eligibility():
     )
 
 
-@subsidy_bp.route("/site", methods=["GET", "POST"])
+@subsidy_bp.route("/site/", methods=["GET", "POST"])
 @login_required
 def site():
     journey = _ensure_session()
@@ -106,7 +106,7 @@ def site():
     )
 
 
-@subsidy_bp.route("/results", methods=["GET"])
+@subsidy_bp.route("/results/", methods=["GET"])
 @login_required
 def results():
     journey = _ensure_session()
@@ -333,7 +333,7 @@ def results():
     )
 
 
-@subsidy_bp.route("/vendors", methods=["GET"])
+@subsidy_bp.route("/vendors/", methods=["GET"])
 @login_required
 def vendors():
     journey = _ensure_session()
@@ -573,7 +573,7 @@ The user has completed the eligibility form and is now viewing their recommended
         return jsonify({"error": error_msg}), 500
 
 
-@subsidy_bp.route("/view", methods=["GET"])
+@subsidy_bp.route("/view/", methods=["GET"])
 @login_required
 def view_data():
     journey = _ensure_session()

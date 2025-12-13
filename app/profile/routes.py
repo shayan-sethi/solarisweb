@@ -33,7 +33,7 @@ def view_profile():
     )
 
 
-@profile_bp.route("/edit", methods=["GET", "POST"])
+@profile_bp.route("/edit/", methods=["GET", "POST"])
 @login_required
 def edit_profile():
     form = ProfileForm(obj=current_user)

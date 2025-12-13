@@ -10,7 +10,7 @@ from ..models import User
 auth_bp = Blueprint("auth", __name__, url_prefix="/auth")
 
 
-@auth_bp.route("/login", methods=["GET", "POST"])
+@auth_bp.route("/login/", methods=["GET", "POST"])
 def login():
     if current_user.is_authenticated:
         if not current_user.journey_completed:
@@ -36,7 +36,7 @@ def login():
     return render_template("auth/login.html", form=form, title="Sign in")
 
 
-@auth_bp.route("/register", methods=["GET", "POST"])
+@auth_bp.route("/register/", methods=["GET", "POST"])
 def register():
     if current_user.is_authenticated:
         if not current_user.journey_completed:
