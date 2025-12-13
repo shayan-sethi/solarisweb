@@ -1,6 +1,6 @@
 [build]
-command = "pip install -r requirements.txt"
-publish = "."
+command = "pip install -r requirements.txt && python freeze.py"
+publish = "app/build"
 
 [build.environment]
 PYTHON_VERSION = "3.11"
