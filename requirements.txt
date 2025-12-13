@@ -11,3 +11,5 @@ requests>=2.28.0
 Frozen-Flask==1.0.2
 
 
+
+pypdf
