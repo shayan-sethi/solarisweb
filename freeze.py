@@ -1,4 +1,4 @@
-from app import create_app
+from run import create_app
 from flask_frozen import Freezer
 from dotenv import load_dotenv
 
