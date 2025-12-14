@@ -8,47 +8,48 @@
 {% block content %}
 <section class="max-w-6xl mx-auto px-6 py-12 space-y-8">
     <div class="glass p-8 rounded-3xl shadow space-y-4">
-        <h1 class="text-3xl font-bold text-slate-800">Energy tracker</h1>
-        <p class="text-slate-500">Capture daily generation, consumption or export entries in one place.</p>
+        <h1 class="text-3xl font-bold text-slate-800">{{ _('Energy tracker') }}</h1>
+        <p class="text-slate-500">{{ _('Capture daily generation, consumption or export entries in one place.') }}</p>
         <div class="grid md:grid-cols-3 gap-4">
             <div class="bg-white border border-slate-200 rounded-2xl p-5">
-                <p class="text-xs uppercase tracking-wide text-slate-500">Total generation</p>
+                <p class="text-xs uppercase tracking-wide text-slate-500">{{ _('Total generation') }}</p>
                 <p class="text-2xl font-semibold text-slate-900">{{ "{:,.2f}".format(total_generation or 0) }} kWh</p>
             </div>
             <div class="bg-white border border-slate-200 rounded-2xl p-5">
-                <p class="text-xs uppercase tracking-wide text-slate-500">Total export</p>
+                <p class="text-xs uppercase tracking-wide text-slate-500">{{ _('Total export') }}</p>
                 <p class="text-2xl font-semibold text-slate-900">{{ "{:,.2f}".format(total_export or 0) }} kWh</p>
             </div>
             <div class="bg-white border border-slate-200 rounded-2xl p-5">
-                <p class="text-xs uppercase tracking-wide text-slate-500">Revenue recorded</p>
+                <p class="text-xs uppercase tracking-wide text-slate-500">{{ _('Revenue recorded') }}</p>
                 <p class="text-2xl font-semibold text-emerald-600">₹{{ "{:,.2f}".format(total_revenue or 0) }}</p>
             </div>
         </div>
         <a href="{{ url_for('tracker.add_entry') }}" class="inline-flex items-center justify-center bg-cyan-500 hover:bg-cyan-600 text-white font-semibold px-5 py-3 rounded-lg shadow">
-            Add new entry
+            {{ _('Add new entry') }}
         </a>
     </div>
 
 
+    {% if chart_daily_series %}
     <div class="glass p-8 rounded-3xl shadow space-y-6">
         <div class="flex flex-col gap-2">
-            <h2 class="text-2xl font-semibold text-slate-800">Automated analytics</h2>
+            <h2 class="text-2xl font-semibold text-slate-800">{{ _('Automated analytics') }}</h2>
             <p class="text-sm text-slate-500">
-                Visualise generation, export and revenue trends powered by automated calculations.
+                {{ _('Visualise generation, export and revenue trends powered by automated calculations.') }}
             </p>
         </div>
         <div class="grid gap-6 lg:grid-cols-3">
             <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm lg:col-span-2">
                 <div class="flex items-center justify-between mb-4">
-                    <h3 class="text-lg font-semibold text-slate-800">Generation vs Export</h3>
-                    <span class="text-xs uppercase tracking-wide text-slate-400">14-day trend</span>
+                    <h3 class="text-lg font-semibold text-slate-800">{{ _('Generation vs Export') }}</h3>
+                    <span class="text-xs uppercase tracking-wide text-slate-400">{{ _('14-day trend') }}</span>
                 </div>
                 <canvas id="energyTrendChart" height="200"></canvas>
             </div>
             <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
                 <div class="flex items-center justify-between mb-4">
-                    <h3 class="text-lg font-semibold text-slate-800">Revenue momentum</h3>
-                    <span class="text-xs uppercase tracking-wide text-slate-400">Daily</span>
+                    <h3 class="text-lg font-semibold text-slate-800">{{ _('Revenue momentum') }}</h3>
+                    <span class="text-xs uppercase tracking-wide text-slate-400">{{ _('Daily') }}</span>
                 </div>
                 <canvas id="revenueChart" height="200"></canvas>
             </div>
@@ -56,14 +57,14 @@
         <div class="grid gap-6 md:grid-cols-2">
             <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
                 <div class="flex items-center justify-between mb-4">
-                    <h3 class="text-lg font-semibold text-slate-800">Energy mix</h3>
-                    <span class="text-xs uppercase tracking-wide text-slate-400">Share</span>
+                    <h3 class="text-lg font-semibold text-slate-800">{{ _('Energy mix') }}</h3>
+                    <span class="text-xs uppercase tracking-wide text-slate-400">{{ _('Share') }}</span>
                 </div>
                 <canvas id="mixChart" height="200"></canvas>
             </div>
             {% if automation_insights %}
                 <div class="bg-white border border-emerald-100 rounded-2xl p-6 shadow-sm space-y-4">
-                    <h3 class="text-lg font-semibold text-emerald-700">Automated insights</h3>
+                    <h3 class="text-lg font-semibold text-emerald-700">{{ _('Automated insights') }}</h3>
                     <ul class="space-y-3 text-sm text-slate-600">
                         {% for insight in automation_insights %}
                             <li class="flex items-start gap-3">
@@ -76,9 +77,15 @@
             {% endif %}
         </div>
     </div>
+    {% else %}
+    <div class="glass p-8 rounded-3xl shadow text-center space-y-4">
+        <h2 class="text-xl font-semibold text-slate-800">{{ _('No analytics available') }}</h2>
+        <p class="text-slate-500 max-w-lg mx-auto">{{ _('Charts will appear here once you log your first energy entry.') }}</p>
+    </div>
+    {% endif %}
 
     <div class="space-y-4">
-        <h2 class="text-xl font-semibold text-slate-800">Recent entries</h2>
+        <h2 class="text-xl font-semibold text-slate-800">{{ _('Recent entries') }}</h2>
         {% if logs %}
             <div class="grid gap-4">
                 {% for log in logs %}
@@ -89,10 +96,10 @@
                         </div>
                         <p class="text-lg font-semibold text-slate-800">{{ "{:,.2f}".format(log.kwh) }} kWh</p>
                         {% if log.revenue %}
-                            <p class="text-sm text-emerald-600">₹{{ "{:,.2f}".format(log.revenue) }} recorded</p>
+                            <p class="text-sm text-emerald-600">₹{{ "{:,.2f}".format(log.revenue) }} {{ _('recorded') }}</p>
                         {% endif %}
                         {% if log.panel_id %}
-                            <p class="text-sm text-slate-500">Panel ID: {{ log.panel_id }}</p>
+                            <p class="text-sm text-slate-500">{{ _('Panel ID:') }} {{ log.panel_id }}</p>
                         {% endif %}
                         {% if log.note %}
                             <p class="text-sm text-slate-500">{{ log.note }}</p>
@@ -101,7 +108,7 @@
                 {% endfor %}
             </div>
         {% else %}
-            <p class="text-sm text-slate-500">No entries logged yet. Add your first record to start tracking performance.</p>
+            <p class="text-sm text-slate-500">{{ _('No entries logged yet. Add your first record to start tracking performance.') }}</p>
         {% endif %}
     </div>
 </section>
@@ -141,7 +148,7 @@
                         labels: dates,
                         datasets: [
                             {
-                                label: 'Generation (kWh)',
+                                label: '{{ _("Generation (kWh)") }}',
                                 data: generationData,
                                 borderColor: '#0ea5e9',
                                 backgroundColor: 'rgba(14, 165, 233, 0.15)',
@@ -150,7 +157,7 @@
                                 fill: true,
                             },
                             {
-                                label: 'Export (kWh)',
+                                label: '{{ _("Export (kWh)") }}',
                                 data: exportData,
                                 borderColor: '#22c55e',
                                 backgroundColor: 'rgba(34, 197, 94, 0.1)',
@@ -196,7 +203,7 @@
                         labels: dates,
                         datasets: [
                             {
-                                label: 'Revenue (₹)',
+                                label: '{{ _("Revenue (₹)") }}',
                                 data: revenueData,
                                 backgroundColor: 'rgba(59, 130, 246, 0.75)',
                                 borderRadius: 6,
@@ -233,7 +240,7 @@
                 new Chart(mixCtx, {
                     type: 'doughnut',
                     data: {
-                        labels: ['Generation used onsite', 'Exported to grid'],
+                        labels: ['{{ _("Generation used onsite") }}', '{{ _("Exported to grid") }}'],
                         datasets: [
                             {
                                 data: [

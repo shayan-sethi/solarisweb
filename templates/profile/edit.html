@@ -3,37 +3,37 @@
 {% block content %}
 <section class="max-w-3xl mx-auto px-6 py-12">
     <div class="mb-8">
-        <h1 class="text-3xl font-bold text-slate-800">Edit profile</h1>
-        <p class="text-slate-500 mt-2">Update personal details so subsidy documents and reminders stay accurate.</p>
+        <h1 class="text-3xl font-bold text-slate-800">{{ _('Edit profile') }}</h1>
+        <p class="text-slate-500 mt-2">{{ _('Update personal details so subsidy documents and reminders stay accurate.') }}</p>
     </div>
 
     <div class="glass rounded-2xl p-8 shadow">
         <form method="post" novalidate class="space-y-5">
             {{ form.hidden_tag() }}
             <div>
-                <label class="block text-sm font-semibold text-slate-600 mb-1" for="{{ form.name.id }}">Full name</label>
+                <label class="block text-sm font-semibold text-slate-600 mb-1" for="{{ form.name.id }}">{{ form.name.label.text }}</label>
                 {{ form.name(class_="w-full px-4 py-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-cyan-300 focus:outline-none") }}
             </div>
             <div>
-                <label class="block text-sm font-semibold text-slate-600 mb-1" for="{{ form.email.id }}">Email</label>
+                <label class="block text-sm font-semibold text-slate-600 mb-1" for="{{ form.email.id }}">{{ form.email.label.text }}</label>
                 {{ form.email(class_="w-full px-4 py-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-cyan-300 focus:outline-none") }}
                 {% if form.email.errors %}
                     <p class="text-sm text-rose-500 mt-1">{{ form.email.errors[0] }}</p>
                 {% endif %}
             </div>
             <div>
-                <label class="block text-sm font-semibold text-slate-600 mb-1" for="{{ form.phone.id }}">Phone</label>
+                <label class="block text-sm font-semibold text-slate-600 mb-1" for="{{ form.phone.id }}">{{ form.phone.label.text }}</label>
                 {{ form.phone(class_="w-full px-4 py-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-cyan-300 focus:outline-none") }}
             </div>
             <div>
-                <label class="block text-sm font-semibold text-slate-600 mb-1" for="{{ form.dob.id }}">Date of birth</label>
+                <label class="block text-sm font-semibold text-slate-600 mb-1" for="{{ form.dob.id }}">{{ form.dob.label.text }}</label>
                 {{ form.dob(class_="w-full px-4 py-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-cyan-300 focus:outline-none") }}
             </div>
             <div class="flex items-center gap-4">
                 <button type="submit" class="bg-cyan-500 hover:bg-cyan-600 text-white font-semibold px-5 py-3 rounded-lg shadow transition">
                     {{ form.submit.label.text }}
                 </button>
-                <a href="{{ url_for('profile.view_profile') }}" class="text-slate-500 hover:text-slate-600">Cancel</a>
+                <a href="{{ url_for('profile.view_profile') }}" class="text-slate-500 hover:text-slate-600">{{ _('Cancel') }}</a>
             </div>
         </form>
     </div>

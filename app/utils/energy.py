@@ -35,34 +35,9 @@ def build_energy_context(user_id: int) -> Dict[str, Any]:
                 day_totals["consumption"] += kwh_value
             if log.revenue is not None:
                 day_totals["revenue"] += float(log.revenue or 0)
-        sample_logs: List[Any] = []
-    else:
-        base_date = date.today() - timedelta(days=29)
-        for index in range(30):
-            current_date = base_date + timedelta(days=index)
-            generation = round(random.uniform(18.0, 34.0), 2)
-            export = round(generation * random.uniform(0.35, 0.6), 2)
-            consumption = round(max(generation - export + random.uniform(-3.5, 3.5), 0.0), 2)
-            revenue = round(export * random.uniform(5.5, 7.2), 2)
-            date_key = current_date.strftime("%Y-%m-%d")
-            daily_totals[date_key] = {
-                "generation": generation,
-                "consumption": consumption,
-                "export": export,
-                "revenue": revenue,
-            }
-
-        sample_logs = [
-            SimpleNamespace(
-                entry_type="generation",
-                date=datetime.strptime(date_key, "%Y-%m-%d").date(),
-                kwh=totals["generation"],
-                revenue=totals["revenue"],
-                panel_id=f"SOLAR-{index + 101}",
-                note="Automated record generated for visualization.",
-            )
-            for index, (date_key, totals) in enumerate(sorted(daily_totals.items())[-6:])
-        ]
+    
+    # Remove dummy data generation
+    sample_logs: List[Any] = []
 
     daily_series = [
         {

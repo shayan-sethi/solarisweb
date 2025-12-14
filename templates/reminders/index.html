@@ -4,39 +4,39 @@
 <section class="max-w-6xl mx-auto px-6 py-12">
     <div class="mb-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
-            <h1 class="text-3xl font-bold text-slate-800">Reminders</h1>
-            <p class="text-slate-500 mt-2">Manage medicine schedules, inspections, subsidy follow-ups and more.</p>
+            <h1 class="text-3xl font-bold text-slate-800">{{ _('Reminders') }}</h1>
+            <p class="text-slate-500 mt-2">{{ _('Manage medicine schedules, inspections, subsidy follow-ups and more.') }}</p>
         </div>
     </div>
 
     <div class="grid gap-10 lg:grid-cols-2">
         <div class="glass rounded-2xl p-6 shadow">
-            <h2 class="text-xl font-semibold text-slate-800 mb-4">Create new reminder</h2>
+            <h2 class="text-xl font-semibold text-slate-800 mb-4">{{ _('Create new reminder') }}</h2>
             <form method="post" novalidate class="space-y-4">
                 {{ form.hidden_tag() }}
                 <div>
-                    <label class="block text-sm font-semibold text-slate-600 mb-1" for="{{ form.name.id }}">Reminder title</label>
+                    <label class="block text-sm font-semibold text-slate-600 mb-1" for="{{ form.name.id }}">{{ form.name.label.text }}</label>
                     {{ form.name(class_="w-full px-4 py-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-cyan-300 focus:outline-none") }}
                     {% if form.name.errors %}
                         <p class="text-sm text-rose-500 mt-1">{{ form.name.errors[0] }}</p>
                     {% endif %}
                 </div>
                 <div>
-                    <label class="block text-sm font-semibold text-slate-600 mb-1" for="{{ form.category.id }}">Type</label>
+                    <label class="block text-sm font-semibold text-slate-600 mb-1" for="{{ form.category.id }}">{{ form.category.label.text }}</label>
                     {{ form.category(class_="w-full px-4 py-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-cyan-300 focus:outline-none") }}
                 </div>
                 <div class="grid md:grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-sm font-semibold text-slate-600 mb-1" for="{{ form.due_date.id }}">Date</label>
+                        <label class="block text-sm font-semibold text-slate-600 mb-1" for="{{ form.due_date.id }}">{{ form.due_date.label.text }}</label>
                         {{ form.due_date(class_="w-full px-4 py-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-cyan-300 focus:outline-none") }}
                     </div>
                     <div>
-                        <label class="block text-sm font-semibold text-slate-600 mb-1" for="{{ form.due_time.id }}">Time</label>
+                        <label class="block text-sm font-semibold text-slate-600 mb-1" for="{{ form.due_time.id }}">{{ form.due_time.label.text }}</label>
                         {{ form.due_time(class_="w-full px-4 py-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-cyan-300 focus:outline-none") }}
                     </div>
                 </div>
                 <div>
-                    <label class="block text-sm font-semibold text-slate-600 mb-1" for="{{ form.detail.id }}">Details</label>
+                    <label class="block text-sm font-semibold text-slate-600 mb-1" for="{{ form.detail.id }}">{{ form.detail.label.text }}</label>
                     {{ form.detail(class_="w-full px-4 py-3 border border-slate-200 rounded-lg h-28 focus:ring-2 focus:ring-cyan-300 focus:outline-none") }}
                 </div>
                 <button type="submit" class="w-full bg-cyan-500 hover:bg-cyan-600 text-white font-semibold px-4 py-3 rounded-lg shadow transition">
@@ -46,7 +46,7 @@
         </div>
 
         <div class="space-y-4">
-            <h2 class="text-xl font-semibold text-slate-800">Upcoming reminders</h2>
+            <h2 class="text-xl font-semibold text-slate-800">{{ _('Upcoming reminders') }}</h2>
             {% if reminders %}
                 <div class="space-y-4">
                     {% for reminder in reminders %}
@@ -54,7 +54,7 @@
                             <div class="flex items-start justify-between gap-3">
                                 <div>
                                     <p class="text-lg font-semibold text-slate-800">{{ reminder.name }}</p>
-                                    <p class="text-sm text-slate-500">{{ reminder.detail or 'No additional notes.' }}</p>
+                                    <p class="text-sm text-slate-500">{{ reminder.detail or _('No additional notes.') }}</p>
                                 </div>
                                 <span class="text-xs font-semibold px-3 py-1 rounded-full bg-cyan-100 text-cyan-800">{{ reminder.category|replace('-', ' ')|title }}</span>
                             </div>
@@ -63,7 +63,7 @@
                                 <form method="post" action="{{ url_for('reminders.delete_reminder', reminder_id=reminder.id) }}">
                                     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                                     <button type="submit" class="text-rose-500 hover:text-rose-600 font-semibold text-xs uppercase tracking-wide">
-                                        Delete
+                                        {{ _('Delete') }}
                                     </button>
                                 </form>
                             </div>
@@ -72,7 +72,7 @@
                 </div>
             {% else %}
                 <div class="glass rounded-2xl p-6 text-center text-slate-500">
-                    No reminders yet. Use the form to log inspections, maintenance, medication and more.
+                    {{ _('No reminders yet. Use the form to log inspections, maintenance, medication and more.') }}
                 </div>
             {% endif %}
         </div>

@@ -8,11 +8,11 @@
         <div class="flex flex-col gap-2">
             <span class="inline-flex items-center gap-2 text-xs uppercase tracking-[0.35em] text-cyan-500 font-semibold">
                 <span class="h-1.5 w-1.5 rounded-full bg-cyan-500 animate-pulse"></span>
-                Your Rooftop Blueprint
+                {{ _('Your Rooftop Blueprint') }}
             </span>
-        <h1 class="text-3xl md:text-4xl font-bold text-slate-900">Estimate & recommendations</h1>
+        <h1 class="text-3xl md:text-4xl font-bold text-slate-900">{{ _('Estimate & recommendations') }}</h1>
         <p class="text-slate-500 max-w-2xl">
-            Here’s a high-resolution snapshot of your system sizing, subsidy support and the programmes best suited to your rooftop journey.
+            {{ _('Here’s a high-resolution snapshot of your system sizing, subsidy support and the programmes best suited to your rooftop journey.') }}
         </p>
         </div>
 
@@ -20,13 +20,13 @@
 
         <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
             <div class="bg-white border border-slate-200 rounded-2xl p-6 space-y-3 shadow-sm hover:shadow-lg transition-shadow">
-                <h2 class="text-sm uppercase tracking-wide text-slate-500">Recommended system size</h2>
-                <p class="text-3xl font-semibold text-slate-900">{{ "{:.2f}".format(recommended_kw) }} kW</p>
-                <p class="text-xs text-slate-400">Sized using rooftop area and inferred consumption from your bill.</p>
+                <h2 class="text-sm uppercase tracking-wide text-slate-500">{{ _('Recommended system size') }}</h2>
+                <p class="text-3xl font-semibold text-slate-900">{{ "{:.2f}".format(recommended_kw) }} {{ _('kW') }}</p>
+                <p class="text-xs text-slate-400">{{ _('Sized using rooftop area and inferred consumption from your bill.') }}</p>
                 {% if estimated_monthly_units or provider_label %}
                 <p class="text-xs text-slate-400">
                     {% if estimated_monthly_units %}
-                        ≈ {{ "{:,.0f}".format(estimated_monthly_units) }} units / month
+                        ≈ {{ "{:,.0f}".format(estimated_monthly_units) }} {{ _('units / month') }}
                     {% endif %}
                     {% if provider_label %}
                         {% if estimated_monthly_units %}&nbsp;•&nbsp;{% endif %}
@@ -36,23 +36,23 @@
                 {% endif %}
             </div>
             <div class="bg-white border border-slate-200 rounded-2xl p-6 space-y-3 shadow-sm hover:shadow-lg transition-shadow">
-                <h2 class="text-sm uppercase tracking-wide text-slate-500">Initial cost</h2>
+                <h2 class="text-sm uppercase tracking-wide text-slate-500">{{ _('Initial cost') }}</h2>
                 <p class="text-3xl font-semibold text-slate-900">₹{{ "{:,.0f}".format(result.gross_cost) }}</p>
-                <p class="text-xs text-slate-400">Turnkey cost before subsidies (₹{{ "{:,.0f}".format(result.gross_cost / (recommended_kw or 1)) }}/kW).</p>
+                <p class="text-xs text-slate-400">{{ _('Turnkey cost before subsidies') }} (₹{{ "{:,.0f}".format(result.gross_cost / (recommended_kw or 1)) }}/{{ _('kW') }}).</p>
             </div>
             <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-emerald-500 via-emerald-500/95 to-emerald-600 text-white p-6 shadow-lg">
                 <div class="absolute -top-8 -right-6 h-24 w-24 rounded-full bg-white/10 blur-2xl"></div>
-                <h2 class="text-sm uppercase tracking-[0.4em] text-white/80">Subsidy support</h2>
+                <h2 class="text-sm uppercase tracking-[0.4em] text-white/80">{{ _('Subsidy support') }}</h2>
                 <p class="mt-4 text-[2.25rem] font-black tracking-tight drop-shadow-sm">₹{{ "{:,.0f}".format(result.central + result.state_subsidy) }}</p>
                 <p class="text-sm text-white/80">
-                    <strong>Central:</strong> ₹{{ "{:,.0f}".format(result.central) }}<br>
-                    <strong>State:</strong> ₹{{ "{:,.0f}".format(result.state_subsidy) }}
+                    <strong>{{ _('Central:') }}</strong> ₹{{ "{:,.0f}".format(result.central) }}<br>
+                    <strong>{{ _('State:') }}</strong> ₹{{ "{:,.0f}".format(result.state_subsidy) }}
                 </p>
             </div>
             <div class="bg-white border border-slate-200 rounded-2xl p-6 space-y-3 shadow-sm hover:shadow-lg transition-shadow">
-                <h2 class="text-sm uppercase tracking-wide text-slate-500">Net cost after subsidy</h2>
+                <h2 class="text-sm uppercase tracking-wide text-slate-500">{{ _('Net cost after subsidy') }}</h2>
                 <p class="text-3xl font-semibold text-slate-900">₹{{ "{:,.0f}".format(result.net_cost) }}</p>
-                <p class="text-xs text-emerald-600">Estimated annual savings ₹{{ "{:,.0f}".format(estimated_annual_savings) }} ({{ "{:,.0f}".format(recommended_kw * 1100) }} kWh/year).</p>
+                <p class="text-xs text-emerald-600">{{ _('Estimated annual savings') }} ₹{{ "{:,.0f}".format(estimated_annual_savings) }} ({{ "{:,.0f}".format(recommended_kw * 1100) }} {{ _('kWh/year') }}).</p>
             </div>
         </div>
 
@@ -60,27 +60,27 @@
         <div class="bg-gradient-to-br from-emerald-50 to-cyan-50 border border-emerald-200 rounded-2xl p-6 space-y-4 shadow-sm">
             <h2 class="text-lg font-semibold text-slate-900 flex items-center gap-2">
                 <span class="h-2 w-2 rounded-full bg-emerald-500"></span>
-                AI-Powered Financial & Environmental Predictions
+                {{ _('AI-Powered Financial & Environmental Predictions') }}
             </h2>
             <div class="grid md:grid-cols-2 gap-4">
                 <div class="bg-white rounded-xl p-4 border border-emerald-100">
-                    <p class="text-xs uppercase tracking-wide text-slate-500 mb-1">Monthly Savings</p>
+                    <p class="text-xs uppercase tracking-wide text-slate-500 mb-1">{{ _('Monthly Savings') }}</p>
                     <p class="text-2xl font-bold text-emerald-600">₹{{ "{:,.0f}".format(financial_predictions.monthly_savings_inr) }}</p>
                 </div>
                 <div class="bg-white rounded-xl p-4 border border-emerald-100">
-                    <p class="text-xs uppercase tracking-wide text-slate-500 mb-1">Annual Savings</p>
+                    <p class="text-xs uppercase tracking-wide text-slate-500 mb-1">{{ _('Annual Savings') }}</p>
                     <p class="text-2xl font-bold text-emerald-600">₹{{ "{:,.0f}".format(financial_predictions.annual_savings_inr) }}</p>
                 </div>
                 {% if financial_predictions.payback_period_years %}
                 <div class="bg-white rounded-xl p-4 border border-emerald-100">
-                    <p class="text-xs uppercase tracking-wide text-slate-500 mb-1">Payback Period</p>
-                    <p class="text-2xl font-bold text-slate-900">{{ "{:.1f}".format(financial_predictions.payback_period_years) }} years</p>
+                    <p class="text-xs uppercase tracking-wide text-slate-500 mb-1">{{ _('Payback Period') }}</p>
+                    <p class="text-2xl font-bold text-slate-900">{{ "{:.1f}".format(financial_predictions.payback_period_years) }} {{ _('years') }}</p>
                 </div>
                 {% endif %}
                 <div class="bg-white rounded-xl p-4 border border-emerald-100">
-                    <p class="text-xs uppercase tracking-wide text-slate-500 mb-1">CO₂ Avoided</p>
-                    <p class="text-2xl font-bold text-emerald-700">{{ "{:,.0f}".format(financial_predictions.co2_avoided_kg_per_year) }} kg/year</p>
-                    <p class="text-xs text-slate-500 mt-1">Equivalent to planting {{ "{:.0f}".format(financial_predictions.co2_avoided_kg_per_year / 21.77) }} trees</p>
+                    <p class="text-xs uppercase tracking-wide text-slate-500 mb-1">{{ _('CO₂ Avoided') }}</p>
+                    <p class="text-2xl font-bold text-emerald-700">{{ "{:,.0f}".format(financial_predictions.co2_avoided_kg_per_year) }} {{ _('kg/year') }}</p>
+                    <p class="text-xs text-slate-500 mt-1">{{ _('Equivalent to planting') }} {{ "{:.0f}".format(financial_predictions.co2_avoided_kg_per_year / 21.77) }} {{ _('trees') }}</p>
                 </div>
             </div>
         </div>
@@ -88,7 +88,7 @@
 
         {% if profile_tags %}
         <div class="bg-white border border-slate-200 rounded-2xl p-5">
-            <h2 class="text-sm uppercase tracking-wide text-slate-500 mb-3">Your profile snapshot</h2>
+            <h2 class="text-sm uppercase tracking-wide text-slate-500 mb-3">{{ _('Your profile snapshot') }}</h2>
             <div class="flex flex-wrap gap-2">
                 {% for tag in profile_tags %}
                     <span class="px-3 py-1 rounded-full bg-sky-100 text-sky-700 text-xs font-semibold">{{ tag }}</span>
@@ -100,11 +100,11 @@
         <div class="bg-white border border-slate-200 rounded-2xl p-6 space-y-4 shadow-sm">
             <h2 class="text-lg font-semibold text-slate-800 flex items-center gap-2">
                 <span class="h-2 w-2 rounded-full bg-cyan-500"></span>
-                Filter subsidy programmes
+                {{ _('Filter subsidy programmes') }}
             </h2>
             <div class="grid md:grid-cols-3 gap-4">
                 <div class="space-y-2">
-                    <p class="text-sm font-semibold text-slate-600">Coverage</p>
+                    <p class="text-sm font-semibold text-slate-600">{{ _('Coverage') }}</p>
                     <div class="flex flex-wrap gap-2">
                         {% for link in coverage_links %}
                             <a href="{{ link.url }}" class="filter-chip {{ 'filter-chip--active' if link.active else '' }}">
@@ -114,7 +114,7 @@
                     </div>
                 </div>
                 <div class="space-y-2">
-                    <p class="text-sm font-semibold text-slate-600">Ownership</p>
+                    <p class="text-sm font-semibold text-slate-600">{{ _('Ownership') }}</p>
                     <div class="flex flex-wrap gap-2">
                         {% for link in ownership_links %}
                             <a href="{{ link.url }}" class="filter-chip {{ 'filter-chip--active' if link.active else '' }}">
@@ -124,7 +124,7 @@
                     </div>
                 </div>
                 <div class="space-y-2">
-                    <p class="text-sm font-semibold text-slate-600">Grid connection</p>
+                    <p class="text-sm font-semibold text-slate-600">{{ _('Grid connection') }}</p>
                     <div class="flex flex-wrap gap-2">
                         {% for link in grid_links %}
                             <a href="{{ link.url }}" class="filter-chip {{ 'filter-chip--active' if link.active else '' }}">
@@ -138,14 +138,14 @@
 
         <div class="bg-white border border-slate-200 rounded-2xl p-6 space-y-6 shadow-lg">
             <div class="flex flex-wrap items-center justify-between gap-3">
-                <h2 class="text-2xl font-semibold text-slate-900">Recommended programmes</h2>
-                <span class="text-sm text-slate-500">Showing {{ matches|length }} of {{ total_matches }} matches</span>
+                <h2 class="text-2xl font-semibold text-slate-900">{{ _('Recommended programmes') }}</h2>
+                <span class="text-sm text-slate-500">{{ _('Showing') }} {{ matches|length }} {{ _('of') }} {{ total_matches }} {{ _('matches') }}</span>
             </div>
 
             {% if total_matches == 0 %}
-                <p class="text-sm text-slate-500">We couldn’t find a direct programme match with the information available. Explore central rooftop schemes via the national portal.</p>
+                <p class="text-sm text-slate-500">{{ _('We couldn’t find a direct programme match with the information available. Explore central rooftop schemes via the national portal.') }}</p>
             {% elif matches|length == 0 %}
-                <p class="text-sm text-slate-500">No programmes match the selected filters right now. Try widening your filters to discover more incentives.</p>
+                <p class="text-sm text-slate-500">{{ _('No programmes match the selected filters right now. Try widening your filters to discover more incentives.') }}</p>
             {% else %}
                 <div class="space-y-5">
                     {% for scheme in matches %}
@@ -154,25 +154,25 @@
                             <div class="flex flex-wrap items-center justify-between gap-4">
                                 <div class="space-y-1">
                                     <h3 class="text-xl font-semibold text-slate-900">{{ scheme.name }}</h3>
-                                    <p class="text-sm text-slate-500">Administered by {{ scheme.sponsoring_body }}</p>
+                                    <p class="text-sm text-slate-500">{{ _('Administered by') }} {{ scheme.sponsoring_body }}</p>
                                 </div>
                                 <span class="inline-flex items-center gap-2 text-xs uppercase tracking-wide px-3 py-1 rounded-full bg-emerald-100 text-emerald-700 border border-emerald-300">
                                     <span class="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                                    Match {{ "{:.1f}".format(scheme.match_score or 0) }}/10
+                                    {{ _('Match') }} {{ "{:.1f}".format(scheme.match_score or 0) }}/10
                                 </span>
                             </div>
                             <p class="text-sm text-slate-600 leading-relaxed">{{ scheme.description }}</p>
                             <dl class="grid md:grid-cols-2 gap-2 text-sm text-slate-600">
-                                <div><strong>Subsidy type:</strong> <span class="font-semibold text-slate-800">{{ scheme.subsidy_type }}</span></div>
-                                <div><strong>Benefit:</strong> <span class="font-semibold text-emerald-600">{{ scheme.benefit }}</span></div>
-                                <div><strong>Application:</strong> <span class="font-semibold text-slate-800">{{ scheme.application_process }}</span></div>
-                                <div><strong>Timeline:</strong> <span class="font-semibold text-slate-800">{{ scheme.timeline }}</span></div>
-                                <div><strong>Vendors:</strong> <span class="font-semibold text-slate-800">{{ scheme.vendor_info }}</span></div>
-                                <div><strong>Notes:</strong> <span class="font-semibold text-slate-800">{{ scheme.notes }}</span></div>
+                                <div><strong>{{ _('Subsidy type:') }}</strong> <span class="font-semibold text-slate-800">{{ scheme.subsidy_type }}</span></div>
+                                <div><strong>{{ _('Benefit:') }}</strong> <span class="font-semibold text-emerald-600">{{ scheme.benefit }}</span></div>
+                                <div><strong>{{ _('Application:') }}</strong> <span class="font-semibold text-slate-800">{{ scheme.application_process }}</span></div>
+                                <div><strong>{{ _('Timeline:') }}</strong> <span class="font-semibold text-slate-800">{{ scheme.timeline }}</span></div>
+                                <div><strong>{{ _('Vendors:') }}</strong> <span class="font-semibold text-slate-800">{{ scheme.vendor_info }}</span></div>
+                                <div><strong>{{ _('Notes:') }}</strong> <span class="font-semibold text-slate-800">{{ scheme.notes }}</span></div>
                             </dl>
                             {% if scheme.reasons %}
                                 <div class="space-y-1">
-                                    <p class="text-sm font-semibold text-slate-700">Why it fits</p>
+                                    <p class="text-sm font-semibold text-slate-700">{{ _('Why it fits') }}</p>
                                     <ul class="list-disc list-inside text-sm text-slate-600">
                                         {% for reason in scheme.reasons %}
                                             <li><span class="font-medium text-slate-700">{{ reason }}</span></li>
@@ -180,7 +180,7 @@
                                     </ul>
                                 </div>
                             {% endif %}
-                            <p class="text-sm text-slate-600"><strong>Documents:</strong> <span class="font-semibold text-slate-800">{{ scheme.documents_required or "Refer to programme guidelines" }}</span></p>
+                            <p class="text-sm text-slate-600"><strong>{{ _('Documents:') }}</strong> <span class="font-semibold text-slate-800">{{ scheme.documents_required or _('Refer to programme guidelines') }}</span></p>
                             <div class="flex flex-wrap gap-2">
                                 {% for tag in scheme.tags or [] %}
                                     <span class="px-2 py-1 text-xs rounded-full bg-slate-100 text-slate-600 border border-slate-200">{{ tag }}</span>
@@ -188,10 +188,10 @@
                             </div>
                             {% if scheme.application_url %}
                                 <a href="{{ scheme.application_url }}" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-sm font-semibold text-sky-600 hover:text-sky-700">
-                                    Open portal ↗
+                                    {{ _('Open portal') }} ↗
                                 </a>
                             {% else %}
-                                <span class="text-sm text-slate-500">Application details available via your DISCOM / official portal.</span>
+                                <span class="text-sm text-slate-500">{{ _('Application details available via your DISCOM / official portal.') }}</span>
                             {% endif %}
                         </article>
                     {% endfor %}

@@ -3,24 +3,24 @@
 {% block content %}
 <section class="max-w-5xl mx-auto px-6 py-12 space-y-8">
     <div class="glass rounded-3xl p-8 shadow-lg space-y-6">
-        <h1 class="text-3xl font-bold text-slate-800">Installer marketplace</h1>
+        <h1 class="text-3xl font-bold text-slate-800">{{ _('Installer marketplace') }}</h1>
         <p class="text-slate-500">
-            Compare trusted vendors, pricing and ratings before you book a site visit.
+            {{ _('Compare trusted vendors, pricing and ratings before you book a site visit.') }}
         </p>
 
         {% if recommended_kw %}
         <div class="bg-white border border-slate-200 rounded-2xl p-6 space-y-3">
             <div class="flex items-center justify-between text-xs uppercase tracking-wide text-slate-500">
-                <span>Your solar brief</span>
-                <span class="px-3 py-1 rounded-full bg-sky-100 text-sky-600 font-semibold">Auto-calculated</span>
+                <span>{{ _('Your solar brief') }}</span>
+                <span class="px-3 py-1 rounded-full bg-sky-100 text-sky-600 font-semibold">{{ _('Auto-calculated') }}</span>
             </div>
-            <p class="text-2xl font-semibold text-slate-900">{{ "{:.1f}".format(recommended_kw) }} kW system target</p>
+            <p class="text-2xl font-semibold text-slate-900">{{ "{:.1f}".format(recommended_kw) }} {{ _('kW system target') }}</p>
             {% if estimated_annual_savings %}
-                <p class="text-sm text-slate-500">Projected annual savings: ₹{{ "{:,.0f}".format(estimated_annual_savings) }}</p>
+                <p class="text-sm text-slate-500">{{ _('Projected annual savings:') }} ₹{{ "{:,.0f}".format(estimated_annual_savings) }}</p>
             {% endif %}
             {% if estimated_monthly_units or provider_label %}
                 <p class="text-xs text-slate-400">
-                    {% if estimated_monthly_units %}Derived from ≈ {{ "{:,.0f}".format(estimated_monthly_units) }} units / month{% endif %}
+                    {% if estimated_monthly_units %}{{ _('Derived from') }} ≈ {{ "{:,.0f}".format(estimated_monthly_units) }} {{ _('units / month') }}{% endif %}
                     {% if provider_label %}
                         {% if estimated_monthly_units %}&nbsp;•&nbsp;{% endif %}
                         {{ provider_label }}
@@ -35,9 +35,9 @@
         {% if recommended_vendors %}
             <div class="space-y-4">
                 <div class="flex items-center gap-3">
-                    <h2 class="text-xl font-semibold text-slate-800">Recommended vendors</h2>
+                    <h2 class="text-xl font-semibold text-slate-800">{{ _('Recommended vendors') }}</h2>
                     <span class="px-3 py-1 text-xs font-semibold rounded-full bg-emerald-100 text-emerald-700">
-                        Best match
+                        {{ _('Best match') }}
                     </span>
                 </div>
                 <div class="grid gap-6">
@@ -47,11 +47,11 @@
                                 <div class="flex items-center gap-3">
                                     <h2 class="text-lg font-semibold text-slate-800">{{ vendor.name }}</h2>
                                     <span class="px-2 py-1 text-xs font-semibold rounded-full bg-emerald-500 text-white">
-                                        Recommended
+                                        {{ _('Recommended') }}
                                     </span>
                                 </div>
                                 <span class="inline-flex items-center gap-1 px-3 py-1 text-xs font-semibold rounded-full bg-amber-100 text-amber-700">
-                                    ★ {{ "{:.1f}".format(vendor.rating) }} service
+                                    ★ {{ "{:.1f}".format(vendor.rating) }} {{ _('service') }}
                                 </span>
                             </div>
                             {% if vendor.recommendation_reasons %}
@@ -64,10 +64,10 @@
                                 </div>
                             {% endif %}
                             <p class="text-base font-semibold text-slate-900">{{ vendor.price_range_inr }}</p>
-                            <p class="text-sm text-slate-500">Typical turnkey price: ₹{{ "{:,.0f}".format(vendor.base_price_per_kw_inr) }}/kW</p>
+                            <p class="text-sm text-slate-500">{{ _('Typical turnkey price:') }} ₹{{ "{:,.0f}".format(vendor.base_price_per_kw_inr) }}/kW</p>
                             <div class="grid md:grid-cols-2 gap-3 text-sm text-slate-500">
-                                <p>Serving: {{ vendor.locations | join(", ") }}</p>
-                                <p>{{ vendor.years_experience }}+ years in solar</p>
+                                <p>{{ _('Serving:') }} {{ vendor.locations | join(", ") }}</p>
+                                <p>{{ vendor.years_experience }}+ {{ _('years in solar') }}</p>
                             </div>
                             <div class="flex flex-wrap gap-2">
                                 {% for highlight in vendor.highlights %}
@@ -75,15 +75,15 @@
                                 {% endfor %}
                             </div>
                             {% if vendor.contact %}
-                                <p class="text-sm text-slate-500">Contact: {{ vendor.contact }}</p>
+                                <p class="text-sm text-slate-500">{{ _('Contact:') }} {{ vendor.contact }}</p>
                             {% endif %}
                             <div>
                                 {% if vendor.website %}
                                     <a href="{{ vendor.website }}" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold bg-emerald-500 text-white rounded-lg hover:bg-emerald-600 transition">
-                                        Visit website ↗
+                                        {{ _('Visit website') }} ↗
                                     </a>
                                 {% else %}
-                                    <span class="text-sm text-slate-400">Website link unavailable</span>
+                                    <span class="text-sm text-slate-400">{{ _('Website link unavailable') }}</span>
                                 {% endif %}
                             </div>
                         </article>
@@ -94,21 +94,21 @@
         
         {% if other_vendors %}
             <div class="space-y-4">
-                <h2 class="text-xl font-semibold text-slate-800">All vendors</h2>
+                <h2 class="text-xl font-semibold text-slate-800">{{ _('All vendors') }}</h2>
                 <div class="grid gap-6">
                     {% for vendor in other_vendors %}
                         <article class="bg-white border border-slate-200 rounded-2xl p-6 space-y-4">
                             <div class="flex items-center justify-between">
                                 <h2 class="text-lg font-semibold text-slate-800">{{ vendor.name }}</h2>
                                 <span class="inline-flex items-center gap-1 px-3 py-1 text-xs font-semibold rounded-full bg-amber-100 text-amber-700">
-                                    ★ {{ "{:.1f}".format(vendor.rating) }} service
+                                    ★ {{ "{:.1f}".format(vendor.rating) }} {{ _('service') }}
                                 </span>
                             </div>
                             <p class="text-base font-semibold text-slate-900">{{ vendor.price_range_inr }}</p>
-                            <p class="text-sm text-slate-500">Typical turnkey price: ₹{{ "{:,.0f}".format(vendor.base_price_per_kw_inr) }}/kW</p>
+                            <p class="text-sm text-slate-500">{{ _('Typical turnkey price:') }} ₹{{ "{:,.0f}".format(vendor.base_price_per_kw_inr) }}/kW</p>
                             <div class="grid md:grid-cols-2 gap-3 text-sm text-slate-500">
-                                <p>Serving: {{ vendor.locations | join(", ") }}</p>
-                                <p>{{ vendor.years_experience }}+ years in solar</p>
+                                <p>{{ _('Serving:') }} {{ vendor.locations | join(", ") }}</p>
+                                <p>{{ vendor.years_experience }}+ {{ _('years in solar') }}</p>
                             </div>
                             <div class="flex flex-wrap gap-2">
                                 {% for highlight in vendor.highlights %}
@@ -116,15 +116,15 @@
                                 {% endfor %}
                             </div>
                             {% if vendor.contact %}
-                                <p class="text-sm text-slate-500">Contact: {{ vendor.contact }}</p>
+                                <p class="text-sm text-slate-500">{{ _('Contact:') }} {{ vendor.contact }}</p>
                             {% endif %}
                             <div>
                                 {% if vendor.website %}
                                     <a href="{{ vendor.website }}" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold border border-sky-500 text-sky-600 rounded-lg hover:bg-sky-50">
-                                        Visit website ↗
+                                        {{ _('Visit website') }} ↗
                                     </a>
                                 {% else %}
-                                    <span class="text-sm text-slate-400">Website link unavailable</span>
+                                    <span class="text-sm text-slate-400">{{ _('Website link unavailable') }}</span>
                                 {% endif %}
                             </div>
                         </article>
@@ -136,18 +136,18 @@
 
     <div class="flex flex-wrap gap-3">
         <a href="{{ url_for('subsidy.results') }}" class="px-5 py-3 rounded-lg border border-slate-300 text-sm font-semibold text-slate-600 hover:border-slate-400">
-            ← Back to subsidy results
+            ← {{ _('Back to subsidy results') }}
         </a>
         <a href="{{ url_for('tracker.index') }}" class="bg-indigo-500 hover:bg-indigo-600 text-white font-semibold px-5 py-3 rounded-lg shadow transition">
-            Open energy tracker
+            {{ _('Open energy tracker') }}
         </a>
         <a href="{{ url_for('main.map') }}" class="bg-emerald-500 hover:bg-emerald-600 text-white font-semibold px-5 py-3 rounded-lg shadow transition">
-            Open solar tracker
+            {{ _('Open solar tracker') }}
         </a>
         <form method="post" action="{{ url_for('subsidy.restart') }}">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
             <button type="submit" class="bg-slate-900 hover:bg-slate-800 text-white font-semibold px-5 py-3 rounded-lg shadow transition">
-                Start a new journey
+                {{ _('Start a new journey') }}
             </button>
         </form>
     </div>

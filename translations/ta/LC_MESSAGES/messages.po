@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-12-14 19:37+0530\n"
+"POT-Creation-Date: 2025-12-14 20:10+0530\n"
 "PO-Revision-Date: 2025-11-12 10:20+0530\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ta\n"
@@ -17,6 +17,346 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.17.0\n"
+
+#: app/forms.py:24 app/forms.py:32 app/forms.py:97 templates/auth/login.html:12
+#: templates/auth/register.html:19 templates/profile/view.html:22
+msgid "Email"
+msgstr "மின்னஞ்சல்"
+
+#: app/forms.py:25 app/forms.py:33 templates/auth/login.html:19
+#: templates/auth/register.html:26
+msgid "Password"
+msgstr ""
+
+#: app/forms.py:26 templates/auth/login.html:28
+#, fuzzy
+msgid "Stay signed in"
+msgstr "உள்நுழையவும்"
+
+#: app/forms.py:27 templates/auth/register.html:47 templates/home.html:19
+msgid "Sign in"
+msgstr "உள்நுழையவும்"
+
+#: app/forms.py:31 app/forms.py:96 templates/auth/register.html:12
+#, fuzzy
+msgid "Full name"
+msgstr "பெயர்"
+
+#: app/forms.py:35 templates/auth/register.html:34
+msgid "Confirm password"
+msgstr ""
+
+#: app/forms.py:36
+msgid "Passwords must match."
+msgstr ""
+
+#: app/forms.py:38 templates/auth/register.html:6 templates/home.html:18
+msgid "Create account"
+msgstr "கணக்கை உருவாக்கு"
+
+#: app/forms.py:42
+#, fuzzy
+msgid "Reminder title"
+msgstr "குடியிருப்பு"
+
+#: app/forms.py:44
+#, fuzzy
+msgid "Type"
+msgstr "கூரை வகை"
+
+#: app/forms.py:46
+msgid "Medicine"
+msgstr ""
+
+#: app/forms.py:47
+msgid "Doctor Appointment"
+msgstr ""
+
+#: app/forms.py:48
+#, fuzzy
+msgid "Vaccination"
+msgstr "அடிப்படை தகவல்"
+
+#: app/forms.py:49
+#, fuzzy
+msgid "System Inspection"
+msgstr "தளத் தகவல்"
+
+#: app/forms.py:50 app/forms.py:70 app/forms.py:195 app/forms.py:209
+msgid "Other"
+msgstr ""
+
+#: app/forms.py:54
+#, fuzzy
+msgid "Date"
+msgstr "மாநிலம்"
+
+#: app/forms.py:55
+#, fuzzy
+msgid "Time"
+msgstr "டைல்ஸ்"
+
+#: app/forms.py:56
+#, fuzzy
+msgid "Details"
+msgstr "திட்டங்களைப் பார்க்கவும்"
+
+#: app/forms.py:57
+#, fuzzy
+msgid "Save reminder"
+msgstr "ஸ்மார்ட் நினைவூட்டல்கள் & பதிவுகள்"
+
+#: app/forms.py:61
+msgid "Project / Site name"
+msgstr ""
+
+#: app/forms.py:62
+msgid "Installer / Vendor"
+msgstr ""
+
+#: app/forms.py:64
+msgid "System type"
+msgstr ""
+
+#: app/forms.py:66
+msgid "On-grid (Net Metering)"
+msgstr ""
+
+#: app/forms.py:67
+msgid "Off-grid (Battery)"
+msgstr ""
+
+#: app/forms.py:68
+msgid "Hybrid"
+msgstr ""
+
+#: app/forms.py:69
+#, fuzzy
+msgid "Community / Shared"
+msgstr "சமூகம் / கூட்டுறவு"
+
+#: app/forms.py:75
+#, fuzzy
+msgid "Installation date"
+msgstr "சூரிய நிறுவல்கள்"
+
+#: app/forms.py:77
+msgid "Project details / Notes"
+msgstr ""
+
+#: app/forms.py:79
+msgid "Upload site photo"
+msgstr ""
+
+#: app/forms.py:81
+#, fuzzy
+msgid "Save project"
+msgstr "திட்டங்களைப் பார்க்கவும்"
+
+#: app/forms.py:85
+msgid "Metric"
+msgstr ""
+
+#: app/forms.py:86
+msgid "Value"
+msgstr ""
+
+#: app/forms.py:87
+msgid "Save metric"
+msgstr ""
+
+#: app/forms.py:91
+msgid "Observation"
+msgstr ""
+
+#: app/forms.py:92
+#, fuzzy
+msgid "Log update"
+msgstr "வெளியேறு"
+
+#: app/forms.py:98
+msgid "Phone number"
+msgstr ""
+
+#: app/forms.py:99 templates/profile/view.html:30
+msgid "Date of birth"
+msgstr "பிறந்த தேதி"
+
+#: app/forms.py:100
+#, fuzzy
+msgid "Save profile"
+msgstr "சுயவிவரத்தைத் திருத்து"
+
+#: app/forms.py:105
+#, fuzzy
+msgid "Usable rooftop area (m²)"
+msgstr "கூரை பகுதி"
+
+#: app/forms.py:106
+msgid "Please enter the usable rooftop area."
+msgstr ""
+
+#: app/forms.py:111
+#, fuzzy
+msgid "Average monthly electricity bill (₹)"
+msgstr "மாதாந்திர மின்சார பில்"
+
+#: app/forms.py:113
+#, fuzzy
+msgid "Please enter your average monthly electricity bill."
+msgstr "மாதாந்திர மின்சார பில்"
+
+#: app/forms.py:114
+msgid "Monthly bill should be at least ₹100 to run the estimate."
+msgstr ""
+
+#: app/forms.py:120
+#, fuzzy
+msgid "Electricity provider / DISCOM"
+msgstr "மின்சார வழங்குநர் / DISCOM"
+
+#: app/forms.py:122
+#, fuzzy
+msgid "Select your electricity provider."
+msgstr "மின்சார வழங்குநர்"
+
+#: app/forms.py:124
+msgid "Next: Preview savings"
+msgstr ""
+
+#: app/forms.py:129
+msgid "State / Union Territory"
+msgstr ""
+
+#: app/forms.py:131
+msgid "Select"
+msgstr ""
+
+#: app/forms.py:169
+msgid "Please select a state or union territory."
+msgstr ""
+
+#: app/forms.py:172
+#, fuzzy
+msgid "Consumer type"
+msgstr "நுகர்வோர் பிரிவு"
+
+#: app/forms.py:174 templates/profile/view.html:76
+#: templates/subsidy/view_data.html:67
+msgid "Residential"
+msgstr "குடியிருப்பு"
+
+#: app/forms.py:175 templates/profile/view.html:78
+#: templates/subsidy/view_data.html:69
+msgid "Agricultural"
+msgstr "விவசாயம்"
+
+#: app/forms.py:176
+#, fuzzy
+msgid "Community / cooperative"
+msgstr "சமூகம் / கூட்டுறவு"
+
+#: app/forms.py:181
+#, fuzzy
+msgid "Grid connection status"
+msgstr "கிரிட் இணைப்பு"
+
+#: app/forms.py:182 templates/profile/view.html:92
+#: templates/subsidy/view_data.html:81
+msgid "Grid-connected"
+msgstr "கிரிட்-இணைக்கப்பட்டது"
+
+#: app/forms.py:182
+#, fuzzy
+msgid "Off-grid / unreliable"
+msgstr "ஆஃப்-கிரிட் / ஹைப்ரிட்"
+
+#: app/forms.py:186
+#, fuzzy
+msgid "Roof type"
+msgstr "கூரை வகை"
+
+#: app/forms.py:188
+#, fuzzy
+msgid "Select roof type"
+msgstr "கூரை வகை"
+
+#: app/forms.py:189 templates/profile/view.html:106
+#: templates/subsidy/view_data.html:94
+msgid "Concrete (RCC)"
+msgstr "கான்கிரீட் (RCC)"
+
+#: app/forms.py:190 templates/profile/view.html:108
+#: templates/subsidy/view_data.html:96
+msgid "Tin / Metal"
+msgstr "தகரம் / உலோகம்"
+
+#: app/forms.py:191 templates/profile/view.html:110
+#: templates/subsidy/view_data.html:98
+msgid "Tiles"
+msgstr "டைல்ஸ்"
+
+#: app/forms.py:192 templates/profile/view.html:112
+#: templates/subsidy/view_data.html:100
+msgid "Asbestos"
+msgstr "அஸ்பெஸ்டாஸ்"
+
+#: app/forms.py:193 templates/profile/view.html:114
+#: templates/subsidy/view_data.html:102
+msgid "Flat roof"
+msgstr "தட்டையான கூரை"
+
+#: app/forms.py:194 templates/profile/view.html:116
+#: templates/subsidy/view_data.html:104
+msgid "Sloped roof"
+msgstr "சரிவான கூரை"
+
+#: app/forms.py:199
+msgid "Check eligibility & estimate"
+msgstr ""
+
+#: app/forms.py:204
+#, fuzzy
+msgid "Entry type"
+msgstr "கூரை வகை"
+
+#: app/forms.py:206
+#, fuzzy
+msgid "Generation"
+msgstr "தளத் தகவல்"
+
+#: app/forms.py:207
+msgid "Consumption"
+msgstr ""
+
+#: app/forms.py:208
+msgid "Export"
+msgstr ""
+
+#: app/forms.py:213
+msgid "kWh"
+msgstr ""
+
+#: app/forms.py:214
+msgid "Monetary value (₹)"
+msgstr ""
+
+#: app/forms.py:215
+msgid "Panel ID"
+msgstr ""
+
+#: app/forms.py:216
+msgid "Entry date"
+msgstr ""
+
+#: app/forms.py:217
+msgid "Note"
+msgstr ""
+
+#: app/forms.py:218
+#, fuzzy
+msgid "Save entry"
+msgstr "பதிவைச் சேர்க்கவும்"
 
 #: app/main/routes.py:28
 msgid "Language changed successfully."
@@ -30,7 +370,7 @@ msgstr "தவறான மொழி தேர்ந்தெடுக்கப�
 msgid "Dashboard"
 msgstr "முகப்பு"
 
-#: templates/base.html:37
+#: templates/base.html:37 templates/dashboard/index.html:45
 msgid "Projects"
 msgstr "திட்டங்கள்"
 
@@ -127,14 +467,6 @@ msgstr "முகப்புக்குச் செல்"
 #: templates/home.html:16
 msgid "Check subsidy"
 msgstr "மானியத்தைச் சரிபார்க்கவும்"
-
-#: templates/home.html:18
-msgid "Create account"
-msgstr "கணக்கை உருவாக்கு"
-
-#: templates/home.html:19
-msgid "Sign in"
-msgstr "உள்நுழையவும்"
 
 #: templates/home.html:29
 msgid "Our Mission"
@@ -305,9 +637,89 @@ msgstr "சூரிய ஒளி ஸ்னாப்ஷாட்"
 msgid "Day timeline"
 msgstr "நாள் காலவரிசை"
 
+#: templates/auth/login.html:6
+msgid "Welcome back"
+msgstr ""
+
+#: templates/auth/login.html:7
+msgid "Sign in to manage your solar journey and reminders."
+msgstr ""
+
+#: templates/auth/login.html:30
+msgid "Forgot password?"
+msgstr ""
+
+#: templates/auth/login.html:38
+msgid "Don’t have an account?"
+msgstr ""
+
+#: templates/auth/login.html:39
+#, fuzzy
+msgid "Create one"
+msgstr "கணக்கை உருவாக்கு"
+
+#: templates/auth/register.html:7
+msgid "Join Solaris Web to track subsidies, installations, reminders and more."
+msgstr ""
+
+#: templates/auth/register.html:28
+msgid "Minimum 6 characters."
+msgstr ""
+
+#: templates/auth/register.html:46
+#, fuzzy
+msgid "Already have an account?"
+msgstr "கணக்கை உருவாக்கு"
+
+#: templates/dashboard/index.html:12 templates/tracker/index.html:11
+#, fuzzy
+msgid "Energy tracker"
+msgstr "ஆற்றல் கண்காணிப்பு"
+
+#: templates/dashboard/index.html:14
+msgid "kWh logged as generation"
+msgstr ""
+
 #: templates/dashboard/index.html:16
 msgid "View tracker"
 msgstr "கண்காணிப்பைப் பார்க்கவும்"
+
+#: templates/dashboard/index.html:20
+msgid "Quick estimate"
+msgstr ""
+
+#: templates/dashboard/index.html:22
+msgid "kW scoped"
+msgstr ""
+
+#: templates/dashboard/index.html:23
+msgid "Net investment:"
+msgstr ""
+
+#: templates/dashboard/index.html:25
+#, fuzzy
+msgid "Monthly savings:"
+msgstr "மாதாந்திர பில்"
+
+#: templates/dashboard/index.html:26
+msgid "Lifetime savings (25 yrs):"
+msgstr ""
+
+#: templates/dashboard/index.html:27
+msgid "CO₂ offset per year:"
+msgstr ""
+
+#: templates/dashboard/index.html:27
+msgid "tonnes"
+msgstr ""
+
+#: templates/dashboard/index.html:30
+msgid "Last calculated"
+msgstr ""
+
+#: templates/dashboard/index.html:30
+msgid "Re-run if your numbers changed."
+msgstr ""
 
 #: templates/dashboard/index.html:33
 msgid "Need an updated subsidy projection?"
@@ -321,11 +733,63 @@ msgstr "மானிய மதிப்பீட்டாளரை இயக்�
 msgid "View subsidy form data"
 msgstr "மானியப் படிவத் தரவைப் பார்க்கவும்"
 
+#: templates/dashboard/index.html:47
+msgid "Active solar projects tracked"
+msgstr ""
+
 #: templates/dashboard/index.html:49
 msgid "View projects"
 msgstr "திட்டங்களைப் பார்க்கவும்"
 
+#: templates/dashboard/index.html:58
+msgid "Energy analytics snapshot"
+msgstr ""
+
+#: templates/dashboard/index.html:59
+msgid "Track generation, export and earnings from one glance."
+msgstr ""
+
+#: templates/dashboard/index.html:63
+msgid "Updated"
+msgstr ""
+
+#: templates/dashboard/index.html:63
+#, fuzzy
+msgid "day trend"
+msgstr "நாள் காலவரிசை"
+
+#: templates/dashboard/index.html:69 templates/tracker/index.html:43
+msgid "Generation vs Export"
+msgstr ""
+
+#: templates/dashboard/index.html:70
+msgid "Line trend"
+msgstr ""
+
+#: templates/dashboard/index.html:76 templates/tracker/index.html:50
+msgid "Revenue momentum"
+msgstr ""
+
+#: templates/dashboard/index.html:77 templates/tracker/index.html:51
+#, fuzzy
+msgid "Daily"
+msgstr "மின்னஞ்சல்"
+
+#: templates/dashboard/index.html:85 templates/tracker/index.html:59
+#, fuzzy
+msgid "Energy mix"
+msgstr "ஆற்றலைப் பதிவுசெய்க"
+
+#: templates/dashboard/index.html:86
+msgid "Generation share"
+msgstr ""
+
+#: templates/dashboard/index.html:92 templates/tracker/index.html:66
+msgid "Automated insights"
+msgstr ""
+
 #: templates/dashboard/index.html:114 templates/subsidy/step4_results.html:210
+#: templates/subsidy/vendors.html:145
 msgid "Open solar tracker"
 msgstr "சோலார் டிராக்கரைத் திறக்கவும்"
 
@@ -336,6 +800,30 @@ msgstr "பதிவைச் சேர்க்கவும்"
 #: templates/dashboard/index.html:150
 msgid "Add project"
 msgstr "திட்டத்தைச் சேர்க்கவும்"
+
+#: templates/dashboard/index.html:211 templates/tracker/index.html:144
+msgid "Generation (kWh)"
+msgstr ""
+
+#: templates/dashboard/index.html:220 templates/tracker/index.html:153
+msgid "Export (kWh)"
+msgstr ""
+
+#: templates/dashboard/index.html:266 templates/tracker/index.html:199
+msgid "Revenue (₹)"
+msgstr ""
+
+#: templates/dashboard/index.html:303 templates/tracker/index.html:236
+msgid "Generation used onsite"
+msgstr ""
+
+#: templates/dashboard/index.html:303 templates/tracker/index.html:236
+msgid "Exported to grid"
+msgstr ""
+
+#: templates/dashboard/index.html:303
+msgid "Consumption logged separately"
+msgstr ""
 
 #: templates/finance/banks.html:6
 msgid "Financial Options"
@@ -431,6 +919,19 @@ msgid ""
 "inspections using the dashboard reminders."
 msgstr ""
 
+#: templates/profile/edit.html:6 templates/profile/view.html:12
+msgid "Edit profile"
+msgstr "சுயவிவரத்தைத் திருத்து"
+
+#: templates/profile/edit.html:7
+msgid "Update personal details so subsidy documents and reminders stay accurate."
+msgstr ""
+
+#: templates/profile/edit.html:36 templates/projects/new.html:47
+#: templates/tracker/add.html:59
+msgid "Cancel"
+msgstr ""
+
 #: templates/profile/view.html:7
 msgid "Member since"
 msgstr "உறுப்பினர் காலம்"
@@ -439,25 +940,13 @@ msgstr "உறுப்பினர் காலம்"
 msgid "Review personal details and subsidy contacts."
 msgstr "தனிப்பட்ட விவரங்கள் மற்றும் மானியத் தொடர்புகளை மதிப்பாய்வு செய்யவும்."
 
-#: templates/profile/view.html:12
-msgid "Edit profile"
-msgstr "சுயவிவரத்தைத் திருத்து"
-
 #: templates/profile/view.html:18
 msgid "Name"
 msgstr "பெயர்"
 
-#: templates/profile/view.html:22
-msgid "Email"
-msgstr "மின்னஞ்சல்"
-
 #: templates/profile/view.html:26
 msgid "Phone"
 msgstr "தொலைபேசி"
-
-#: templates/profile/view.html:30
-msgid "Date of birth"
-msgstr "பிறந்த தேதி"
 
 #: templates/profile/view.html:37
 msgid "Subsidy Form Submissions"
@@ -487,14 +976,6 @@ msgstr "மாநிலம்"
 msgid "Consumer Segment"
 msgstr "நுகர்வோர் பிரிவு"
 
-#: templates/profile/view.html:76 templates/subsidy/view_data.html:67
-msgid "Residential"
-msgstr "குடியிருப்பு"
-
-#: templates/profile/view.html:78 templates/subsidy/view_data.html:69
-msgid "Agricultural"
-msgstr "விவசாயம்"
-
 #: templates/profile/view.html:80 templates/subsidy/view_data.html:71
 msgid "Community / Cooperative"
 msgstr "சமூகம் / கூட்டுறவு"
@@ -502,10 +983,6 @@ msgstr "சமூகம் / கூட்டுறவு"
 #: templates/profile/view.html:89 templates/subsidy/view_data.html:78
 msgid "Grid Connection"
 msgstr "கிரிட் இணைப்பு"
-
-#: templates/profile/view.html:92 templates/subsidy/view_data.html:81
-msgid "Grid-connected"
-msgstr "கிரிட்-இணைக்கப்பட்டது"
 
 #: templates/profile/view.html:94 templates/subsidy/view_data.html:83
 msgid "Off-grid / Hybrid"
@@ -515,34 +992,138 @@ msgstr "ஆஃப்-கிரிட் / ஹைப்ரிட்"
 msgid "Roof Type"
 msgstr "கூரை வகை"
 
-#: templates/profile/view.html:106 templates/subsidy/view_data.html:94
-msgid "Concrete (RCC)"
-msgstr "கான்கிரீட் (RCC)"
-
-#: templates/profile/view.html:108 templates/subsidy/view_data.html:96
-msgid "Tin / Metal"
-msgstr "தகரம் / உலோகம்"
-
-#: templates/profile/view.html:110 templates/subsidy/view_data.html:98
-msgid "Tiles"
-msgstr "டைல்ஸ்"
-
-#: templates/profile/view.html:112 templates/subsidy/view_data.html:100
-msgid "Asbestos"
-msgstr "அஸ்பெஸ்டாஸ்"
-
-#: templates/profile/view.html:114 templates/subsidy/view_data.html:102
-msgid "Flat roof"
-msgstr "தட்டையான கூரை"
-
-#: templates/profile/view.html:116 templates/subsidy/view_data.html:104
-msgid "Sloped roof"
-msgstr "சரிவான கூரை"
-
 #: templates/profile/view.html:128
 msgid ""
 "No subsidy submissions yet. Complete the subsidy form to see your data "
 "here."
+msgstr ""
+
+#: templates/projects/detail.html:8
+#, fuzzy
+msgid "Installation date TBD"
+msgstr "சூரிய நிறுவல்கள்"
+
+#: templates/projects/detail.html:11
+#, fuzzy
+msgid "Logged on"
+msgstr "சரிவான கூரை"
+
+#: templates/projects/detail.html:15
+#, fuzzy
+msgid "Delete project"
+msgstr "திட்டத்தைச் சேர்க்கவும்"
+
+#: templates/projects/detail.html:24
+msgid "Site photo not uploaded yet"
+msgstr ""
+
+#: templates/projects/detail.html:31
+#, fuzzy
+msgid "System details"
+msgstr "திட்டங்களைப் பார்க்கவும்"
+
+#: templates/projects/detail.html:32
+msgid "System type:"
+msgstr ""
+
+#: templates/projects/detail.html:33
+msgid "Installer:"
+msgstr ""
+
+#: templates/projects/detail.html:33
+msgid "Not specified"
+msgstr ""
+
+#: templates/projects/detail.html:36
+#, fuzzy
+msgid "Notes"
+msgstr "டைல்ஸ்"
+
+#: templates/projects/detail.html:37
+msgid "No notes added yet."
+msgstr ""
+
+#: templates/projects/detail.html:42
+msgid "Back to all projects"
+msgstr ""
+
+#: templates/projects/index.html:7
+#, fuzzy
+msgid "Solar projects"
+msgstr "திட்டங்கள்"
+
+#: templates/projects/index.html:8
+msgid "Track rooftop sites, EPC partners and site photos."
+msgstr ""
+
+#: templates/projects/index.html:11
+#, fuzzy
+msgid "Add new project"
+msgstr "திட்டத்தைச் சேர்க்கவும்"
+
+#: templates/projects/index.html:24
+msgid "Site photo pending"
+msgstr ""
+
+#: templates/projects/index.html:36
+msgid "Install date TBD"
+msgstr ""
+
+#: templates/projects/index.html:38
+msgid "View"
+msgstr ""
+
+#: templates/projects/index.html:47
+msgid ""
+"No projects recorded yet. Add your first rooftop installation to keep EPC"
+" contacts, site photos and subsidy status organised."
+msgstr ""
+
+#: templates/projects/new.html:6
+#, fuzzy
+msgid "Add solar project"
+msgstr "திட்டத்தைச் சேர்க்கவும்"
+
+#: templates/projects/new.html:7
+msgid "Log rooftop installations, equipment choices and site photos."
+msgstr ""
+
+#: templates/projects/new.html:41
+msgid "Accepted formats: jpg, jpeg, png, webp."
+msgstr ""
+
+#: templates/reminders/index.html:7
+#, fuzzy
+msgid "Reminders"
+msgstr "ஸ்மார்ட் நினைவூட்டல்கள் & பதிவுகள்"
+
+#: templates/reminders/index.html:8
+msgid "Manage medicine schedules, inspections, subsidy follow-ups and more."
+msgstr ""
+
+#: templates/reminders/index.html:14
+#, fuzzy
+msgid "Create new reminder"
+msgstr "ஸ்மார்ட் நினைவூட்டல்கள் & பதிவுகள்"
+
+#: templates/reminders/index.html:49
+#, fuzzy
+msgid "Upcoming reminders"
+msgstr "ஸ்மார்ட் நினைவூட்டல்கள் & பதிவுகள்"
+
+#: templates/reminders/index.html:57
+msgid "No additional notes."
+msgstr ""
+
+#: templates/reminders/index.html:66
+#, fuzzy
+msgid "Delete"
+msgstr "திட்டத்தைச் சேர்க்கவும்"
+
+#: templates/reminders/index.html:75
+msgid ""
+"No reminders yet. Use the form to log inspections, maintenance, "
+"medication and more."
 msgstr ""
 
 #: templates/subsidy/_ai_chat.html:11
@@ -591,7 +1172,359 @@ msgstr "AI யோசிக்கிறது..."
 msgid "Open AI Assistant"
 msgstr ""
 
-#: templates/subsidy/step4_results.html:207
+#: templates/subsidy/_ai_chat.html:321
+msgid "Sorry, I couldn't connect to the AI service. Error:"
+msgstr ""
+
+#: templates/subsidy/_progress.html:4
+#, fuzzy
+msgid "Step"
+msgstr "மாநிலம்"
+
+#: templates/subsidy/_progress.html:4
+msgid "of 3"
+msgstr ""
+
+#: templates/subsidy/_progress.html:6
+msgid "Size your system"
+msgstr ""
+
+#: templates/subsidy/_progress.html:6
+#, fuzzy
+msgid "Site details"
+msgstr "திட்டங்களைப் பார்க்கவும்"
+
+#: templates/subsidy/_progress.html:6
+msgid "Programme matches"
+msgstr ""
+
+#: templates/subsidy/eligibility.html:6
+#, fuzzy
+msgid "Solar subsidy estimator"
+msgstr "மானிய மதிப்பீட்டாளரை இயக்கவும்"
+
+#: templates/subsidy/eligibility.html:7
+msgid ""
+"Answer a few questions to estimate the recommended system size, cost and "
+"subsidies."
+msgstr ""
+
+#: templates/subsidy/eligibility.html:43
+msgid "Summary"
+msgstr ""
+
+#: templates/subsidy/eligibility.html:44
+msgid "These values are indicative and based on current central subsidy slabs."
+msgstr ""
+
+#: templates/subsidy/eligibility.html:48
+#: templates/subsidy/step4_results.html:23
+#, fuzzy
+msgid "Recommended system size"
+msgstr "பரிந்துரைக்கப்பட்ட கணினி அளவு"
+
+#: templates/subsidy/eligibility.html:53
+msgid "Gross system cost"
+msgstr ""
+
+#: templates/subsidy/eligibility.html:57
+#, fuzzy
+msgid "Central subsidy"
+msgstr "மானியத்தைச் சரிபார்க்கவும்"
+
+#: templates/subsidy/eligibility.html:61
+msgid "State / DISCOM subsidy"
+msgstr ""
+
+#: templates/subsidy/eligibility.html:65
+#, fuzzy
+msgid "Estimated net cost"
+msgstr "மதிப்பிடப்பட்ட ஆண்டு நுகர்வு"
+
+#: templates/subsidy/eligibility.html:70
+msgid "Typical documents"
+msgstr ""
+
+#: templates/subsidy/eligibility.html:72
+msgid "Identity proof (Aadhaar)"
+msgstr ""
+
+#: templates/subsidy/eligibility.html:73
+msgid "Address proof"
+msgstr ""
+
+#: templates/subsidy/eligibility.html:74
+#, fuzzy
+msgid "Latest electricity bill"
+msgstr "மாதாந்திர மின்சார பில்"
+
+#: templates/subsidy/eligibility.html:75
+msgid "Bank details for subsidy transfer"
+msgstr ""
+
+#: templates/subsidy/eligibility.html:81
+msgid "See your subsidy outlook"
+msgstr ""
+
+#: templates/subsidy/eligibility.html:82
+msgid ""
+"Fill out the form to view solar capacity, cost and subsidy breakdown "
+"tailored to your rooftop."
+msgstr ""
+
+#: templates/subsidy/step1_numbers.html:6
+#, fuzzy
+msgid "Solar subsidy journey"
+msgstr "புதிய பயணத்தைத் தொடங்குங்கள்"
+
+#: templates/subsidy/step1_numbers.html:8
+msgid ""
+"Share the hard numbers first so we can size your solar dream accurately. "
+"You can tweak them later in the journey."
+msgstr ""
+
+#: templates/subsidy/step1_numbers.html:22
+msgid ""
+"Estimate the usable portion of your roof (exclude tanks, shading, "
+"setbacks)."
+msgstr ""
+
+#: templates/subsidy/step1_numbers.html:34
+msgid ""
+"Average of your recent monthly bills. We’ll use this to estimate your "
+"consumption automatically."
+msgstr ""
+
+#: templates/subsidy/step1_numbers.html:44
+msgid "Select your DISCOM so we can infer units consumed from the tariff."
+msgstr ""
+
+#: templates/subsidy/step3_site.html:6
+msgid "Tell us about your site"
+msgstr ""
+
+#: templates/subsidy/step3_site.html:8
+msgid ""
+"These details help us tailor regional subsidies and programme matches "
+"specific to your location and consumer profile."
+msgstr ""
+
+#: templates/subsidy/step3_site.html:46
+msgid "Optional — helps optimize installation recommendations."
+msgstr ""
+
+#: templates/subsidy/step3_site.html:55
+msgid "Back to numbers"
+msgstr ""
+
+#: templates/subsidy/step4_results.html:11
+msgid "Your Rooftop Blueprint"
+msgstr ""
+
+#: templates/subsidy/step4_results.html:13
+#, fuzzy
+msgid "Estimate & recommendations"
+msgstr "மதிப்பிடப்பட்ட ஆண்டு நுகர்வு"
+
+#: templates/subsidy/step4_results.html:15
+msgid ""
+"Here’s a high-resolution snapshot of your system sizing, subsidy support "
+"and the programmes best suited to your rooftop journey."
+msgstr ""
+
+#: templates/subsidy/step4_results.html:24
+#: templates/subsidy/step4_results.html:41
+msgid "kW"
+msgstr ""
+
+#: templates/subsidy/step4_results.html:25
+msgid "Sized using rooftop area and inferred consumption from your bill."
+msgstr ""
+
+#: templates/subsidy/step4_results.html:29 templates/subsidy/vendors.html:23
+msgid "units / month"
+msgstr ""
+
+#: templates/subsidy/step4_results.html:39
+msgid "Initial cost"
+msgstr ""
+
+#: templates/subsidy/step4_results.html:41
+msgid "Turnkey cost before subsidies"
+msgstr ""
+
+#: templates/subsidy/step4_results.html:45
+#, fuzzy
+msgid "Subsidy support"
+msgstr "மானியப் படிவத் தரவு"
+
+#: templates/subsidy/step4_results.html:48
+msgid "Central:"
+msgstr ""
+
+#: templates/subsidy/step4_results.html:49
+#, fuzzy
+msgid "State:"
+msgstr "மாநிலம்"
+
+#: templates/subsidy/step4_results.html:53
+msgid "Net cost after subsidy"
+msgstr ""
+
+#: templates/subsidy/step4_results.html:55
+#, fuzzy
+msgid "Estimated annual savings"
+msgstr "மதிப்பிடப்பட்ட ஆண்டு நுகர்வு"
+
+#: templates/subsidy/step4_results.html:55
+msgid "kWh/year"
+msgstr ""
+
+#: templates/subsidy/step4_results.html:63
+msgid "AI-Powered Financial & Environmental Predictions"
+msgstr ""
+
+#: templates/subsidy/step4_results.html:67
+#, fuzzy
+msgid "Monthly Savings"
+msgstr "மாதாந்திர பில்"
+
+#: templates/subsidy/step4_results.html:71
+msgid "Annual Savings"
+msgstr ""
+
+#: templates/subsidy/step4_results.html:76
+msgid "Payback Period"
+msgstr ""
+
+#: templates/subsidy/step4_results.html:77
+#, fuzzy
+msgid "years"
+msgstr "அம்சங்கள்"
+
+#: templates/subsidy/step4_results.html:81
+msgid "CO₂ Avoided"
+msgstr ""
+
+#: templates/subsidy/step4_results.html:82
+msgid "kg/year"
+msgstr ""
+
+#: templates/subsidy/step4_results.html:83
+msgid "Equivalent to planting"
+msgstr ""
+
+#: templates/subsidy/step4_results.html:83
+#, fuzzy
+msgid "trees"
+msgstr "அம்சங்கள்"
+
+#: templates/subsidy/step4_results.html:91
+msgid "Your profile snapshot"
+msgstr ""
+
+#: templates/subsidy/step4_results.html:103
+msgid "Filter subsidy programmes"
+msgstr ""
+
+#: templates/subsidy/step4_results.html:107
+msgid "Coverage"
+msgstr ""
+
+#: templates/subsidy/step4_results.html:117
+msgid "Ownership"
+msgstr ""
+
+#: templates/subsidy/step4_results.html:127
+#, fuzzy
+msgid "Grid connection"
+msgstr "கிரிட் இணைப்பு"
+
+#: templates/subsidy/step4_results.html:141
+msgid "Recommended programmes"
+msgstr ""
+
+#: templates/subsidy/step4_results.html:142
+msgid "Showing"
+msgstr ""
+
+#: templates/subsidy/step4_results.html:142
+msgid "of"
+msgstr ""
+
+#: templates/subsidy/step4_results.html:142
+msgid "matches"
+msgstr ""
+
+#: templates/subsidy/step4_results.html:146
+msgid ""
+"We couldn’t find a direct programme match with the information available."
+" Explore central rooftop schemes via the national portal."
+msgstr ""
+
+#: templates/subsidy/step4_results.html:148
+msgid ""
+"No programmes match the selected filters right now. Try widening your "
+"filters to discover more incentives."
+msgstr ""
+
+#: templates/subsidy/step4_results.html:157
+msgid "Administered by"
+msgstr ""
+
+#: templates/subsidy/step4_results.html:161
+msgid "Match"
+msgstr ""
+
+#: templates/subsidy/step4_results.html:166
+#, fuzzy
+msgid "Subsidy type:"
+msgstr "மானியப் படிவத் தரவு"
+
+#: templates/subsidy/step4_results.html:167
+msgid "Benefit:"
+msgstr ""
+
+#: templates/subsidy/step4_results.html:168
+#, fuzzy
+msgid "Application:"
+msgstr "இருப்பிடத்தைப் பின் செய்யவும்"
+
+#: templates/subsidy/step4_results.html:169
+#, fuzzy
+msgid "Timeline:"
+msgstr "நாள் காலவரிசை"
+
+#: templates/subsidy/step4_results.html:170
+#, fuzzy
+msgid "Vendors:"
+msgstr "விற்பனையாளர்கள்"
+
+#: templates/subsidy/step4_results.html:171
+msgid "Notes:"
+msgstr ""
+
+#: templates/subsidy/step4_results.html:175
+msgid "Why it fits"
+msgstr ""
+
+#: templates/subsidy/step4_results.html:183
+msgid "Documents:"
+msgstr ""
+
+#: templates/subsidy/step4_results.html:183
+msgid "Refer to programme guidelines"
+msgstr ""
+
+#: templates/subsidy/step4_results.html:191
+msgid "Open portal"
+msgstr ""
+
+#: templates/subsidy/step4_results.html:194
+msgid "Application details available via your DISCOM / official portal."
+msgstr ""
+
+#: templates/subsidy/step4_results.html:207 templates/subsidy/vendors.html:142
 msgid "Open energy tracker"
 msgstr "ஆற்றல் கண்காணிப்பைத் திறக்கவும்"
 
@@ -599,7 +1532,7 @@ msgstr "ஆற்றல் கண்காணிப்பைத் திறக�
 msgid "View form data"
 msgstr "படிவத் தரவைப் பார்க்கவும்"
 
-#: templates/subsidy/step4_results.html:218
+#: templates/subsidy/step4_results.html:218 templates/subsidy/vendors.html:150
 msgid "Start a new journey"
 msgstr "புதிய பயணத்தைத் தொடங்குங்கள்"
 
@@ -611,6 +1544,86 @@ msgstr "விற்பனையாளர்கள் பக்கத்தை �
 #: templates/subsidy/view_data.html:138
 msgid "Back to dashboard"
 msgstr "முகப்புக்குத் திரும்பு"
+
+#: templates/subsidy/vendors.html:6
+msgid "Installer marketplace"
+msgstr ""
+
+#: templates/subsidy/vendors.html:8
+msgid "Compare trusted vendors, pricing and ratings before you book a site visit."
+msgstr ""
+
+#: templates/subsidy/vendors.html:14
+#, fuzzy
+msgid "Your solar brief"
+msgstr "உங்கள் சூரிய ஆற்றல் வழிகாட்டி"
+
+#: templates/subsidy/vendors.html:15
+msgid "Auto-calculated"
+msgstr ""
+
+#: templates/subsidy/vendors.html:17
+msgid "kW system target"
+msgstr ""
+
+#: templates/subsidy/vendors.html:19
+msgid "Projected annual savings:"
+msgstr ""
+
+#: templates/subsidy/vendors.html:23
+msgid "Derived from"
+msgstr ""
+
+#: templates/subsidy/vendors.html:38
+#, fuzzy
+msgid "Recommended vendors"
+msgstr "பரிந்துரைக்கப்பட்ட கணினி அளவு"
+
+#: templates/subsidy/vendors.html:40
+msgid "Best match"
+msgstr ""
+
+#: templates/subsidy/vendors.html:50
+#, fuzzy
+msgid "Recommended"
+msgstr "பரிந்துரைக்கப்பட்ட கணினி அளவு"
+
+#: templates/subsidy/vendors.html:54 templates/subsidy/vendors.html:104
+msgid "service"
+msgstr ""
+
+#: templates/subsidy/vendors.html:67 templates/subsidy/vendors.html:108
+msgid "Typical turnkey price:"
+msgstr ""
+
+#: templates/subsidy/vendors.html:69 templates/subsidy/vendors.html:110
+msgid "Serving:"
+msgstr ""
+
+#: templates/subsidy/vendors.html:70 templates/subsidy/vendors.html:111
+msgid "years in solar"
+msgstr ""
+
+#: templates/subsidy/vendors.html:78 templates/subsidy/vendors.html:119
+msgid "Contact:"
+msgstr ""
+
+#: templates/subsidy/vendors.html:83 templates/subsidy/vendors.html:124
+msgid "Visit website"
+msgstr ""
+
+#: templates/subsidy/vendors.html:86 templates/subsidy/vendors.html:127
+msgid "Website link unavailable"
+msgstr ""
+
+#: templates/subsidy/vendors.html:97
+#, fuzzy
+msgid "All vendors"
+msgstr "விற்பனையாளர்கள்"
+
+#: templates/subsidy/vendors.html:139
+msgid "Back to subsidy results"
+msgstr ""
 
 #: templates/subsidy/view_data.html:7
 msgid "Subsidy Form Data"
@@ -659,6 +1672,77 @@ msgstr "பரிந்துரைக்கப்பட்ட கணினி �
 #: templates/subsidy/view_data.html:128
 msgid "Estimated Annual Consumption"
 msgstr "மதிப்பிடப்பட்ட ஆண்டு நுகர்வு"
+
+#: templates/tracker/add.html:6
+#, fuzzy
+msgid "Add energy entry"
+msgstr "பதிவைச் சேர்க்கவும்"
+
+#: templates/tracker/add.html:7
+msgid "Capture daily generation, consumption or exports for your rooftop system."
+msgstr ""
+
+#: templates/tracker/index.html:12
+msgid "Capture daily generation, consumption or export entries in one place."
+msgstr ""
+
+#: templates/tracker/index.html:15
+#, fuzzy
+msgid "Total generation"
+msgstr "தளத் தகவல்"
+
+#: templates/tracker/index.html:19
+msgid "Total export"
+msgstr ""
+
+#: templates/tracker/index.html:23
+msgid "Revenue recorded"
+msgstr ""
+
+#: templates/tracker/index.html:28
+#, fuzzy
+msgid "Add new entry"
+msgstr "பதிவைச் சேர்க்கவும்"
+
+#: templates/tracker/index.html:35
+msgid "Automated analytics"
+msgstr ""
+
+#: templates/tracker/index.html:37
+msgid ""
+"Visualise generation, export and revenue trends powered by automated "
+"calculations."
+msgstr ""
+
+#: templates/tracker/index.html:44
+#, fuzzy
+msgid "14-day trend"
+msgstr "நாள் காலவரிசை"
+
+#: templates/tracker/index.html:60
+#, fuzzy
+msgid "Share"
+msgstr "மாநிலம்"
+
+#: templates/tracker/index.html:81
+#, fuzzy
+msgid "Recent entries"
+msgstr "பரிந்துரைக்கப்பட்ட கணினி அளவு"
+
+#: templates/tracker/index.html:92
+#, fuzzy
+msgid "recorded"
+msgstr "பரிந்துரைக்கப்பட்ட கணினி அளவு"
+
+#: templates/tracker/index.html:95
+msgid "Panel ID:"
+msgstr ""
+
+#: templates/tracker/index.html:104
+msgid ""
+"No entries logged yet. Add your first record to start tracking "
+"performance."
+msgstr ""
 
 #~ msgid ""
 #~ "Solaris helps you understand your "

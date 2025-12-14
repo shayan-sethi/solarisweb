@@ -3,9 +3,9 @@
 {% block content %}
 <section class="max-w-4xl mx-auto px-6 py-12 space-y-8">
     <div class="glass rounded-3xl p-8 shadow-lg space-y-6">
-        <h1 class="text-3xl font-bold text-slate-800">Tell us about your site</h1>
+        <h1 class="text-3xl font-bold text-slate-800">{{ _('Tell us about your site') }}</h1>
         <p class="text-slate-500">
-            These details help us tailor regional subsidies and programme matches specific to your location and consumer profile.
+            {{ _('These details help us tailor regional subsidies and programme matches specific to your location and consumer profile.') }}
         </p>
 
         {% include "subsidy/_progress.html" %}
@@ -43,7 +43,7 @@
                         {{ form.roof_type.label.text }}
                     </label>
                     {{ form.roof_type(class_="w-full px-4 py-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-cyan-300 focus:outline-none") }}
-                    <p class="text-xs text-slate-400 mt-1">Optional — helps optimize installation recommendations.</p>
+                    <p class="text-xs text-slate-400 mt-1">{{ _('Optional — helps optimize installation recommendations.') }}</p>
                 </div>
             </div>
 
@@ -52,7 +52,7 @@
                     {{ form.submit.label.text }}
                 </button>
                 <a href="{{ url_for('subsidy.eligibility') }}" class="text-sm text-slate-500 hover:text-slate-700">
-                    ← Back to numbers
+                    ← {{ _('Back to numbers') }}
                 </a>
             </div>
         </form>

@@ -5,14 +5,14 @@
     <div class="flex items-center justify-between mb-6">
         <div>
             <p class="text-sm text-slate-500 mb-1">
-                {{ project.installation_date.strftime('%d %b %Y') if project.installation_date else 'Installation date TBD' }}
+                {{ project.installation_date.strftime('%d %b %Y') if project.installation_date else _('Installation date TBD') }}
             </p>
             <h1 class="text-3xl font-bold text-slate-800">{{ project.name }}</h1>
-            <p class="text-sm text-slate-500 mt-1">Logged on {{ project.created_at.strftime('%d %b %Y') }}</p>
+            <p class="text-sm text-slate-500 mt-1">{{ _('Logged on') }} {{ project.created_at.strftime('%d %b %Y') }}</p>
         </div>
         <form method="post" action="{{ url_for('projects.delete_project', project_id=project.id) }}">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-            <button type="submit" class="text-rose-500 hover:text-rose-600 font-semibold text-sm uppercase tracking-wide">Delete project</button>
+            <button type="submit" class="text-rose-500 hover:text-rose-600 font-semibold text-sm uppercase tracking-wide">{{ _('Delete project') }}</button>
         </form>
     </div>
 
@@ -21,25 +21,25 @@
             <img src="{{ url_for('static', filename='uploads/' ~ project.image_filename) }}" alt="{{ project.name }}" class="w-full h-72 object-cover">
         {% else %}
             <div class="w-full h-72 bg-slate-200 flex items-center justify-center text-slate-500">
-                Site photo not uploaded yet
+                {{ _('Site photo not uploaded yet') }}
             </div>
         {% endif %}
     </div>
 
     <div class="grid gap-6 md:grid-cols-2">
         <div class="glass rounded-2xl p-6 shadow space-y-2">
-            <h2 class="text-lg font-semibold text-slate-800">System details</h2>
-            <p class="text-sm text-slate-500"><span class="font-semibold text-slate-700">System type:</span> {{ project.system_type|replace('-', ' ')|title }}</p>
-            <p class="text-sm text-slate-500"><span class="font-semibold text-slate-700">Installer:</span> {{ project.installer or 'Not specified' }}</p>
+            <h2 class="text-lg font-semibold text-slate-800">{{ _('System details') }}</h2>
+            <p class="text-sm text-slate-500"><span class="font-semibold text-slate-700">{{ _('System type:') }}</span> {{ project.system_type|replace('-', ' ')|title }}</p>
+            <p class="text-sm text-slate-500"><span class="font-semibold text-slate-700">{{ _('Installer:') }}</span> {{ project.installer or _('Not specified') }}</p>
         </div>
         <div class="glass rounded-2xl p-6 shadow space-y-2">
-            <h2 class="text-lg font-semibold text-slate-800">Notes</h2>
-            <p class="text-sm text-slate-500">{{ project.detail or 'No notes added yet.' }}</p>
+            <h2 class="text-lg font-semibold text-slate-800">{{ _('Notes') }}</h2>
+            <p class="text-sm text-slate-500">{{ project.detail or _('No notes added yet.') }}</p>
         </div>
     </div>
 
     <div class="mt-10">
-        <a href="{{ url_for('projects.list_projects') }}" class="text-cyan-600 hover:text-cyan-700 font-semibold">← Back to all projects</a>
+        <a href="{{ url_for('projects.list_projects') }}" class="text-cyan-600 hover:text-cyan-700 font-semibold">← {{ _('Back to all projects') }}</a>
     </div>
 </section>
 {% endblock %}

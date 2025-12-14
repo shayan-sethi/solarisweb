@@ -3,20 +3,20 @@
 {% block content %}
 <section class="max-w-xl mx-auto px-6 py-16">
     <div class="glass rounded-3xl p-8 shadow-lg">
-        <h1 class="text-3xl font-bold text-slate-800 mb-2">Welcome back</h1>
-        <p class="text-slate-500 mb-8">Sign in to manage your solar journey and reminders.</p>
+        <h1 class="text-3xl font-bold text-slate-800 mb-2">{{ _('Welcome back') }}</h1>
+        <p class="text-slate-500 mb-8">{{ _('Sign in to manage your solar journey and reminders.') }}</p>
         <form method="post" novalidate>
             {{ form.hidden_tag() }}
             <div class="space-y-5">
                 <div>
-                    <label class="block text-sm font-semibold text-slate-600 mb-1" for="{{ form.email.id }}">Email</label>
+                    <label class="block text-sm font-semibold text-slate-600 mb-1" for="{{ form.email.id }}">{{ _('Email') }}</label>
                     {{ form.email(class_="w-full px-4 py-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-cyan-300 focus:outline-none") }}
                     {% if form.email.errors %}
                         <p class="text-sm text-rose-500 mt-1">{{ form.email.errors[0] }}</p>
                     {% endif %}
                 </div>
                 <div>
-                    <label class="block text-sm font-semibold text-slate-600 mb-1" for="{{ form.password.id }}">Password</label>
+                    <label class="block text-sm font-semibold text-slate-600 mb-1" for="{{ form.password.id }}">{{ _('Password') }}</label>
                     {{ form.password(class_="w-full px-4 py-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-cyan-300 focus:outline-none") }}
                     {% if form.password.errors %}
                         <p class="text-sm text-rose-500 mt-1">{{ form.password.errors[0] }}</p>
@@ -25,9 +25,9 @@
                 <div class="flex items-center justify-between">
                     <label class="flex items-center gap-2 text-sm text-slate-600">
                         {{ form.remember(class_="rounded border-slate-300 text-cyan-600 focus:ring-cyan-400") }}
-                        Stay signed in
+                        {{ _('Stay signed in') }}
                     </label>
-                    <a class="text-sm text-cyan-600 hover:text-cyan-700" href="#">Forgot password?</a>
+                    <a class="text-sm text-cyan-600 hover:text-cyan-700" href="#">{{ _('Forgot password?') }}</a>
                 </div>
                 <button type="submit" class="w-full bg-cyan-500 hover:bg-cyan-600 text-white font-semibold px-4 py-3 rounded-lg shadow transition">
                     {{ form.submit.label.text }}
@@ -35,8 +35,8 @@
             </div>
         </form>
         <p class="text-sm text-slate-500 mt-6 text-center">
-            Don’t have an account?
-            <a class="text-cyan-600 hover:text-cyan-700 font-semibold" href="{{ url_for('auth.register') }}">Create one</a>
+            {{ _('Don’t have an account?') }}
+            <a class="text-cyan-600 hover:text-cyan-700 font-semibold" href="{{ url_for('auth.register') }}">{{ _('Create one') }}</a>
         </p>
     </div>
 </section>

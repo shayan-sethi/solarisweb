@@ -318,7 +318,7 @@
             addMessage(data.response);
         } catch (error) {
             console.error('Chat error:', error);
-            addMessage('Sorry, I couldn\'t connect to the AI service. Error: ' + (error.message || 'Unknown error'));
+            addMessage('{{ _("Sorry, I couldn\'t connect to the AI service. Error:") }} ' + (error.message || 'Unknown error'));
         } finally {
             chatLoading?.classList.add('hidden');
         }

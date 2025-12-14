@@ -3,35 +3,35 @@
 {% block content %}
 <section class="max-w-xl mx-auto px-6 py-16">
     <div class="glass rounded-3xl p-8 shadow-lg">
-        <h1 class="text-3xl font-bold text-slate-800 mb-2">Create account</h1>
-        <p class="text-slate-500 mb-8">Join Solaris Web to track subsidies, installations, reminders and more.</p>
+        <h1 class="text-3xl font-bold text-slate-800 mb-2">{{ _('Create account') }}</h1>
+        <p class="text-slate-500 mb-8">{{ _('Join Solaris Web to track subsidies, installations, reminders and more.') }}</p>
         <form method="post" novalidate>
             {{ form.hidden_tag() }}
             <div class="space-y-5">
                 <div>
-                    <label class="block text-sm font-semibold text-slate-600 mb-1" for="{{ form.name.id }}">Full name</label>
+                    <label class="block text-sm font-semibold text-slate-600 mb-1" for="{{ form.name.id }}">{{ _('Full name') }}</label>
                     {{ form.name(class_="w-full px-4 py-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-cyan-300 focus:outline-none") }}
                     {% if form.name.errors %}
                         <p class="text-sm text-rose-500 mt-1">{{ form.name.errors[0] }}</p>
                     {% endif %}
                 </div>
                 <div>
-                    <label class="block text-sm font-semibold text-slate-600 mb-1" for="{{ form.email.id }}">Email</label>
+                    <label class="block text-sm font-semibold text-slate-600 mb-1" for="{{ form.email.id }}">{{ _('Email') }}</label>
                     {{ form.email(class_="w-full px-4 py-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-cyan-300 focus:outline-none") }}
                     {% if form.email.errors %}
                         <p class="text-sm text-rose-500 mt-1">{{ form.email.errors[0] }}</p>
                     {% endif %}
                 </div>
                 <div>
-                    <label class="block text-sm font-semibold text-slate-600 mb-1" for="{{ form.password.id }}">Password</label>
+                    <label class="block text-sm font-semibold text-slate-600 mb-1" for="{{ form.password.id }}">{{ _('Password') }}</label>
                     {{ form.password(class_="w-full px-4 py-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-cyan-300 focus:outline-none") }}
-                    <p class="text-xs text-slate-400 mt-1">Minimum 6 characters.</p>
+                    <p class="text-xs text-slate-400 mt-1">{{ _('Minimum 6 characters.') }}</p>
                     {% if form.password.errors %}
                         <p class="text-sm text-rose-500 mt-1">{{ form.password.errors[0] }}</p>
                     {% endif %}
                 </div>
                 <div>
-                    <label class="block text-sm font-semibold text-slate-600 mb-1" for="{{ form.confirm_password.id }}">Confirm password</label>
+                    <label class="block text-sm font-semibold text-slate-600 mb-1" for="{{ form.confirm_password.id }}">{{ _('Confirm password') }}</label>
                     {{ form.confirm_password(class_="w-full px-4 py-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-cyan-300 focus:outline-none") }}
                     {% if form.confirm_password.errors %}
                         <p class="text-sm text-rose-500 mt-1">{{ form.confirm_password.errors[0] }}</p>
@@ -43,8 +43,8 @@
             </div>
         </form>
         <p class="text-sm text-slate-500 mt-6 text-center">
-            Already have an account?
-            <a class="text-cyan-600 hover:text-cyan-700 font-semibold" href="{{ url_for('auth.login') }}">Sign in</a>
+            {{ _('Already have an account?') }}
+            <a class="text-cyan-600 hover:text-cyan-700 font-semibold" href="{{ url_for('auth.login') }}">{{ _('Sign in') }}</a>
         </p>
     </div>
 </section>

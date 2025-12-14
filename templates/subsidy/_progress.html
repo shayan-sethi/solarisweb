@@ -1,9 +1,9 @@
 <div class="mb-6">
     {% set progress_percent = ((step / 3) * 100) | round(0, 'floor') %}
     <div class="flex items-center justify-between text-sm font-semibold text-slate-500">
-        <span>Step {{ step }} of 3</span>
+        <span>{{ _('Step') }} {{ step }} {{ _('of 3') }}</span>
         <span>
-            {% if step == 1 %}Size your system{% elif step == 2 %}Site details{% else %}Programme matches{% endif %}
+            {% if step == 1 %}{{ _('Size your system') }}{% elif step == 2 %}{{ _('Site details') }}{% else %}{{ _('Programme matches') }}{% endif %}
         </span>
     </div>
     <div class="w-full h-2 bg-slate-200 rounded-full mt-2">

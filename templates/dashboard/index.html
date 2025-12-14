@@ -9,25 +9,25 @@
 <section class="max-w-6xl mx-auto px-6 py-12 space-y-10">
     <div class="grid md:grid-cols-3 gap-6">
         <div class="glass p-6 rounded-2xl shadow">
-            <h2 class="text-lg font-semibold text-slate-700">Energy tracker</h2>
+            <h2 class="text-lg font-semibold text-slate-700">{{ _('Energy tracker') }}</h2>
             <p class="text-4xl font-bold text-slate-900">{{ "{:,.1f}".format(total_generation or 0) }}</p>
-            <p class="text-sm text-slate-500">kWh logged as generation</p>
+            <p class="text-sm text-slate-500">{{ _('kWh logged as generation') }}</p>
             <a href="{{ url_for('tracker.index') }}" class="inline-flex items-center justify-center w-full mt-4 text-sm font-semibold text-cyan-600 hover:text-cyan-700">
                 {{ _('View tracker') }} →
             </a>
         </div>
         <div class="glass p-6 rounded-2xl shadow">
-            <h2 class="text-lg font-semibold text-slate-700">Quick estimate</h2>
+            <h2 class="text-lg font-semibold text-slate-700">{{ _('Quick estimate') }}</h2>
             {% if estimate_summary.system_kw %}
-                <p class="text-3xl font-bold text-slate-900">{{ "{:.2f}".format(estimate_summary.system_kw) }} kW scoped</p>
-                <p class="text-sm text-slate-500">Net investment: ₹{{ "{:,.0f}".format(estimate_summary.net_cost or 0) }}</p>
+                <p class="text-3xl font-bold text-slate-900">{{ "{:.2f}".format(estimate_summary.system_kw) }} {{ _('kW scoped') }}</p>
+                <p class="text-sm text-slate-500">{{ _('Net investment:') }} ₹{{ "{:,.0f}".format(estimate_summary.net_cost or 0) }}</p>
                 <div class="mt-4 space-y-1 text-sm text-slate-600">
-                    <p>Monthly savings: <span class="font-semibold text-emerald-600">₹{{ "{:,.0f}".format(estimate_stats.monthly_savings) }}</span></p>
-                    <p>Lifetime savings (25 yrs): <span class="font-semibold text-emerald-600">₹{{ "{:,.0f}".format(estimate_stats.lifetime_savings) }}</span></p>
-                    <p>CO₂ offset per year: <span class="font-semibold text-slate-800">{{ "{:.1f}".format(estimate_stats.co2_offset) }} tonnes</span></p>
+                    <p>{{ _('Monthly savings:') }} <span class="font-semibold text-emerald-600">₹{{ "{:,.0f}".format(estimate_stats.monthly_savings) }}</span></p>
+                    <p>{{ _('Lifetime savings (25 yrs):') }} <span class="font-semibold text-emerald-600">₹{{ "{:,.0f}".format(estimate_stats.lifetime_savings) }}</span></p>
+                    <p>{{ _('CO₂ offset per year:') }} <span class="font-semibold text-slate-800">{{ "{:.1f}".format(estimate_stats.co2_offset) }} {{ _('tonnes') }}</span></p>
                 </div>
                 {% if estimate_summary.updated_at %}
-                    <p class="text-xs text-slate-400 mt-3">Last calculated {{ estimate_summary.updated_at.strftime('%d %b %Y') }}. Re-run if your numbers changed.</p>
+                    <p class="text-xs text-slate-400 mt-3">{{ _('Last calculated') }} {{ estimate_summary.updated_at.strftime('%d %b %Y') }}. {{ _('Re-run if your numbers changed.') }}</p>
                 {% endif %}
             {% else %}
                 <p class="text-sm text-slate-500 mt-2">{{ _('Need an updated subsidy projection?') }}</p>
@@ -42,9 +42,9 @@
             {% endif %}
         </div>
         <div class="glass p-6 rounded-2xl shadow">
-            <h2 class="text-lg font-semibold text-slate-700">Projects</h2>
+            <h2 class="text-lg font-semibold text-slate-700">{{ _('Projects') }}</h2>
             <p class="text-4xl font-bold text-slate-900">{{ recent_projects|length }}</p>
-            <p class="text-sm text-slate-500">Active solar projects tracked</p>
+            <p class="text-sm text-slate-500">{{ _('Active solar projects tracked') }}</p>
             <a href="{{ url_for('projects.list_projects') }}" class="inline-flex items-center justify-center w-full mt-4 text-sm font-semibold text-cyan-600 hover:text-cyan-700">
                 {{ _('View projects') }} →
             </a>
@@ -55,26 +55,26 @@
         <div class="glass p-6 rounded-2xl shadow space-y-6">
             <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
                 <div>
-                    <h2 class="text-2xl font-semibold text-slate-800">Energy analytics snapshot</h2>
-                    <p class="text-sm text-slate-500">Track generation, export and earnings from one glance.</p>
+                    <h2 class="text-2xl font-semibold text-slate-800">{{ _('Energy analytics snapshot') }}</h2>
+                    <p class="text-sm text-slate-500">{{ _('Track generation, export and earnings from one glance.') }}</p>
                 </div>
                 <div class="flex items-center gap-2 text-xs text-slate-400 uppercase tracking-wide">
                     <span class="h-2 w-2 rounded-full bg-cyan-500"></span>
-                    Updated {{ energy_chart_series|length }} day trend
+                    {{ _('Updated') }} {{ energy_chart_series|length }} {{ _('day trend') }}
                 </div>
             </div>
             <div class="grid gap-6 xl:grid-cols-3">
                 <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm xl:col-span-2">
                     <div class="flex items-center justify-between mb-4">
-                        <h3 class="text-lg font-semibold text-slate-800">Generation vs Export</h3>
-                        <span class="text-xs uppercase tracking-wide text-slate-400">Line trend</span>
+                        <h3 class="text-lg font-semibold text-slate-800">{{ _('Generation vs Export') }}</h3>
+                        <span class="text-xs uppercase tracking-wide text-slate-400">{{ _('Line trend') }}</span>
                     </div>
                     <canvas id="dashboardEnergyTrendChart" height="220"></canvas>
                 </div>
                 <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
                     <div class="flex items-center justify-between mb-4">
-                        <h3 class="text-lg font-semibold text-slate-800">Revenue momentum</h3>
-                        <span class="text-xs uppercase tracking-wide text-slate-400">Daily</span>
+                        <h3 class="text-lg font-semibold text-slate-800">{{ _('Revenue momentum') }}</h3>
+                        <span class="text-xs uppercase tracking-wide text-slate-400">{{ _('Daily') }}</span>
                     </div>
                     <canvas id="dashboardRevenueChart" height="220"></canvas>
                 </div>
@@ -82,14 +82,14 @@
             <div class="grid gap-6 md:grid-cols-2">
                 <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
                     <div class="flex items-center justify-between mb-4">
-                        <h3 class="text-lg font-semibold text-slate-800">Energy mix</h3>
-                        <span class="text-xs uppercase tracking-wide text-slate-400">Generation share</span>
+                        <h3 class="text-lg font-semibold text-slate-800">{{ _('Energy mix') }}</h3>
+                        <span class="text-xs uppercase tracking-wide text-slate-400">{{ _('Generation share') }}</span>
                     </div>
                     <canvas id="dashboardEnergyMixChart" height="220"></canvas>
                 </div>
                 {% if energy_insights %}
                     <div class="bg-white border border-emerald-100 rounded-2xl p-6 shadow-sm space-y-4">
-                        <h3 class="text-lg font-semibold text-emerald-700">Automated insights</h3>
+                        <h3 class="text-lg font-semibold text-emerald-700">{{ _('Automated insights') }}</h3>
                         <ul class="space-y-3 text-sm text-slate-600">
                             {% for insight in energy_insights %}
                                 <li class="flex items-start gap-3">
@@ -101,6 +101,14 @@
                     </div>
                 {% endif %}
             </div>
+        </div>
+    {% else %}
+        <div class="glass p-8 rounded-2xl shadow text-center space-y-4">
+            <h2 class="text-xl font-semibold text-slate-800">{{ _('No energy data yet') }}</h2>
+            <p class="text-slate-500 max-w-lg mx-auto">{{ _('Add your first energy reading to see real-time analytics, charts, and insights on your generation and savings.') }}</p>
+            <a href="{{ url_for('tracker.add_entry') }}" class="inline-flex items-center justify-center bg-cyan-500 hover:bg-cyan-600 text-white font-semibold px-6 py-3 rounded-lg shadow transition">
+                {{ _('Log first entry') }}
+            </a>
         </div>
     {% endif %}
 
@@ -208,7 +216,7 @@
                         labels: dates,
                         datasets: [
                             {
-                                label: 'Generation (kWh)',
+                                label: '{{ _("Generation (kWh)") }}',
                                 data: generationData,
                                 borderColor: '#0ea5e9',
                                 backgroundColor: 'rgba(14, 165, 233, 0.2)',
@@ -217,7 +225,7 @@
                                 fill: true,
                             },
                             {
-                                label: 'Export (kWh)',
+                                label: '{{ _("Export (kWh)") }}',
                                 data: exportData,
                                 borderColor: '#22c55e',
                                 backgroundColor: 'rgba(34, 197, 94, 0.15)',
@@ -263,7 +271,7 @@
                         labels: dates,
                         datasets: [
                             {
-                                label: 'Revenue (₹)',
+                                label: '{{ _("Revenue (₹)") }}',
                                 data: revenueData,
                                 backgroundColor: 'rgba(59, 130, 246, 0.75)',
                                 borderRadius: 6,
@@ -300,7 +308,7 @@
                 new Chart(mixCtx, {
                     type: 'doughnut',
                     data: {
-                        labels: ['Generation used onsite', 'Exported to grid', 'Consumption logged separately'],
+                        labels: ['{{ _("Generation used onsite") }}', '{{ _("Exported to grid") }}', '{{ _("Consumption logged separately") }}'],
                         datasets: [
                             {
                                 data: [
