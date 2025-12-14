@@ -540,8 +540,8 @@ The user has completed the eligibility form and is now viewing their recommended
         # Configure Gemini
         genai.configure(api_key=api_key)
         
-        # Use gemini-1.5-flash-8b which is the most lightweight model available
-        model = genai.GenerativeModel('models/gemini-1.5-flash-8b')
+        # Reverting to gemini-1.5-flash as 8b is not fully supported in the library version
+        model = genai.GenerativeModel('models/gemini-1.5-flash')
         
         # Create the full prompt
         full_prompt = f"{system_prompt}{context}\n\nUser question: {user_message}"
