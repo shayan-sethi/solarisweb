@@ -540,8 +540,9 @@ The user has completed the eligibility form and is now viewing their recommended
         # Configure Gemini
         genai.configure(api_key=api_key)
         
-        # Reverting to gemini-1.5-flash as 8b is not fully supported in the library version
-        model = genai.GenerativeModel('models/gemini-1.5-flash')
+        # Try gemini-2.0-flash
+        model_name = 'gemini-2.0-flash'
+        model = genai.GenerativeModel(model_name)
         
         # Create the full prompt
         full_prompt = f"{system_prompt}{context}\n\nUser question: {user_message}"
@@ -558,12 +559,23 @@ The user has completed the eligibility form and is now viewing their recommended
             ai_response = response.text
         except Exception as api_error:
             error_str = str(api_error)
+            current_app.logger.error(f"Gemini generation error with {model_name}: {error_str}")
+            
             if "429" in error_str:
                 current_app.logger.warning(f"Gemini API rate limit hit: {error_str}")
                 return jsonify({
                     "error": "I'm receiving too many questions right now. Please wait a moment and try again.",
                     "rate_limited": True
                 }), 429
+            elif "404" in error_str:
+                # Log available models for debugging
+                try:
+                    models = list(genai.list_models())
+                    model_names = [m.name for m in models]
+                    current_app.logger.info(f"Available models: {model_names}")
+                except Exception as list_error:
+                    current_app.logger.error(f"Could not list models: {list_error}")
+            
             raise api_error
         
         return jsonify({"response": ai_response})
