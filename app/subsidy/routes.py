@@ -395,8 +395,13 @@ def restart():
 def ai_chat():
     """Handle AI chat requests for subsidy form guidance using Google Gemini or Groq"""
     try:
+        import os
         # Check for Groq API Key first (Alternative free provider)
-        groq_api_key = current_app.config.get("GROQ_API_KEY")
+        # Try both config and direct env var to be safe
+        groq_api_key = current_app.config.get("GROQ_API_KEY") or os.environ.get("GROQ_API_KEY")
+        
+        # Debug logging to see what's happening (don't log actual values)
+        current_app.logger.info(f"Checking keys - Groq present: {bool(groq_api_key)}")
         
         # Handle both JSON and FormData requests
         if request.is_json:
@@ -558,9 +563,14 @@ The user has completed the eligibility form and is now viewing their recommended
         # Fallback to Gemini
         import google.generativeai as genai
         
-        api_key = current_app.config.get("GEMINI_API_KEY")
+        api_key = current_app.config.get("GEMINI_API_KEY") or os.environ.get("GEMINI_API_KEY")
+        
+        current_app.logger.info(f"Checking keys - Gemini present: {bool(api_key)}")
+
         if not api_key:
-            current_app.logger.error("GEMINI_API_KEY not found in config")
+            # Log all available env keys to help debug (excluding values)
+            current_app.logger.info(f"Available env vars: {list(os.environ.keys())}")
+            current_app.logger.error("GEMINI_API_KEY not found in config or env")
             return jsonify({"error": "No AI API keys configured. Please set GEMINI_API_KEY or GROQ_API_KEY."}), 500
         
         current_app.logger.info(f"Using Gemini API key")
