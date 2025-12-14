@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-12-07 00:13+0530\n"
+"POT-Creation-Date: 2025-12-14 19:37+0530\n"
 "PO-Revision-Date: 2025-11-12 10:20+0530\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: mr\n"
@@ -34,71 +34,71 @@ msgstr "डॅशबोर्ड"
 msgid "Projects"
 msgstr "प्रकल्प"
 
-#: templates/base.html:38
-msgid "Solar Map"
-msgstr "सौर नकाशा"
+#: templates/base.html:38 templates/base.html:64 templates/base.html:173
+msgid "Helio Map"
+msgstr ""
 
 #: templates/base.html:39
 msgid "Vendors"
 msgstr "विक्रेते"
 
 #: templates/base.html:40
+msgid "Finance"
+msgstr ""
+
+#: templates/base.html:41
 msgid "Energy Tracker"
 msgstr "ऊर्जा ट्रॅकर"
 
-#: templates/base.html:41 templates/profile/view.html:8
+#: templates/base.html:42 templates/profile/view.html:8
 msgid "Profile"
 msgstr "प्रोफाइल"
 
-#: templates/base.html:61 templates/base.html:170 templates/home.html:73
+#: templates/base.html:62 templates/base.html:171 templates/home.html:73
 msgid "Features"
 msgstr "वैशिष्ट्ये"
 
-#: templates/base.html:62 templates/base.html:171
+#: templates/base.html:63 templates/base.html:172
 msgid "Stats"
 msgstr "आकडेवारी"
 
-#: templates/base.html:63 templates/base.html:172
-msgid "Map"
-msgstr "नकाशा"
-
-#: templates/base.html:64 templates/base.html:173
+#: templates/base.html:65 templates/base.html:174
 msgid "Download"
 msgstr "डाउनलोड"
 
-#: templates/base.html:95 templates/base.html:159
+#: templates/base.html:96 templates/base.html:160
 msgid "Log energy"
 msgstr "ऊर्जा लॉग करा"
 
-#: templates/base.html:102
+#: templates/base.html:103
 msgid "Journey complete"
 msgstr "प्रवास पूर्ण"
 
-#: templates/base.html:104
+#: templates/base.html:105
 msgid "Journey in progress"
 msgstr "प्रवास सुरू आहे"
 
-#: templates/base.html:115 templates/base.html:165
+#: templates/base.html:116 templates/base.html:166
 msgid "Logout"
 msgstr "लॉगआउट"
 
-#: templates/base.html:120 templates/base.html:175
+#: templates/base.html:121 templates/base.html:176
 msgid "Login"
 msgstr "लॉगिन"
 
-#: templates/base.html:122 templates/base.html:177
+#: templates/base.html:123 templates/base.html:178
 msgid "Create Account"
 msgstr "खाते तयार करा"
 
-#: templates/base.html:141
+#: templates/base.html:142
 msgid "Language"
 msgstr "भाषा"
 
-#: templates/base.html:202
+#: templates/base.html:203
 msgid "All rights reserved."
 msgstr "सर्व हक्क राखीव."
 
-#: templates/base.html:203
+#: templates/base.html:204
 msgid "Built with love for clean energy adoption."
 msgstr "स्वच्छ ऊर्जा स्वीकारण्यासाठी प्रेमाने तयार केले."
 
@@ -115,7 +115,10 @@ msgid ""
 "Solaris helps you understand your rooftop's solar potential, manage "
 "installations, schedule smart reminders, and keep your household "
 "prepared."
-msgstr "सोलारिस तुम्हाला तुमच्या छतावरील सौर क्षमता समजून घेण्यास, इन्स्टॉलेशन व्यवस्थापित करण्यास, स्मार्ट रिमाइंडर शेड्यूल करण्यास आणि तुमचे घर तयार ठेवण्यास मदत करते."
+msgstr ""
+"सोलारिस तुम्हाला तुमच्या छतावरील सौर क्षमता समजून घेण्यास, इन्स्टॉलेशन "
+"व्यवस्थापित करण्यास, स्मार्ट रिमाइंडर शेड्यूल करण्यास आणि तुमचे घर तयार "
+"ठेवण्यास मदत करते."
 
 #: templates/home.html:15 templates/subsidy/step4_results.html:204
 msgid "Go to dashboard"
@@ -141,13 +144,17 @@ msgstr "आमचे ध्येय"
 msgid ""
 "Empowering every Indian household to harness solar energy with confidence"
 " and clarity."
-msgstr "प्रत्येक भारतीय घराला आत्मविश्वास आणि स्पष्टतेने सौर ऊर्जेचा वापर करण्यास सक्षम करणे."
+msgstr ""
+"प्रत्येक भारतीय घराला आत्मविश्वास आणि स्पष्टतेने सौर ऊर्जेचा वापर करण्यास"
+" सक्षम करणे."
 
 #: templates/home.html:35
 msgid ""
 "We're building the platform that makes rooftop solar accessible, "
 "transparent, and rewarding for millions of homes across India."
-msgstr "आम्ही असे प्लॅटफॉर्म तयार करत आहोत जे संपूर्ण भारतातील लाखो घरांसाठी रूफटॉप सोलर सुलभ, पारदर्शक आणि फायदेशीर बनवेल."
+msgstr ""
+"आम्ही असे प्लॅटफॉर्म तयार करत आहोत जे संपूर्ण भारतातील लाखो घरांसाठी "
+"रूफटॉप सोलर सुलभ, पारदर्शक आणि फायदेशीर बनवेल."
 
 #: templates/home.html:40
 msgid "Our Goal"
@@ -189,7 +196,9 @@ msgstr "सरकारी योजना एग्रीगेटर"
 msgid ""
 "Central & state schemes automatically filtered by eligibility and local "
 "DISCOM policies."
-msgstr "पात्रता आणि स्थानिक DISCOM धोरणांद्वारे केंद्र आणि राज्य योजना आपोआप फिल्टर केल्या जातात."
+msgstr ""
+"पात्रता आणि स्थानिक DISCOM धोरणांद्वारे केंद्र आणि राज्य योजना आपोआप "
+"फिल्टर केल्या जातात."
 
 #: templates/home.html:80
 msgid "Rooftop Solar Estimator"
@@ -199,7 +208,9 @@ msgstr "रूफटॉप सोलर एस्टिमेटर"
 msgid ""
 "Uses irradiance, orientation & roof area to estimate capacity, generation"
 " & savings."
-msgstr "क्षमता, निर्मिती आणि बचतीचा अंदाज घेण्यासाठी इरॅडियंस, ओरिएंटेशन आणि छताचे क्षेत्र वापरते."
+msgstr ""
+"क्षमता, निर्मिती आणि बचतीचा अंदाज घेण्यासाठी इरॅडियंस, ओरिएंटेशन आणि "
+"छताचे क्षेत्र वापरते."
 
 #: templates/home.html:84
 msgid "Smart Reminders & Logs"
@@ -240,49 +251,52 @@ msgid ""
 "Drop a pin on your rooftop and watch irradiance tiles pulse where "
 "production peaks. The browser map now mirrors the Solaris mobile heat map"
 " for a seamless experience."
-msgstr "तुमच्या छतावर पिन टाका आणि उत्पादन शिखरावर असताना इरॅडियंस टाइल्स पल्स पहा. ब्राउझर नकाशा आता अखंड अनुभवासाठी सोलारिस मोबाइल उष्णता नकाशा प्रतिबिंबित करतो."
+msgstr ""
+"तुमच्या छतावर पिन टाका आणि उत्पादन शिखरावर असताना इरॅडियंस टाइल्स पल्स "
+"पहा. ब्राउझर नकाशा आता अखंड अनुभवासाठी सोलारिस मोबाइल उष्णता नकाशा "
+"प्रतिबिंबित करतो."
 
 #: templates/home.html:125
 msgid "Open full explorer"
 msgstr "पूर्ण एक्सप्लोरर उघडा"
 
-#: templates/home.html:132
+#: templates/health/index.html:24 templates/home.html:132
 msgid "Pin a rooftop or neighbourhood"
 msgstr "छतावर किंवा शेजारी पिन करा"
 
-#: templates/home.html:134
+#: templates/health/index.html:26 templates/home.html:134
 msgid "Search address, city or coordinates…"
 msgstr "पत्ता, शहर किंवा समन्वय शोधा..."
 
-#: templates/home.html:136
+#: templates/health/index.html:28 templates/home.html:136
 msgid "Pin location"
 msgstr "स्थान पिन करा"
 
-#: templates/home.html:143
+#: templates/health/index.html:35 templates/home.html:143
 msgid "Use my current location"
 msgstr "माझे वर्तमान स्थान वापरा"
 
-#: templates/home.html:151
+#: templates/health/index.html:43 templates/home.html:151
 msgid "Calibrating sunlight data…"
 msgstr "सूर्यप्रकाश डेटा कॅलिब्रेट करत आहे..."
 
-#: templates/home.html:155
+#: templates/health/index.html:47 templates/home.html:155
 msgid "Solar potential"
 msgstr "सौर क्षमता"
 
-#: templates/home.html:158
+#: templates/health/index.html:50 templates/home.html:158
 msgid "Low"
 msgstr "कमी"
 
-#: templates/home.html:160
+#: templates/health/index.html:52 templates/home.html:160
 msgid "High"
 msgstr "जास्त"
 
-#: templates/home.html:168
+#: templates/health/index.html:74 templates/home.html:168
 msgid "Sunlight snapshot"
 msgstr "सूर्यप्रकाश स्नॅपशॉट"
 
-#: templates/home.html:172
+#: templates/health/index.html:78 templates/home.html:172
 msgid "Day timeline"
 msgstr "दिवसाची वेळरेखा"
 
@@ -294,7 +308,7 @@ msgstr "ट्रॅकर पहा"
 msgid "Need an updated subsidy projection?"
 msgstr "अद्यतन सबसिडी प्रोजेक्शन हवे आहे का?"
 
-#: templates/dashboard/index.html:35
+#: templates/dashboard/index.html:35 templates/health/index.html:17
 msgid "Run subsidy estimator"
 msgstr "सबसिडी एस्टिमेटर चालवा"
 
@@ -317,6 +331,100 @@ msgstr "प्रविष्टी जोडा"
 #: templates/dashboard/index.html:150
 msgid "Add project"
 msgstr "प्रकल्प जोडा"
+
+#: templates/finance/banks.html:6
+msgid "Financial Options"
+msgstr ""
+
+#: templates/finance/banks.html:8
+msgid ""
+"Explore solar loans, green credit cards, and EMI schemes to fund your "
+"rooftop solar installation."
+msgstr ""
+
+#: templates/finance/banks.html:39
+#, fuzzy
+msgid "View Details"
+msgstr "प्रकल्प पहा"
+
+#: templates/finance/banks.html:46
+msgid "Need help choosing?"
+msgstr ""
+
+#: templates/finance/banks.html:48
+msgid ""
+"Our AI assistant can help you compare these options based on your "
+"estimated system cost and monthly savings."
+msgstr ""
+
+#: templates/finance/banks.html:55
+#, fuzzy
+msgid "Ask SunnivaAI"
+msgstr "सुन्निवा एआय"
+
+#: templates/health/index.html:9
+#, fuzzy
+msgid "Solar intelligence"
+msgstr "सौर स्थापना"
+
+#: templates/health/index.html:11
+msgid "Helio Map & irradiance explorer"
+msgstr ""
+
+#: templates/health/index.html:13
+msgid ""
+"Visualise rooftop irradiance, watch shadows sweep across your block, and "
+"spot high-yield zones in seconds."
+msgstr ""
+
+#: templates/health/index.html:60
+#, fuzzy
+msgid "Rooftop solar potential"
+msgstr "सौर क्षमता"
+
+#: templates/health/index.html:61
+msgid "Out of 10"
+msgstr ""
+
+#: templates/health/index.html:68
+msgid "Pin a location to see your rooftop solar potential score"
+msgstr ""
+
+#: templates/health/index.html:85
+msgid "Make the most of the heat map"
+msgstr ""
+
+#: templates/health/index.html:88
+#, fuzzy
+msgid "Pan to mark installs"
+msgstr "सौर स्थापना"
+
+#: templates/health/index.html:89
+msgid ""
+"Drag the map to your block and zoom in — tiles glow brighter where daily "
+"irradiance peaks."
+msgstr ""
+
+#: templates/health/index.html:92
+msgid "Watch seasonal shifts"
+msgstr ""
+
+#: templates/health/index.html:93
+msgid ""
+"Re-centre anytime to recalculate sun angle, haze and terrain noise for "
+"the current calendar day."
+msgstr ""
+
+#: templates/health/index.html:96
+#, fuzzy
+msgid "Pair with reminders"
+msgstr "स्मार्ट रिमाइंडर्स आणि लॉग्स"
+
+#: templates/health/index.html:97
+msgid ""
+"Use the insights to time cleaning, net-metering checks and subsidy "
+"inspections using the dashboard reminders."
+msgstr ""
 
 #: templates/profile/view.html:7
 msgid "Member since"
@@ -441,27 +549,40 @@ msgid "Your solar energy guide"
 msgstr "तुमचे सौर ऊर्जा मार्गदर्शक"
 
 #: templates/subsidy/_ai_chat.html:31
+#, fuzzy
 msgid ""
 "Hello! I'm SunnivaAI, your solar energy assistant. I can help you with "
-"your subsidy application, but feel free to ask me anything about solar "
-"energy, panels, or installation."
-msgstr "नमस्कार! मी सुन्निवा एआय आहे, तुमचा सौर ऊर्जा सहाय्यक. मी तुम्हाला तुमच्या सबसिडी अर्जात मदत करू शकतो, परंतु सौर ऊर्जा, पॅनल्स किंवा इन्स्टॉलेशनबद्दल मला काहीही विचारू शकता."
+"your subsidy application, summarize legal PDFs, or answer anything about "
+"solar energy, panels, or installation."
+msgstr ""
+"नमस्कार! मी सुन्निवा एआय आहे, तुमचा सौर ऊर्जा सहाय्यक. मी तुम्हाला "
+"तुमच्या सबसिडी अर्जात मदत करू शकतो, परंतु सौर ऊर्जा, पॅनल्स किंवा "
+"इन्स्टॉलेशनबद्दल मला काहीही विचारू शकता."
 
 #: templates/subsidy/_ai_chat.html:33
+#, fuzzy
 msgid ""
-"Hello! I'm SunnivaAI, here to help. I can guide you through this form or "
-"answer any general questions you have about going solar."
-msgstr "नमस्कार! मी सुन्निवा एआय, मदतीसाठी येथे आहे. मी तुम्हाला या फॉर्मद्वारे मार्गदर्शन करू शकतो किंवा सौर उर्जेवर जाण्याबद्दलच्या तुमच्या कोणत्याही सामान्य प्रश्नांची उत्तरे देऊ शकतो."
+"Hello! I'm SunnivaAI, here to help. I can guide you through this form, "
+"summarize legal PDFs, or answer any general questions you have about "
+"going solar."
+msgstr ""
+"नमस्कार! मी सुन्निवा एआय, मदतीसाठी येथे आहे. मी तुम्हाला या फॉर्मद्वारे "
+"मार्गदर्शन करू शकतो किंवा सौर उर्जेवर जाण्याबद्दलच्या तुमच्या कोणत्याही "
+"सामान्य प्रश्नांची उत्तरे देऊ शकतो."
 
-#: templates/subsidy/_ai_chat.html:44
+#: templates/subsidy/_ai_chat.html:42
+msgid "Upload PDF"
+msgstr ""
+
+#: templates/subsidy/_ai_chat.html:59
 msgid "Ask a question..."
 msgstr "प्रश्न विचारा..."
 
-#: templates/subsidy/_ai_chat.html:63
+#: templates/subsidy/_ai_chat.html:79
 msgid "AI is thinking..."
 msgstr "AI विचार करत आहे..."
 
-#: templates/subsidy/_ai_chat.html:71
+#: templates/subsidy/_ai_chat.html:87
 msgid "Open AI Assistant"
 msgstr ""
 
@@ -541,4 +662,10 @@ msgstr "अंदाजे वार्षिक वापर"
 #~ " keep your household prepared — now"
 #~ " on the web."
 #~ msgstr ""
+
+#~ msgid "Solar Map"
+#~ msgstr "सौर नकाशा"
+
+#~ msgid "Map"
+#~ msgstr "नकाशा"
 

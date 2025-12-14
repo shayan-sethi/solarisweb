@@ -13,7 +13,7 @@ def home():
 
 @main_bp.route("/map/", endpoint="map")
 def solar_map():
-    return render_template("health/index.html", title="Solar Shadow Map")
+    return render_template("health/index.html", title="Helio Map")
 
 
 @main_bp.route("/set_language/<lang_code>")

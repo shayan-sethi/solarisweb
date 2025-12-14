@@ -35,7 +35,7 @@
             {% set nav_links = [
                 {'label': _('Dashboard'), 'endpoint': 'dashboard.index', 'prefix': 'dashboard.'},
                 {'label': _('Projects'), 'endpoint': 'projects.list_projects', 'prefix': 'projects.'},
-                {'label': _('Solar Map'), 'endpoint': 'main.map', 'prefix': 'main.map'},
+                {'label': _('Helio Map'), 'endpoint': 'main.map', 'prefix': 'main.map'},
                 {'label': _('Vendors'), 'endpoint': 'subsidy.vendors', 'prefix': 'subsidy.vendors'},
                 {'label': _('Finance'), 'endpoint': 'finance.banks', 'prefix': 'finance.'},
                 {'label': _('Energy Tracker'), 'endpoint': 'tracker.index', 'prefix': 'tracker.'},
@@ -61,7 +61,7 @@
                     <nav class="hidden md:flex items-center gap-6 text-sm font-semibold text-slate-700">
                         <a href="{{ url_for('main.home') }}#features" class="hover:text-cyan-600 transition">{{ _('Features') }}</a>
                         <a href="{{ url_for('main.home') }}#stats" class="hover:text-cyan-600 transition">{{ _('Stats') }}</a>
-                        <a href="{{ url_for('main.map') }}" class="hover:text-cyan-600 transition">{{ _('Map') }}</a>
+                        <a href="{{ url_for('main.map') }}" class="hover:text-cyan-600 transition">{{ _('Helio Map') }}</a>
                         <a href="{{ url_for('main.home') }}#download" class="hover:text-cyan-600 transition">{{ _('Download') }}</a>
                     </nav>
                 {% endif %}
@@ -170,7 +170,7 @@
             {% else %}
                 <a href="{{ url_for('main.home') }}#features" class="hover:text-cyan-600">{{ _('Features') }}</a>
                 <a href="{{ url_for('main.home') }}#stats" class="hover:text-cyan-600">{{ _('Stats') }}</a>
-                <a href="{{ url_for('main.map') }}" class="hover:text-cyan-600">{{ _('Map') }}</a>
+                <a href="{{ url_for('main.map') }}" class="hover:text-cyan-600">{{ _('Helio Map') }}</a>
                 <a href="{{ url_for('main.home') }}#download" class="hover:text-cyan-600">{{ _('Download') }}</a>
                 <div class="border-t border-slate-200 pt-3 mt-2 space-y-2">
                     <a href="{{ url_for('auth.login') }}" class="hover:text-cyan-600">{{ _('Login') }}</a>
