@@ -540,22 +540,31 @@ The user has completed the eligibility form and is now viewing their recommended
         # Configure Gemini
         genai.configure(api_key=api_key)
         
-        # Use gemini-2.0-flash which is available and fast
-        model = genai.GenerativeModel('models/gemini-2.0-flash')
+        # Use gemini-1.5-flash which is more efficient for our use case and less likely to hit free tier limits
+        model = genai.GenerativeModel('models/gemini-1.5-flash')
         
         # Create the full prompt
         full_prompt = f"{system_prompt}{context}\n\nUser question: {user_message}"
         
-        # Generate response
-        response = model.generate_content(
-            full_prompt,
-            generation_config=genai.types.GenerationConfig(
-                temperature=0.7,
-                max_output_tokens=2000,  # Increased for summaries
+        try:
+            # Generate response
+            response = model.generate_content(
+                full_prompt,
+                generation_config=genai.types.GenerationConfig(
+                    temperature=0.7,
+                    max_output_tokens=2000,  # Increased for summaries
+                )
             )
-        )
-        
-        ai_response = response.text
+            ai_response = response.text
+        except Exception as api_error:
+            error_str = str(api_error)
+            if "429" in error_str:
+                current_app.logger.warning(f"Gemini API rate limit hit: {error_str}")
+                return jsonify({
+                    "error": "I'm receiving too many questions right now. Please wait a moment and try again.",
+                    "rate_limited": True
+                }), 429
+            raise api_error
         
         return jsonify({"response": ai_response})
     
