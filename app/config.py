@@ -21,6 +21,7 @@ class Config:
     BABEL_DEFAULT_LOCALE = "en"
     BABEL_DEFAULT_TIMEZONE = "UTC"
     GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
+    GROQ_API_KEY = os.environ.get("GROQ_API_KEY", "")
     OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY", "")  # Keep for backward compatibility
     BABEL_TRANSLATION_DIRECTORIES = str(BASE_DIR / "translations")
     SESSION_PERMANENT = True
