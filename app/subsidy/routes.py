@@ -393,16 +393,10 @@ def restart():
 @csrf.exempt
 @login_required
 def ai_chat():
-    """Handle AI chat requests for subsidy form guidance using Google Gemini"""
+    """Handle AI chat requests for subsidy form guidance using Google Gemini or Groq"""
     try:
-        import google.generativeai as genai
-        
-        api_key = current_app.config.get("GEMINI_API_KEY")
-        if not api_key:
-            current_app.logger.error("GEMINI_API_KEY not found in config")
-            return jsonify({"error": "Gemini API key not configured. Please set GEMINI_API_KEY environment variable."}), 500
-        
-        current_app.logger.info(f"Using Gemini API key (length: {len(api_key)})")
+        # Check for Groq API Key first (Alternative free provider)
+        groq_api_key = current_app.config.get("GROQ_API_KEY")
         
         # Handle both JSON and FormData requests
         if request.is_json:
@@ -441,9 +435,9 @@ def ai_chat():
                         text_content.append(page.extract_text() or "")
                     
                     extracted_text = "\n".join(text_content)
-                    # Limit text length to avoid token limits (Gemini Flash has 1M context, but let's be reasonable)
-                    if len(extracted_text) > 200000:
-                        extracted_text = extracted_text[:200000] + "\n...[Truncated due to length]"
+                    # Limit text length
+                    if len(extracted_text) > 100000:
+                        extracted_text = extracted_text[:100000] + "\n...[Truncated]"
                     
                     pdf_context = f"\n\n[USER UPLOADED PDF CONTENT START]\n{extracted_text}\n[USER UPLOADED PDF CONTENT END]\n"
                     
@@ -537,11 +531,45 @@ The user has completed the eligibility form and is now viewing their recommended
             context += pdf_context
             system_prompt += "\n\nThe user has uploaded a PDF document. Use the content labeled [USER UPLOADED PDF CONTENT] to answer their questions."
 
+        # Execute with Groq if available
+        if groq_api_key:
+            try:
+                from openai import OpenAI
+                client = OpenAI(
+                    base_url="https://api.groq.com/openai/v1",
+                    api_key=groq_api_key
+                )
+                
+                completion = client.chat.completions.create(
+                    model="llama-3.3-70b-versatile",
+                    messages=[
+                        {"role": "system", "content": system_prompt},
+                        {"role": "user", "content": f"{context}\n\nUser question: {user_message}"}
+                    ],
+                    temperature=0.7,
+                    max_tokens=2048,
+                )
+                return jsonify({"response": completion.choices[0].message.content})
+            except Exception as e:
+                current_app.logger.error(f"Groq API error: {e}")
+                # Fallthrough to Gemini if Groq fails
+                pass
+
+        # Fallback to Gemini
+        import google.generativeai as genai
+        
+        api_key = current_app.config.get("GEMINI_API_KEY")
+        if not api_key:
+            current_app.logger.error("GEMINI_API_KEY not found in config")
+            return jsonify({"error": "No AI API keys configured. Please set GEMINI_API_KEY or GROQ_API_KEY."}), 500
+        
+        current_app.logger.info(f"Using Gemini API key")
+        
         # Configure Gemini
         genai.configure(api_key=api_key)
         
-        # Try gemini-2.0-flash
-        model_name = 'gemini-2.0-flash'
+        # Use gemini-1.5-flash
+        model_name = 'gemini-1.5-flash'
         model = genai.GenerativeModel(model_name)
         
         # Create the full prompt
@@ -553,7 +581,7 @@ The user has completed the eligibility form and is now viewing their recommended
                 full_prompt,
                 generation_config=genai.types.GenerationConfig(
                     temperature=0.7,
-                    max_output_tokens=2000,  # Increased for summaries
+                    max_output_tokens=2000,
                 )
             )
             ai_response = response.text
